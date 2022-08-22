@@ -57,7 +57,7 @@
                     }
               
             ?>
-            <i style="display: inline-flex; color:blue;"><h1><?php echo $bname?> Branch</h1></i>
+            <i style="display: inline-flex; color:blue;"><h1><?php echo $bname?></h1></i>
             <ul id="navSelection" class="navSelection">
                 <li class="navSel"><a class="a" href="Dashboard.php"><i class="fa fa-chart-line"></i><p>Dashboard</p></a></li>
                 <li class="navSel"><a class="a" href="AddClient.php"><i class="fa fa-plus-circle"></i><p>Add Client</p></a></li>
