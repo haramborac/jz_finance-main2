@@ -1,0 +1,308 @@
+#Dashboard{
+    height: 100%;
+    width: 100%;
+    padding: 100px;
+}
+.dbDashboard{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.3px);
+    -webkit-backdrop-filter: blur(8.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 50px 80px;
+}
+.dbSummary h1{
+    font-size: 30px;
+    color: rgb(9, 45, 112);
+}
+.dbBalance{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.dbBalance .card{
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8.3px);
+    -webkit-backdrop-filter: blur(8.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 25px 20px;
+    z-index: 1;
+}
+.card .cardTooltip i#sy{
+    float: right;
+    font-size: 15px;
+    margin-top: -5px;
+    cursor: pointer;
+    color: skyblue;
+}
+.card .cardTooltip i#sy:hover{
+    color: blue;
+    transition: 500ms ease-in-out;
+}
+.cardTooltip .cardTipText{
+    visibility: hidden;
+    width: 220px;
+    background-color: skyblue;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    line-height: 10px;
+    position: absolute;
+    z-index: 1;
+    top: -65px;
+    left: 85%;
+}
+.cardTooltip span.cardTipText p{
+    font-weight: 500;
+    font-style: none;
+}
+.cardTooltip span.cardTipText h4{
+    font-size: 15px;
+    font-style: none;
+}
+.cardTooltip:hover .cardTipText{
+    visibility: visible;
+    display: block;
+}
+.dbBalance .card i{
+    font-size: 60px;
+}
+.dbBalance .card p{
+    margin: 5px 0;
+    font-weight: 700;
+}
+.dbBalance .card span{
+    font-size: 10px;
+    font-style: italic;
+}
+.dbBalance .card h2{
+    margin-top: 20px;
+    font-size: 25px;
+    font-weight: 700;
+}
+.dbBalance .card.currentClient div span{
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+    top: 220px;
+    left: 140px;
+    cursor: pointer;
+}
+.dbBalance .card.currentClient div span i{
+    font-size: 10px;
+    margin: 0 5px;
+}
+.dbBalance .card.currentClient div span:hover{
+    font-weight: 900;
+}
+.dbSummary .dbReport{
+    position: relative;
+    width: 100%;
+    height: 297px;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    text-align: center;
+    background: whitesmoke;
+}
+.dbReport.creditAnalyst h2{
+    font-size: 15px;
+}
+.dbReport.creditAnalyst table{
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+.dbReport.creditAnalyst table#dbreportTitle tr th{
+    border: solid 1px skyblue;
+    font-size: 12px;
+    color: blue;
+    border-radius: 5px;
+}
+.dbReport.creditAnalyst .dvRContent{
+    height: 190px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.dvRContent::-webkit-scrollbar{
+    display: none;
+}
+.dvRContent table#dbreportContent tr td{
+    font-size: 12px;
+}
+.dbReport.caClients{
+    height: 297px;
+    width: 1080px;
+    position: absolute;
+    margin-top: -295px;
+    border: solid 1px;
+}
+.dbReport.caClients span i{
+    float: right;
+    margin: 0 10px;
+    font-size: 25px;
+    cursor: pointer;
+    color: skyblue;
+}
+.dbReport.caClients span i:hover{
+    color: blue;
+    transition: 800ms;
+}
+.dbReport.caClients .clientSum{
+    display: flex;
+    justify-content: center;
+}
+.clSum{
+    width: 100%;
+    margin-top: 20px;
+    justify-content: start;
+}
+.clArea{
+    width: 100%;
+    justify-content: end;
+}
+.clSum div i{
+    font-size: 150px;
+    color: salmon;
+}
+.clSum div h3{
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 700;
+}
+.clSum div p{
+    font-size: 12px;
+    font-style: italic;
+}
+.clArea{
+    width: 1700px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.clArea .clientArea{
+    width: 130px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.3px);
+    -webkit-backdrop-filter: blur(8.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    margin: 10px;
+}
+.clArea .clientArea p{
+    margin-top: -5px;
+    font-size: 10px;
+    font-style: italic;
+}
+.dbExtras{
+    margin-top: 10px;
+    width: 380px;
+}
+.dbExtras h4{
+    text-align: center;
+    font-size: 15px;
+}
+.dbSaleUpdate{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.dbSaleUpdate div p{
+    font-size: 12px;
+}
+.dbSaleUpdate div p span{
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    margin-left: 10px;
+}
+.dbExtras .dbNotes{
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.dbNotes h4{
+    margin-top: 5px;
+}
+.dbNotes textarea{
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px;
+    background: whitesmoke;
+    outline: none;
+}
+.dbNotes button{
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.dbTopCA{
+    width: 380px;
+    margin-top: 25px;
+    text-align: center;
+}
+.dbTopCA .topCA{
+    margin: 10px 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.3px);
+    -webkit-backdrop-filter: blur(8.3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 7px;
+    cursor: pointer;
+}
+.dbTopCA .topCA:hover{
+    background: skyblue;
+    transition: 600ms ease-in-out;
+}
+.topCA h4{
+    font-size: 12px;
+    font-style: italic;
+}
+.topCA.client h3 i{
+    color: goldenrod;
+}
+.topCA.collection h3 i{
+    color: goldenrod;
+}
+.topCA.overdue h3 i{
+    color: goldenrod;
+}
+.dashBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dashBtn button{
+    margin-top: 20px;
+    height: 30px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    background: skyblue;
+    cursor: pointer;
+}
+.dashBtn button:hover{
+    color: white;
+    background: blue;
+    font-weight: 700;
+    transition: 800ms ease-in-out;
+}
