@@ -1046,7 +1046,7 @@ function setIndex1(){
     tableC = document.getElementById("recordTable");
     trC = tableC.getElementsByTagName("tr");
     for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[2];
+        tdC = trC[iC].getElementsByTagName("td")[3];
             if (tdC) {
             txtValueC = tdC.textContent || tdC.innerText;
                 if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
@@ -1078,7 +1078,7 @@ function setIndex2(){
     tableC = document.getElementById("crrTable2");
     trC = tableC.getElementsByTagName("tr");
     for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[2];
+        tdC = trC[iC].getElementsByTagName("td")[3];
             if (tdC) {
             txtValueC = tdC.textContent || tdC.innerText;
                 if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
@@ -1124,7 +1124,7 @@ function searchFilter() {
     }
     else{
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[3];
             if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -1150,7 +1150,7 @@ function searchFilter2() {
     }
     else{
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
+            td = tr[i].getElementsByTagName("td")[3];
             if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -1255,8 +1255,8 @@ function sortName(){
         for(i=0;i<(rows.length -1);i++){
             shouldSwitch = false;
 
-            x = rows[i].getElementsByTagName("td")[2];
-            y = rows[i+1].getElementsByTagName("td")[2];
+            x = rows[i].getElementsByTagName("td")[3];
+            y = rows[i+1].getElementsByTagName("td")[3];
 
             if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
                 shouldSwitch = true;
@@ -1496,8 +1496,8 @@ function sortName2(){
         for(i=0;i<(rows.length -1);i++){
             shouldSwitch = false;
 
-            x = rows[i].getElementsByTagName("td")[2];
-            y = rows[i+1].getElementsByTagName("td")[2];
+            x = rows[i].getElementsByTagName("td")[3];
+            y = rows[i+1].getElementsByTagName("td")[3];
 
             if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
                 shouldSwitch = true;
