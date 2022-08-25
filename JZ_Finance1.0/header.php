@@ -33,9 +33,7 @@
 <header>
     <div class="fullContent">
         <nav>
-            <div>
-                <a id="jzlogo" href="Home.php"></a>
-            </div>
+
             <?php
                 $username1 = $_SESSION['UNAME'];
                 $branch1 = mysqli_query($connection,"select branch from insert_cssaccount where username = '$username1'");
@@ -64,6 +62,9 @@
                 <li class="navSel"><a class="a" href="Records.php"><i class="fa fa-folder"></i><p>Records</p></a></li>
                 <li class="navSel"><a class="a" href="Data.php"><i class="fa fa-database"></i><p>Data</p></a></li>
                 <li class="navSel"><a class="a" href="Settings.php"><i class="fa fa-gears"></i><p>Settings</p></a></li>
+                <li class="navSel"><a class="a" href="CA.php"><i class="fa fa-print"></i><p>CA Data</p></a></li>
+                
+            
             </ul>
             <div class="accountOpen" style="margin-top: -15px;">
                 <span id="accPosition" style="font-size: 12px; margin-right: 5px;"></span><span id="accountName" style="font-size: 12px; text-transform: capitalize;"><?php echo $_SESSION['UNAME'];?></span><br>
