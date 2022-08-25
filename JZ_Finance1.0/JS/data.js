@@ -219,7 +219,6 @@ function filterO(){
                         matches = pValue.match(/(\d+)/);
                         matched = parseInt(matches);
                         sum += matched; 
-
                     } 
                     else {
                         tr[i].style.display = "none";

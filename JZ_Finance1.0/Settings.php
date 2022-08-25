@@ -203,8 +203,8 @@
                         if(isset($_POST['addCA'])){
                             $CAName = $_POST['CA'];
                             $CAArea = $_POST['caArea'];
-
-                            $query = "INSERT INTO insert_creditanalyst (name, area) VALUES ('$CAName', '$CAArea')";
+                            $CABranch = $_POST['acbranch'];
+                            $query = "INSERT INTO insert_creditanalyst (cabranch, name, area) VALUES ('$CABranch','$CAName', '$CAArea')";
                             mysqli_query($connection, $query);
                         }
                     
@@ -227,6 +227,18 @@
                                     <option value="11">11</option>
                                     <option value="12">12</option>
                                 </select>
+                            </div>
+                            <div>
+                            <?php 
+                                        echo " 
+                                        <label for='acbranch'>Branch :</label>
+                                        <select name='acbranch'>
+                                            <option value='tandangsora'>Tandang Sora</option>
+                                            <option value='stamaria'>Sta. Maria</option>
+                                            <option value='meycauayan'>Meycauayan</option>
+                                        </select>";
+                                    
+                                    ?>
                             </div>
                             <div>
                                 <label for="CA">CA Name:</label>
@@ -302,15 +314,15 @@
                             </div>
                             <div>
                                 <label for="cssName">Fullname</label>
-                                <input type="text" name="fullname" placeholder="Ex. Juan Dela Crus">
+                                <input type="text" name="fullname" placeholder="Ex. Juan Dela Crus" autocomplete="off">
                             </div>
                             <div>
                                 <label for="cssUsername">Username</label>
-                                <input type="text" name="username" placeholder="Ex. Juan">
+                                <input type="text" name="username" placeholder="Ex. Juan" autocomplete="off">
                             </div>
                             <div>
                                 <label for="cssPassword">Password</label>
-                                <input type="password" name="password">
+                                <input type="password" name="password" autocomplete="off">
                             </div>
                             <button type="submit" name="cssCreate">Register</button>
                         </form>
@@ -399,6 +411,18 @@
                                     <option value="11">11</option>
                                     <option value="12">12</option>
                                 </select>
+                            </div>
+                            <div>
+                            <?php 
+                                        echo " 
+                                        <label for='acbranch2'>Branch :</label>
+                                        <select name='acbranch2'>
+                                            <option value='tandangsora'>Tandang Sora</option>
+                                            <option value='stamaria'>Sta. Maria</option>
+                                            <option value='meycauayan'>Meycauayan</option>
+                                        </select>";
+                                    
+                                    ?>
                             </div>
                             <div>
                                 <input type="hidden" name="editcaid" value="<?php echo $idrow ?>">
@@ -496,7 +520,8 @@
         $edit_ca_id = $_POST['editcaid'];
         $editca = $_POST['editCAName'];
         $editcaarea = $_POST['editArea'];
-        $editcaquery = "UPDATE insert_creditanalyst SET name = '$editca', area = '$editcaarea' WHERE id = $edit_ca_id ";
+        $editcabranch = $_POST['acbranch2'];
+        $editcaquery = "UPDATE insert_creditanalyst SET cabranch = '$editcabranch', name = '$editca', area = '$editcaarea' WHERE id = $edit_ca_id ";
         mysqli_query($connection, $editcaquery);
         header('location:Settings.php');
     }

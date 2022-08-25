@@ -19,7 +19,11 @@
             <select name="caName" id="caNameID" onchange = "caFilter()">
                 <option value="0">All Credit Analyst</option>
                 <?php 
-                    $caquery = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name asc";
+                    if($bnm == "all"){
+                        $caquery = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name asc";
+                    }else{
+                        $caquery = "SELECT * FROM insert_creditanalyst where cabranch = '$bnm' ORDER BY area asc, name asc";
+                    }
                     $cacon = mysqli_query($connection,$caquery);
 
                     while($ca = mysqli_fetch_assoc($cacon)){               
@@ -31,7 +35,12 @@
         </div>
         <div>
         <?php 
-                $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cloanstatus = 'Pending'"; 
+                if($bnm == "all"){
+                    $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cloanstatus = 'Pending'"; 
+
+                }else{
+                    $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cbranch = '$bnm' and cloanstatus = 'Pending'"; 
+                }
                 $queery1 = mysqli_query($connection,$qPending);     
                     if(mysqli_num_rows($queery1)>0){
                         while($rowData1 = mysqli_fetch_array($queery1)){
@@ -44,7 +53,12 @@
         </div>
         <div>
         <?php 
-                $qCurrent = "SELECT COUNT(cloanstatus) AS Current FROM insert_client WHERE cloanstatus = 'OnGoing' "; 
+                if($bnm == "all"){
+                    $qCurrent = "SELECT COUNT(cloanstatus) AS Current FROM insert_client WHERE cloanstatus = 'OnGoing' "; 
+
+                }else{
+                    $qCurrent = "SELECT COUNT(cloanstatus) AS Current FROM insert_client WHERE cbranch = '$bnm' and cloanstatus = 'OnGoing' "; 
+                }
                 $queery2 = mysqli_query($connection,$qCurrent);       
                     if(mysqli_num_rows($queery2)>0){
                         while($rowData2 = mysqli_fetch_array($queery2)){
@@ -83,7 +97,12 @@
             <div class="cadrFPC">
                 <table id = "tPending">
                 <?php
-                        $query = "SELECT * FROM insert_client WHERE cloanstatus = 'Pending' ORDER BY ccarea ASC, clastname ASC";
+                        if($bnm == "all"){
+                            $query = "SELECT * FROM insert_client WHERE cloanstatus = 'Pending' ORDER BY ccarea ASC, clastname ASC";
+
+                        }else{
+                            $query = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus = 'Pending' ORDER BY ccarea ASC, clastname ASC";
+                        }
                         $result = mysqli_query($connection,$query);
 
                     while($row = mysqli_fetch_assoc($result)){                           
@@ -112,9 +131,14 @@
             </table>
             <div class="cadrSCC">
                 <table id="tCurrent">
-                <?php $query2 = "SELECT * FROM insert_client WHERE cloanstatus = 'OnGoing' OR cloanstatus = 'Released' ORDER BY ccarea ASC, clastname ASC"; 
-                      $result2 = mysqli_query($connection,$query2);
-                      $drIndex2 = -1;
+                <?php 
+                        if($bnm == "all"){
+                            $query2 = "SELECT * FROM insert_client WHERE cloanstatus in('OnGoing','Released')  ORDER BY ccarea ASC, clastname ASC"; 
+                        }else{
+                            $query2 = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC"; 
+                        }
+                        $result2 = mysqli_query($connection,$query2);
+                        $drIndex2 = -1;
                         while($row2  = mysqli_fetch_assoc($result2)){
                             $acctid = $row2['clientid'];
                             $drIndex2 ++;
@@ -216,7 +240,12 @@
             </table>
             <div class="cadrTOR">
             <table id = "tOverDue">
-                <?php $query3 = "SELECT * FROM insert_client WHERE  coverdue > 0 AND (cloanstatus = 'OnGoing' OR cloanstatus = 'Released') ORDER BY ccarea ASC, clastname ASC";
+                <?php 
+                    if($bnm == "all"){
+                        $query3 = "SELECT * FROM insert_client WHERE coverdue > 0 AND cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC";
+                    }else{
+                        $query3 = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and coverdue > 0 AND cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC";
+                    }
                     $result3 = mysqli_query($connection,$query3);
 
                         while($row3 = mysqli_fetch_assoc($result3)){           

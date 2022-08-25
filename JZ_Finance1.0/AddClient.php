@@ -385,15 +385,16 @@
                                             <div class="clID CAName">
                                                 <label for="clientCA">Credit Analyst:</label>
                                                 <select name="clientCA" id="clientCA" style="padding-left:5px;" onchange="clientProfileInfo()">
-                                                    <option selected disabled hidden>SELECT YOUR AREA AT STEP 1</option>
+                                                    <!-- <option selected  >SELECT YOUR AREA AT STEP 1</option> -->
                                                 <?php                                                            
                                                     $show_ca = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name ASC";
                                                     $show_ca_query = mysqli_query($connection, $show_ca);
                                                     while($row = mysqli_fetch_assoc($show_ca_query)){
                                                         $credanalArea = $row['area'];
-                                                        $creditanalyst = $row['name'];                                             
+                                                        $creditanalyst = $row['name']; 
+                                                        $credbranch = $row['cabranch'];                                            
                                                 ?>
-                                                    <option value="<?php echo $creditanalyst ?>"><?php echo $credanalArea.' : '.$creditanalyst ?></option>
+                                                    <option value="<?php echo $creditanalyst ?>"><?php echo $credanalArea.' : '.$creditanalyst.' ('.$credbranch.')'?></option>
                                                 <?php } ?>  
                                            </select>
                                             </div>

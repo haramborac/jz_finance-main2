@@ -10,7 +10,9 @@
 </style>
 <script>
     document.addEventListener('DOMContentLoaded',function (e){
-
+        let setvalue = localStorage.getItem('setvalue');
+        document.getElementById('searchName').value = setvalue;
+        searchorindex();
     });
 </script>
 <div class="clientRecords">
@@ -71,9 +73,9 @@
         <div class="crMiddle default">
             <table id="crtTabCont">
                 <tr class="header">
-                    <th width="3%">Area</th>
+                    <th width="13%">Area</th>
                     <th width="3%">Cycle</th>
-                    <th width="10%">Branch</th>
+                    <!-- <th width="10%">Branch</th> -->
                     <th width="15%">Client Name</th>
                     <th width="15%" id="thPayment">Payment</th>
                     <th width="5.3%">Status</th>
@@ -136,9 +138,8 @@
                             }
                     ?>
                     <tr>
-                        <td width="3%"><?php echo $row['ccarea'] ?></td>
+                        <td width="13%"><?php echo $row['ccarea'].' - '.$bname ?></td>
                         <td width="3%"><?php echo $row['ccycle'] ?></td>
-                        <td width="10%"><?php echo $bname?></td>
                         <td width="15%"><?php echo $row['clastname'].', '.$row['cfirstname'].' '.substr($row['cmidname'],0,1).'.' ?></td>
                         <td width="15%" id="crmUser">
                             <button id="userButton" class="userButtonProfile"><i class="fa fa-user"></i></button>
@@ -753,6 +754,9 @@
                 }
             ?>
 
+<script>
+    <?php include 'JS/records.js' ?>
+</script>
 <script> //SCRIPT FOR VIEW PROFILE BUTTON 
     var cuserModal = document.getElementsByClassName("userPModal");
     var cuserBtn = document.getElementsByClassName("userButtonProfile");
@@ -990,5 +994,12 @@
                 }
             });
         }
+
+</script>
+<script>
+    let srchnme = document.getElementById('searchName');
+        srchnme.addEventListener('keyup',function(){
+            localStorage.setItem('setvalue',srchnme.value);
+        })
 
 </script>
