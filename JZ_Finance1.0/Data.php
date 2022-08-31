@@ -5,7 +5,6 @@
     <?php include_once 'CSS/data.css'; ?>
     <?php include_once 'CSS/printData.css'; ?>
 </style>
-
 <script>
     document.addEventListener('DOMContentLoaded',function (e){
         caFilter();
@@ -30,14 +29,12 @@
                 ?>   
                     <option value="<?php echo $ca['area']?>">Area <?php echo $ca['area'] ?> : <?php echo $ca['name'] ?></option>
                 <?php }?>
-     
             </select>
         </div>
         <div>
         <?php 
                 if($bnm == "all"){
-                    $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cloanstatus = 'Pending'"; 
-
+                    $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cloanstatus = 'Pending'";        
                 }else{
                     $qPending = "SELECT COUNT(cloanstatus) AS Pending FROM insert_client WHERE cbranch = '$bnm' and cloanstatus = 'Pending'"; 
                 }
@@ -147,7 +144,7 @@
                 ?>
                     <tr>
                         <td style ="display:none" class="canal"><?php echo $row2['ccreditanalyst']?></td>
-                        <td width="10%"><p><span><?php echo $row2['ccarea']?></span></p></td>
+                        <td width="10%"><?php echo $row2['ccarea']?></td>
                         <td width="40%"><span><?php echo $row2['clastname'].", ".$row2['cfirstname']?></span></td>
                         <td width="15%"><span>₱ </span><span><?php echo number_format($approvedloan,2)?></span></td>
                         <td width="15%" id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><span class="days"></span>                        
@@ -201,7 +198,6 @@
                                 $ins_premium = $deductions['ins_premium'];
                                 $sec_deposit = $deductions['sec_deposit'];
                                 $others = $deductions['others'];
-
                                 $int_deduc = ($int/100)*$approvedloan;
                                 $amount_received = $approvedloan - $int_deduc - $procfee - $ins_premium - $sec_deposit - $others;
                         ?>
@@ -220,7 +216,7 @@
                         ?>
                         <td style ="display:none"><?php echo $row2['camountpaid'] ?></td>
                         <td style ="display:none"><?php echo $row2['cbalance'] ?></td>
-                        <td  style ="display:none"><?php echo $sumpay?></td>
+                        <td style ="display:none"><?php echo $sumpay?></td>
                         <td style ="display:none"><?php echo $approvedloan?></td>
                     </tr>                    
                     <?php }}} ?>
@@ -284,6 +280,3 @@
         </div>
     </div>
 </div>
-<script>
-    <?php include 'JS/data.js'?>
-</script>

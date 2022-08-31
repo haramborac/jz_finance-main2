@@ -82,7 +82,7 @@
     
 }
 @page{
-    size: A4 portrait;
+    size: A4 landscape;
 }
 /* @media (max-width: 767px) {
     .fl-table {

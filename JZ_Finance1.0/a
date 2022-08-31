@@ -1,0 +1,88 @@
+  <div class="dbTopCA">
+                            <h3>Top Credit Analyst</h3>
+
+                            <!-- DONE -->
+                            <div class="topCA client">
+                                <h4>Highest Number of Clients</h4>
+                                <?php 
+                                if($bnm == "all"){
+                                    $qHighestNC = "SELECT COUNT(*) AS ClientNumber, SUM(cloanamount) AS ClientAmountTotal, ccreditanalyst from insert_client WHERE cloanstatus in('Pending', 'Released','OnGoing') GROUP BY ccreditanalyst ORDER BY ClientNumber DESC, ClientAmountTotal DESC LIMIT 1";                                 
+                                }else{
+                                    $qHighestNC = "SELECT COUNT(*) AS ClientNumber, SUM(cloanamount) AS ClientAmountTotal, ccreditanalyst from insert_client WHERE cbranch='$bnm' and cloanstatus in('Pending', 'Released','OnGoing') GROUP BY ccreditanalyst ORDER BY ClientNumber DESC, ClientAmountTotal DESC LIMIT 1";                              
+                                }   
+                                $qryHighestNC = mysqli_query($connection,$qHighestNC);
+                                    
+                                    if(mysqli_num_rows($qryHighestNC)>0){
+                                        while($rdqryHighestNC = mysqli_fetch_array($qryHighestNC)){                      
+                                        $rqryHighestNC = $rdqryHighestNC['ccreditanalyst']; 
+                                        echo "<h3><i class='fa fa-trophy'></i> $rqryHighestNC</h3>";
+                                        }
+                                    } else{
+                                        $rqryHighestNC = $text;
+                                        echo "<h3><i class='fa fa-trophy'></i> $rqryHighestNC</h3>";
+                                    }
+                            ?> 
+                            </div>
+                    
+                            <!-- DONE -->
+                            <?php 
+                                if($bnm == "all"){
+                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
+                                }else{
+                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE ipbranch='$bnm' and date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
+                                }   
+                                $qryHighestDC = mysqli_query($connection,$qHighestDC);
+                                    
+                                    if(mysqli_num_rows($qryHighestDC)>0){
+                                        while($rdqryHighestDC = mysqli_fetch_array($qryHighestDC)){
+                                        $rqryHighestDC = $rdqryHighestDC['creditanalyst']; 
+                                        }
+                                    } else{
+                                        $rqryHighestDC = $text;
+                                    }
+                            ?> 
+                            <div class="topCA collection">
+                                <h4>Highest Daily Collection</h4>
+                                <?php 
+                                if($bnm == "all"){
+                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
+                                }else{
+                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE ipbranch='$bnm' and date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
+                                }
+                                $qryHighestDC = mysqli_query($connection,$qHighestDC);
+                                    
+                                    if(mysqli_num_rows($qryHighestDC)>0){
+                                        while($rdqryHighestDC = mysqli_fetch_array($qryHighestDC)){
+                                        $rqryHighestDC = $rdqryHighestDC['creditanalyst']; 
+                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestDC</h3>";
+                                        }
+                                    } else{
+                                        $rqryHighestDC = $text;
+                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestDC</h3>";
+                                    }
+                            ?>   
+                            </div>
+
+                            <!-- DONE -->           
+                            <div class="topCA overdue">
+                                <h4>Lowest Daily Overdue</h4>
+                                <?php 
+                                if($bnm == "all"){
+                                    $qHighestOD = "SELECT ccreditanalyst, sum(coverdue) as totalod FROM `insert_client` WHERE cloanstatus in('Released','OnGoing') group by ccreditanalyst order by totalod ASC, sum(cloanamount) DESC LIMIT 1 "; 
+                                }else{
+                                $qHighestOD = "SELECT ccreditanalyst, sum(coverdue) as totalod FROM `insert_client` WHERE cbranch = '$bnm' and cloanstatus in('Released','OnGoing') group by ccreditanalyst order by totalod ASC, sum(cloanamount) DESC LIMIT 1 "; 
+                                }
+                                $qryHighestOD = mysqli_query($connection,$qHighestOD);
+                                    
+                                    if(mysqli_num_rows($qryHighestOD)>0){
+                                        while($rdqryHighestOD = mysqli_fetch_array($qryHighestOD)){
+                                        $rqryHighestOD = $rdqryHighestOD['ccreditanalyst']; 
+                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestOD</h3>";
+                                        }
+                                    } else{
+                                        $rqryHighestOD = $text;
+                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestOD</h3>";
+                                    }
+                            ?> 
+                            </div>
+                        </div>

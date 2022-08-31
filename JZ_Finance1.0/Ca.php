@@ -43,12 +43,7 @@
                     }?>
             </select>
             <h2>Current Clients</h2>
-
-            
         <div class = "caContent">
-        <!-- <table>
- 
-        </table> -->
         <table id="tCurrent">
         <tr id="theadtr">
                 <th width="7%">Area</th>
@@ -113,18 +108,106 @@
                             }, 1);
                     }
                 });
-
             </script></td>
-
         </tr>                    
         <?php } ?>
     </table>  
-            
-
             </div>
-            <button onclick="window.print(); return false;">Print</button>
+            <button id="button" onclick="window.print(); return false;">Print</button>
 </div>
 <div id="print">
+<div class="table-wrapper">
+    <table class="print-table" id="print-table">
+        <thead class="ccolspan">
+            <tr>
+                <th colspan="15">Date :</th>
+            </tr>
+            <!-- <tr>
+                <th colspan="15">Area 1 - CA Shieanne</th>
+            </tr> -->
+            <tr>
+                <th colspan="15">Cash Collections & Savings</th>
+            </tr>
+        </thead>
+        <thead class="ccol">
+        <tr>
+        <th width="7%">Area</th>
+                <th width="20%">Credit Analyst</th>
+                <th width="30%">Client Name</th>
+                <th width="15%">Total <br> Loan Amount</th>
+                <th>Amount Paid</th>
+                <th>Remaining <br> Balance</th>
+                <th>Total Savings</th>
+                <th width="8%">Minimum <br> Daily Collection</th>
+                <th width="10%">Daily <br> Savings</th>
+                <th width="15%">Remaining <br> Days</th>
+                <th>Overdue</th>
+        </tr>
+        </thead>
+        <tbody><?php
+        if($bnm == "all"){
+                $query2 = "SELECT * FROM insert_client WHERE cloanstatus in('OnGoing','Released')  ORDER BY ccarea ASC, clastname ASC"; 
+            }else{
+                $query2 = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC"; 
+            }
+            $result2 = mysqli_query($connection,$query2);
+            $drIndex2 = -1;
+            while($row2  = mysqli_fetch_assoc($result2)){
+                $acctid = $row2['clientid'];
+                $drIndex2 ++;
+                $int = $row2['cinterest'];
+                $canalyst = $row2['ccreditanalyst'];
+                $approvedloan = $row2['cloanamount'];
+    ?>
+        <tr>
+            <td  style ="display:none" ><?php echo $row2['ccreditanalyst']?></td>
+            <td ><p><?php echo $row2['ccarea']?></p></td>
+            <td ><?php echo $canalyst?></td>
+            <td><p><?php echo $row2['clastname'].", ".$row2['cfirstname']?></p></td>
+            <td ><p>₱ <?php echo number_format($approvedloan,2)?></p></td>
+            <td><p>₱ <?php echo number_format($row2['camountpaid'],2)?></p></td>
+            <td><p>₱ <?php echo number_format($row2['cbalance'],2)?></p></td>
+            <td><p>₱ <?php echo number_format($row2['csecdep'],2)?></p></td>
+            <td ><p><?php echo $approvedloan/100 ?></p></td>
+            <td >20</td>
+            <td id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><p class="days"></p>                        
+
+            <script>
+                document.addEventListener('readystatechange', event => {
+                    if (event.target.readyState === "complete") {
+                        var clockdiv = document.getElementsByClassName("tdDaysRemaining2");
+                        var countDownDate = new Array();
+                        for (var i = 0; i < clockdiv.length; i++) {
+                            countDownDate[i] = new Array();
+                            countDownDate[i]['el'] = clockdiv[i];
+                            countDownDate[i]['time'] = new Date(clockdiv[i].getAttribute('data-date')).getTime();
+                            countDownDate[i]['days'] = 0;
+                        }
+
+                        var countdownfunction = setInterval(function() {
+                        for (var i = 0; i < countDownDate.length; i++) {
+                            var now = new Date().getTime();
+                            var distance = countDownDate[i]['time'] - now;
+                            countDownDate[i]['days'] = Math.floor(distance / (1000 * 60 * 60 * 24));
+            
+                            if (distance < 0) {
+                            countDownDate[i]['el'].querySelector('.days').innerHTML = 0;
+                            
+                            }else{
+                            countDownDate[i]['el'].querySelector('.days').innerHTML = countDownDate[i]['days']+" days";
+                            }
+                        }
+                            }, 1);
+                    }
+                });
+            </script></td>
+        <td>₱ <?php echo number_format($row2['coverdue'],2)?></td>
+        </tr>                    
+        <?php } ?>
+
+        <tbody>
+    </table>
+</div>
     
 </div>
 <script>
