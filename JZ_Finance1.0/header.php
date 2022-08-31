@@ -12,7 +12,7 @@
     <?php include 'CSS/style.css;' ?>
 </style>
 <script>
-    
+        <?php include_once 'JS/data.js'; ?>
     <?php include_once 'JS/app.js'; ?>
 </script>
 <?php include "db.php"; ?>

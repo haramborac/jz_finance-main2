@@ -4,7 +4,6 @@ function caFilterPending(){
     var input, table, tr, td, i, j=0,txtValue;
     var x = document.getElementById("caNameID").value;    
   
- 
         input = x;
         filter = input.toUpperCase();
         console.log("Credit Analyst "+input+" only PENDING");

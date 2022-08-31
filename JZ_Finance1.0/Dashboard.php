@@ -53,7 +53,7 @@
                                             }
                                     ?> 
                                     <i class="fa fa-money-bill" style="color: green;"></i>
-                                    <p>Total Sales</p>
+                                    <p>Running Sales</p>
                                     <span>Overall total of money to be collected by Credit Analysts</span>
                                     <h2>₱<?php echo number_format($rApp,2)?></h2>
                                 </div>
@@ -145,8 +145,8 @@
                                         </span>
                                     </div>
                                     <i class="fa fa fa-thumbs-up" style="color: blue;"></i>
-                                    <p>Total Collection</p>
-                                    <span>Overall total collection of money from the clients</span>
+                                    <p>Running Collection</p>
+                                    <span>Overall running collection of money from the clients</span>
                                     <h2>₱<?php echo number_format($rsHC,2) ?></h2>
                                 </div>
                                 <?php    
@@ -170,7 +170,7 @@
                                 ?> 
                                 <div class="card currentClient">
                                     <i class="fa fa-users" style="color: salmon;"></i>
-                                    <p>Total Clients</p>
+                                    <p>Active Clients</p>
                                     <span>Overall total of clients in all the area around the city</span>
                                     <h2><?php echo $rAT1 ?></h2>
                                     <div>
@@ -185,18 +185,15 @@
                                 <tr>
                                     <th width="10%">Area</th>
                                     <th width="20%">Credit Analyst</th>
-                                    <th width="10%">Total Clients</th>
-                                    <th width="20%">Loan Amount</th>
+                                    <th width="10%">Current Clients</th>
+                                    <th width="20%">Account Value</th>
                                     <th width="20%">Daily Collection</th>
-                                    <th width="20%">Overdue</th>
+                                    <th width="20%">Total Overdue</th>
                                 </tr>
                             </table>
                             <div class="dvRContent">
                                 <table id="dbreportContent">
                                     <?php 
-
-
-                                        
                                         //CREDIT ANALYST
                                         if($bnm == "all"){
                                             $qReport = "SELECT * FROM insert_creditanalyst ORDER BY AREA ASC, NAME ASC";                            
@@ -508,7 +505,6 @@
                             <h4>Monthly Sales Update</h4>
                             <div class="dbSaleUpdate">
                                 <div>
-                                    <p>Pending Sales</p>
                                     <p>Actual Sales</p>
                                     <p>Accumulated Sales</p>
                                     <hr>
@@ -530,10 +526,7 @@
 
                                             $pSalesQry = $pSalesQuery['request'];
                                                 $pSalesVal += $pSalesQry;
-        
-
                                     ?>                              
-                                    <p>=<span> ₱ <?php echo number_format($pSalesVal) ?></span></p>
                                 <?php    
                                     if($bnm == "all"){
                                         $pSales2 = "SELECT sum(cloanamount) as approved FROM insert_client WHERE MONTH(creleaseddate) = MONTH(CURDATE()) AND YEAR(creleaseddate) = YEAR(CURDATE()) AND cloanstatus in ('OnGoing','Released') ";
@@ -563,111 +556,26 @@
                                     <p>=<span>₱ <?php echo number_format($targetsales) ?></span></p>
                                 </div>
                             </div>
-                            <br><hr>
-                            <div class="dbNotes">
-                                <h4>Notes:</h4>
-                                <textarea name="" id="" cols="48" rows="4" placeholder="Type note here..." id="ccNotesOnly" class="content-ccNotesOnly"></textarea>
-                                <button class="saveNotes" id="saveNotes">Save</button>
-                            </div>
-                            <script>
-                                var notesOnput      =   document.querySelector('.content-ccNotesOnly');
-                                var saveNotes       =   document.querySelector('.saveNotes');
 
-                                saveNotes.addEventListener('click',updateOnput);
-
-                                notesOnput.value    =   localStorage.getItem('content');
-
-                                function updateOnput(){
-                                    localStorage.setItem('content', notesOnput.value);
-                                }
-                            </script>
                         </div>
                         <div class="dbTopCA">
-                            <h3>Top Credit Analyst</h3>
+                            <div class="topCA">
 
-                            <!-- DONE -->
-                            <div class="topCA client">
-                                <h4>Highest Number of Clients</h4>
-                                <?php 
-                                if($bnm == "all"){
-                                    $qHighestNC = "SELECT COUNT(*) AS ClientNumber, SUM(cloanamount) AS ClientAmountTotal, ccreditanalyst from insert_client WHERE cloanstatus in('Pending', 'Released','OnGoing') GROUP BY ccreditanalyst ORDER BY ClientNumber DESC, ClientAmountTotal DESC LIMIT 1";                                 
-                                }else{
-                                    $qHighestNC = "SELECT COUNT(*) AS ClientNumber, SUM(cloanamount) AS ClientAmountTotal, ccreditanalyst from insert_client WHERE cbranch='$bnm' and cloanstatus in('Pending', 'Released','OnGoing') GROUP BY ccreditanalyst ORDER BY ClientNumber DESC, ClientAmountTotal DESC LIMIT 1";                              
-                                }   
-                                $qryHighestNC = mysqli_query($connection,$qHighestNC);
-                                    
-                                    if(mysqli_num_rows($qryHighestNC)>0){
-                                        while($rdqryHighestNC = mysqli_fetch_array($qryHighestNC)){                      
-                                        $rqryHighestNC = $rdqryHighestNC['ccreditanalyst']; 
-                                        echo "<h3><i class='fa fa-trophy'></i> $rqryHighestNC</h3>";
-                                        }
-                                    } else{
-                                        $rqryHighestNC = $text;
-                                        echo "<h3><i class='fa fa-trophy'></i> $rqryHighestNC</h3>";
-                                    }
-                            ?> 
                             </div>
-                    
-                            <!-- DONE -->
-                            <?php 
-                                if($bnm == "all"){
-                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
-                                }else{
-                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE ipbranch='$bnm' and date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
-                                }   
-                                $qryHighestDC = mysqli_query($connection,$qHighestDC);
-                                    
-                                    if(mysqli_num_rows($qryHighestDC)>0){
-                                        while($rdqryHighestDC = mysqli_fetch_array($qryHighestDC)){
-                                        $rqryHighestDC = $rdqryHighestDC['creditanalyst']; 
-                                        }
-                                    } else{
-                                        $rqryHighestDC = $text;
-                                    }
-                            ?> 
-                            <div class="topCA collection">
-                                <h4>Highest Daily Collection</h4>
-                                <?php 
-                                if($bnm == "all"){
-                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
-                                }else{
-                                    $qHighestDC = "SELECT creditanalyst, payment, sum(payment) as totalpay FROM insert_payment WHERE ipbranch='$bnm' and date_paid = curdate() group by creditanalyst order by totalpay DESC limit 1"; 
-                                }
-                                $qryHighestDC = mysqli_query($connection,$qHighestDC);
-                                    
-                                    if(mysqli_num_rows($qryHighestDC)>0){
-                                        while($rdqryHighestDC = mysqli_fetch_array($qryHighestDC)){
-                                        $rqryHighestDC = $rdqryHighestDC['creditanalyst']; 
-                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestDC</h3>";
-                                        }
-                                    } else{
-                                        $rqryHighestDC = $text;
-                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestDC</h3>";
-                                    }
-                            ?>   
-                            </div>
+                            <div class="topCA">
 
-                            <!-- DONE -->           
-                            <div class="topCA overdue">
-                                <h4>Lowest Daily Overdue</h4>
-                                <?php 
-                                if($bnm == "all"){
-                                    $qHighestOD = "SELECT ccreditanalyst, sum(coverdue) as totalod FROM `insert_client` WHERE cloanstatus in('Released','OnGoing') group by ccreditanalyst order by totalod ASC, sum(cloanamount) DESC LIMIT 1 "; 
-                                }else{
-                                $qHighestOD = "SELECT ccreditanalyst, sum(coverdue) as totalod FROM `insert_client` WHERE cbranch = '$bnm' and cloanstatus in('Released','OnGoing') group by ccreditanalyst order by totalod ASC, sum(cloanamount) DESC LIMIT 1 "; 
-                                }
-                                $qryHighestOD = mysqli_query($connection,$qHighestOD);
-                                    
-                                    if(mysqli_num_rows($qryHighestOD)>0){
-                                        while($rdqryHighestOD = mysqli_fetch_array($qryHighestOD)){
-                                        $rqryHighestOD = $rdqryHighestOD['ccreditanalyst']; 
-                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestOD</h3>";
-                                        }
-                                    } else{
-                                        $rqryHighestOD = $text;
-                                        echo "<h3><i class='fa fa-medal'></i> $rqryHighestOD</h3>";
-                                    }
-                            ?> 
+                            </div>
+                            <div class="topCA">
+
+                            </div>
+                            <div class="topCA">
+
+                            </div>
+                            <div class="topCA">
+
+                            </div>
+                            <div class="topCA">
+
                             </div>
                         </div>
                         <div class="dashBtn">
