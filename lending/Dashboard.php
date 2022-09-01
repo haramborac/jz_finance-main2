@@ -503,7 +503,7 @@
                     <div class="dbProfile">
                         <div class="dbExtras">
                             <h4>Monthly Sales Update</h4>
-                            <div class="dbSaleUpdate">
+                            <!-- <div class="dbSaleUpdate">
                                 <div>
                                     <p>Actual Sales</p>
                                     <p>Accumulated Sales</p>
@@ -515,72 +515,76 @@
                                 <hr>
                                 <div>
                                 <?php   
-                                    if($bnm == "all"){
-                                        $pSales = "SELECT sum(cloanrequest) as request FROM insert_client WHERE MONTH(clisteddate) = MONTH(CURDATE()) AND YEAR(clisteddate) = YEAR(CURDATE()) AND cloanstatus = 'Pending' ";
-                                    }else{
-                                        $pSales = "SELECT sum(cloanrequest) as request FROM insert_client WHERE cbranch ='$bnm' AND MONTH(clisteddate) = MONTH(CURDATE()) AND YEAR(clisteddate) = YEAR(CURDATE()) AND cloanstatus = 'Pending' ";
-                                    }    
-                                    $pSalesQ = mysqli_query($connection,$pSales);
-                                    $pSalesVal = 0;
-                                        while($pSalesQuery = mysqli_fetch_assoc($pSalesQ)){
+                                    // if($bnm == "all"){
+                                    //     $pSales = "SELECT sum(cloanrequest) as request FROM insert_client WHERE MONTH(clisteddate) = MONTH(CURDATE()) AND YEAR(clisteddate) = YEAR(CURDATE()) AND cloanstatus = 'Pending' ";
+                                    // }else{
+                                    //     $pSales = "SELECT sum(cloanrequest) as request FROM insert_client WHERE cbranch ='$bnm' AND MONTH(clisteddate) = MONTH(CURDATE()) AND YEAR(clisteddate) = YEAR(CURDATE()) AND cloanstatus = 'Pending' ";
+                                    // }    
+                                    // $pSalesQ = mysqli_query($connection,$pSales);
+                                    // $pSalesVal = 0;
+                                    //     while($pSalesQuery = mysqli_fetch_assoc($pSalesQ)){
 
-                                            $pSalesQry = $pSalesQuery['request'];
-                                                $pSalesVal += $pSalesQry;
+                                    //         $pSalesQry = $pSalesQuery['request'];
+                                    //             $pSalesVal += $pSalesQry;
                                     ?>                              
                                 <?php    
-                                    if($bnm == "all"){
-                                        $pSales2 = "SELECT sum(cloanamount) as approved FROM insert_client WHERE MONTH(creleaseddate) = MONTH(CURDATE()) AND YEAR(creleaseddate) = YEAR(CURDATE()) AND cloanstatus in ('OnGoing','Released') ";
-                                    }else{
-                                        $pSales2 = "SELECT sum(cloanamount) as approved FROM insert_client WHERE cbranch = '$bnm' and MONTH(creleaseddate) = MONTH(CURDATE()) AND YEAR(creleaseddate) = YEAR(CURDATE()) AND cloanstatus in ('OnGoing','Released') ";
-                                    }   
-                                    $pSalesQ2 = mysqli_query($connection,$pSales2);
-                                    $pSalesVal2 = 0;
-                                        while($pSalesQuery2 = mysqli_fetch_assoc($pSalesQ2)){
+                                    // if($bnm == "all"){
+                                    //     $pSales2 = "SELECT sum(cloanamount) as approved FROM insert_client WHERE MONTH(creleaseddate) = MONTH(CURDATE()) AND YEAR(creleaseddate) = YEAR(CURDATE()) AND cloanstatus in ('OnGoing','Released') ";
+                                    // }else{
+                                    //     $pSales2 = "SELECT sum(cloanamount) as approved FROM insert_client WHERE cbranch = '$bnm' and MONTH(creleaseddate) = MONTH(CURDATE()) AND YEAR(creleaseddate) = YEAR(CURDATE()) AND cloanstatus in ('OnGoing','Released') ";
+                                    // }   
+                                    // $pSalesQ2 = mysqli_query($connection,$pSales2);
+                                    // $pSalesVal2 = 0;
+                                    //     while($pSalesQuery2 = mysqli_fetch_assoc($pSalesQ2)){
 
-                                            $pSalesQry2 = $pSalesQuery2['approved'];
-                                                $pSalesVal2 += $pSalesQry2;
+                                    //         $pSalesQry2 = $pSalesQuery2['approved'];
+                                    //             $pSalesVal2 += $pSalesQry2;
                                     ?>
-                                    <p>=<span> ₱ <?php echo number_format($pSalesVal2) ?></span></p>
+                                    <p>=<span> ₱ <?php //echo number_format($pSalesVal2) ?></span></p>
                                        
                                     <?php    
-                                        $accumulatedsales = $pSalesVal+$pSalesVal2;
-                                        $targetsales = 3600000;
-                                        $variance = $targetsales - $accumulatedsales;
+                                        // $accumulatedsales = $pSalesVal+$pSalesVal2;
+                                        // $targetsales = 3600000;
+                                        // $variance = $targetsales - $accumulatedsales;
 
                                     ?>
-                                    <p>=<span> ₱ <?php echo number_format($accumulatedsales)  ?></span></p>
-                                    <?php }}?>
+                                    <p>=<span> ₱ <?php //echo number_format($accumulatedsales)  ?></span></p>
+                                    <?php //}}?>
                                     <hr>
-                                    <p>=<span>₱ <?php echo number_format($variance) ?></span></p>
+                                    <p>=<span>₱ <?php //echo number_format($variance) ?></span></p>
                                     <hr>
-                                    <p>=<span>₱ <?php echo number_format($targetsales) ?></span></p>
+                                    <p>=<span>₱ <?php //echo number_format($targetsales) ?></span></p>
                                 </div>
                             </div>
-
                         </div>
+-->
+                        <?php 
+                        
+
+                        ?>
                         <div class="dbTopCA">
                             <div class="topCA">
-
+                                    New Clients
                             </div>
                             <div class="topCA">
-
+                                    Renewal Clients
                             </div>
                             <div class="topCA">
-
+                                    Total Release for New Clients
                             </div>
                             <div class="topCA">
-
+                                    Total Release for Renewal Clients
                             </div>
                             <div class="topCA">
-
+                                    Total Clients with Overdue
                             </div>
                             <div class="topCA">
-
+                                    Overall Total Clients
                             </div>
                         </div>
                         <div class="dashBtn">
                             <button onclick="window.print(); return false;" media="print">Print Data <i class="fa fa-print"></i></button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <script>

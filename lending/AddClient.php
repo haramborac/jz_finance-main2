@@ -385,7 +385,7 @@
                                             <div class="clID CAName">
                                                 <label for="clientCA">Credit Analyst:</label>
                                                 <select name="clientCA" id="clientCA" style="padding-left:5px;" onchange="clientProfileInfo()">
-                                                    <!-- <option selected  >SELECT YOUR AREA AT STEP 1</option> -->
+                                                    <option selected  >SELECT YOUR AREA AT STEP 1</option>
                                                 <?php                                                            
                                                     $show_ca = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name ASC";
                                                     $show_ca_query = mysqli_query($connection, $show_ca);
@@ -437,6 +437,8 @@
                                                     <option value="Postal">Postal ID</option>
                                                     <option value="Passport">Passport</option>
                                                     <option value="License">Drivers License</option>
+                                                    <option value="UMID">UMID</option>
+
                                                 </select>
                                                 <p>ID No. <input id="idNos1" name="idNos1" type="text" onkeyup="clientProfile(this)"></p>
                                             </div>
