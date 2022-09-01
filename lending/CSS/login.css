@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.loginAccess{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('IMG/Bluehue.jpg') no-repeat center;
+    background-size: cover;
+}
+.loginBgContainer{
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8.3px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.loginBgContainer h2{
+    margin: 20px 0;
+    font-size: 60px;
+    font-weight: 700;
+    color: white;
+    line-height: 60px;
+}
+.loginBgContainer h2 span{
+    font-size: 70px;
+    color: rgb(18, 18, 136);
+}
+.loginBgContainer .loginError{
+    width: 398px;
+    padding: 0 50px;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+}
+.loginError .errorLogin{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.errorLogin p{
+    font-size: 15px;
+    font-style: italic;
+    color: red;
+}
+.loginContent{
+    margin-top: 70px;
+}
+.loginContent label{
+    position: absolute;
+    font-size: 10px;
+    margin-top: -5px;
+}
+.loginContent input,.loginContent select{
+    margin: 10px;
+    height: 30px;
+    width: 200px;
+    border-radius: 10px;
+    padding: 0 5px;
+    text-transform: capitalize;
+}
+.loginContent input#cssPassword{
+    text-transform: none;
+}
+.loginBgContainer button{
+    margin-top: 10px;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.loginBgContainer button:hover{
+    font-weight: 700;
+    background: rgb(40, 183, 240);
+    color: white;
+    transition: 500ms ease-out;
+}

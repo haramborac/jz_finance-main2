@@ -1,0 +1,921 @@
+#Add{
+    height: 100%;
+    width: 100%;
+    padding: 100px;
+    overflow: hidden;
+}
+.addSteps{
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addSteps .stepCircle{
+    width: 50px;
+    margin: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.addSteps .stepCircle .stepTool{
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: solid 1px;
+    cursor: pointer;
+}
+.addSteps .stepCircle .stepTool .steptext{
+    visibility: hidden;
+    width: 130px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 10px;
+}
+.addSteps .stepCircle .stepTool:hover .steptext{
+    visibility: visible;
+}
+.addSteps .stepCircle .stepTool:hover{
+    height: 30px;
+    width: 30px;
+    background: skyblue;
+    transition: 100ms ease-in-out;
+}
+.addSteps p{
+    font-size: 10px;
+    font-style: italic;
+}
+.addClient .error,
+.addClient .success{
+    width: 100%;
+    top: 60;
+    left: 0;
+    transform: translate(0%, 100%);
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+}
+.addClient .error p{
+    font-size: 15px;
+    font-style: italic;
+    background: salmon;
+    color: red;
+    padding: 10px 50px;
+    border-radius: 5px;
+    border: none;
+}
+.addClient .success p{
+    font-size: 15px;
+    font-style: italic;
+    background: lightgreen;
+    color: green;
+    padding: 10px 50px;
+    border-radius: 5px;
+    border: none;
+}
+.addClient .addSetup{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addSetup label span.errorSign{
+    display: visible;
+    font-size: 20px;
+    font-weight: 700;
+    color: red;
+}
+
+
+.addFirst{
+    display: block;
+    justify-content: center;
+    margin-top: 30px;
+}
+.addFirst #clientForm1{
+    height: 720px;
+    width: 660px;
+}
+.caddInfo{
+    position: absolute;
+}
+.caddInfo i{
+    color: gray;
+    cursor: pointer;
+}
+.caddInfo .caddInfoText{
+    visibility: hidden;
+    width: 200px;
+    background-color: gray;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px 5px;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 60px;
+}
+.caddInfo .caddInfoText h4{
+    font-size: 15px;
+    line-height: 18px;
+}
+.caddInfo .caddInfoText p{
+    margin-top: 10px;
+    font-size: 10px;
+    font-weight: 500;
+}
+.caddInfo:hover .caddInfoText{
+    visibility: visible;
+}
+#clientForm1{
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+#clientForm1 input{
+    border: none;
+    background: whitesmoke;
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+#clientForm1 select{
+    /* background: whitesmoke; */
+    padding: 2px 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+.clientPic{
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.clientPic label#labelForImg{
+    position: absolute;
+    z-index: 2;
+    margin-left: 5px;
+}
+.clientPic img#image{
+    position: relative;
+    height: 200px;
+    width: 200px;
+}
+.clientPic input#clientDP{
+    visibility: hidden;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    transform: translate(0% ,0%);
+    height: 200px;
+    width: 200px;
+    background: none;
+}
+#clientForm1 label{
+    font-size: 10px;
+}
+.clientNo p{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.clientNo p input#randAccNo{
+    width: 100px;
+    text-align: center;
+    color: black;
+}
+.clientName{
+    margin-top: 20px;
+}
+.clientName label{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: -5px;
+}
+.clientName input{
+    width: 170px;
+}
+.clientName #suffix{
+    width: 50px;
+}
+.clientAddress{
+    margin: 20px 0;
+}
+.clientAddress label{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: -5px;
+}
+.clientAddress select{
+    border: none;
+    height: 22px;
+    width: 75px;
+    background: whitesmoke;
+    font-size: 12px;
+}
+.clientAddress #houseNo{
+    width: 75px;
+}
+.clientAddress input{
+    width: 135px;
+}
+.clientOthers{
+    margin: 5px 0;
+}
+.clientInfo.basics label{
+    position: absolute;
+    margin-top: -5px;
+    margin-left: -5px;
+}
+.clientInfo #email{
+    width: 180px;
+}
+.clientInfo #contact{
+    width: 120px;
+}
+.clientInfo #age{
+    width: 50px;
+}
+.clientInfo select{
+    height: 22px;
+    border: none;
+    background: whitesmoke;
+}
+.clientInfo #birthday{
+    width: 135px;
+}
+.clientInfo.address{
+    margin-top: 20px;
+}
+.clientInfo.address label{
+    position: absolute;
+    margin-top: -15px;
+}
+.clientInfo.address #houseNo2{
+    width: 80px;
+}
+.clientInfo.home{
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+.clientInfo.home label{
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+.clientInfo.home #adOthers{
+    background: white;
+    border-bottom: solid 2px gray;
+    border-radius: 0;
+}
+.clientInfo.status input{
+    width: 200px;
+}
+.clientInfo.status label{
+    margin-left: 5px;
+}
+.clientInfo.status #nationality{
+    width: 100px;
+}
+.clientInfo.status #child{
+    width: 110px;
+}
+.clientPartner{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.clientPartner label{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: -5px;
+}
+.clientPartner label#labelForRL{
+    position: absolute;
+    margin-top: -15px;
+}
+.clientPartner #coMaker{
+    width: 245px;
+}
+.clientPartner #loanAmount{
+    width: 150px;
+}
+.piViewButton{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.piViewButton button{
+    height: 30px;
+    width: 150px;
+    margin: 0 10px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.piViewButton button:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+   
+}
+.cancel button{
+    border:2px solid red;
+    color: red;
+
+}
+.cancel button:hover{
+    background-color: red;
+
+}
+.piViewButton #piClose{
+    display: none;
+}
+
+
+.addSecond{
+    position: absolute;
+    z-index: 5;
+    top: 180px;
+    display: flex;
+    justify-content: center;
+}
+.addSecond #clientForm2{
+    height: 720px;
+    width: 820px;
+    margin-top: 30px;
+}
+#clientForm2{
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+#clientForm2 input{
+    text-transform: capitalize;
+}
+.ccTitle{
+    margin-top: 15px;
+}
+.ccBusiness{
+    margin-top: 20px;
+}
+.ccBusiness table{
+    margin-top: 10px;
+    padding: 0 20px;
+}
+table tr th{
+    font-size: 12px;
+}
+table tr td input{
+    margin: 2px 0;
+    padding: 2px 5px;
+    border: none;
+    background: whitesmoke;
+}
+table tr td .clBus{
+    width: 220px;
+}
+table tr td .clNet{
+    width: 95px;
+    text-align: right;
+}
+.ccBusTotal{
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ccBusTotal p{
+    font-size: 10px;
+}
+.ccBusTotal p span{
+    font-style: italic;
+    color: red;
+}
+.ccHousehold{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ccHousehold div{
+    width: 280px;
+}
+.ctHIncome label{
+    font-size: 12px;
+}
+.ctHIncome input{
+    width: 100px;
+    border: none;
+    background: whitesmoke;
+    padding: 2px 5px;
+    margin: 0 5px;
+    text-align: right;
+}
+.cthiDes{
+    margin: 5px 0;
+}
+.cthiDes p{
+    font-size: 10px;
+}
+.ccHITotal{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ccHITotal p{
+    font-size: 10px;
+}
+.ccHITotal p span{
+    font-style: italic;
+    color: red;
+}
+.ccOATotal{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ccOATotal p{
+    font-size: 10px;
+}
+.ccOATotal p span{
+    font-style: italic;
+    color: red;
+}
+.cdCapacity{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.cdCapacity div ul{
+    list-style: none;
+}
+.cdCapacity div ul li{
+    margin: 2px 0;
+    font-size: 12px;
+}
+.cdCapacity div ul li input{
+    border: none;
+    padding: 2px 5px;
+    background: whitesmoke;
+}
+.cdCapacity div ul li p{
+    font-size: 13px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+.cdCapacity div ul li p span{
+    font-size: 10px;
+    font-style: italic;
+    color: red;
+    line-height: 5px;
+}
+.clButtonPrint{
+    margin-top: 25px;
+}
+.piViewButton.pageTwo{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+.addThird{
+    position: absolute;
+    z-index: 5;
+    top: 180px;
+    display: flex;
+    justify-content: center;
+}
+.addThird #clientForm3{
+    height: 720px;
+    width: 820px;
+    margin-top: 30px;
+}
+#clientForm3{
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+#clientForm3 input{
+    text-transform: capitalize;
+}
+.clIDSummary{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    text-transform: capitalize;
+}
+.clIDPic{
+    width: 150px;
+}
+.clIDPic img{
+    height: 100px;
+    width: 100px;
+}
+.clIDInfo{
+    width: 300px;
+}
+.clIDInfo .clID{
+    text-align: left;
+}
+.clIDInfo .clID p{
+    font-size: 10px;
+}
+.clIDInfo .clID p span{
+    font-size: 12px;
+    margin: 0 2px;
+}
+.clID.Acc{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.clID.Acc hr{
+    height: 20px;
+}
+.clID.CAName{
+    position: absolute;
+    margin-top: 20px;
+}
+.clID.CAName label{
+    position: absolute;
+    margin-top: -15px;
+    font-size: 10px;
+}
+.clID.CAName select{
+    width: 270px;
+    margin-top: 5px;
+    margin-left: 20px;
+    border-radius: 5px;
+    border: solid 1px;
+}
+.clValidID{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.clValidID label#labelForIDs{
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 5px;
+    font-size: 10px;
+    font-style: italic;
+    color: red;
+}
+.ccValidIDs{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.ccValidIDs img{
+    height: 200px;
+    width: 330px;
+    border-radius: 5px;
+}
+.ccValidIDs input#cFirstID,
+.ccValidIDs input#cSecondID{
+    visibility: hidden;
+    position: absolute;
+    height: 200px;
+    width: 330px;
+    top: 0px;
+    transform: translateY(95%);
+    margin-left: 3px;
+}
+.ccValidIDs .ccIDInfo{
+    margin-top: 5px;
+    display: flex;
+}
+.ccIDInfo select{
+    width: 130px;
+    margin: 0 5px;
+    border: none;
+    background: whitesmoke;
+}
+.ccValidIDs p{
+    font-size: 10px;
+}
+.ccValidIDs p input{
+    padding: 2px 5px;
+    font-size: 10px;
+    width: 165px;
+    border: none;
+    background: whitesmoke;
+}
+.ccSummary{
+    margin-top: 30px;
+}
+.comSummary{
+    margin: 0;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.comSummary h4{
+    text-align: right;
+}
+.ccAllowed{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.ccAllowed p{
+    font-size: 12px;
+}
+.ccAllowed p span{
+    font-size: 10px;
+    color: red;
+    font-style: italic;
+}
+.ccAllowed input{
+    height: 30px;
+    width: 120px;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 2px;
+    text-align: right;
+    border: none;
+}
+.ccAgreeTerms{
+    margin-top: 10px;
+}
+.ccAgreement{
+    padding:  10px 50px;
+}
+.ccAgreement p{
+    font-size: 12px;
+    font-style: italic;
+}
+.ccAgreement p span{
+    color: red;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.piViewButton.pageThree{
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+.addForth{
+    position: absolute;
+    z-index: 5;
+    top: 180px;
+    display: flex;
+    justify-content: center;
+}
+.addForth #clientForm4{
+    height: 720px;
+    width: 820px;
+    margin-top: 30px;
+}
+#clientForm4{
+    text-align: center;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.clCoMakerInfo{
+    margin-top: 30px;
+    padding: 10px;
+    height: 460px;
+}
+.clCoMakerInfo input{
+    text-transform: capitalize;
+}
+.clCoMakerInfo .cmName{
+    position: relative;
+    margin-top: 10px;
+    text-transform: capitalize;
+}
+.clCoMakerInfo .cmName div{
+    height: 45px;
+}
+.clCoMakerInfo .cmName h4{
+    font-size: 30px;
+    font-weight: 500;
+}
+.clCoMakerInfo .cmName p{
+    font-size: 10px;
+    margin-top: -5px;
+}
+.cmDetails{
+    margin-top: 10px;
+}
+.cmDetails div label{
+    position: absolute;
+    font-size: 10px;
+    margin-top: 5px;
+}
+.cmDetails div input{
+    height: 30px;
+    margin-top: 20px;
+    padding: 2px 5px;
+    border: none;
+    border-radius: 5px;
+    background: whitesmoke;
+}
+.cmDetails div label#labelForAdr{
+    margin-top: -5px;
+}
+.cmDetails div input#cmAddress{
+    width: 350px;
+}
+.cmDetails div input#cmAge{
+    width: 50px;
+}
+.cmDetails div input#cmProfession{
+    width: 200px;
+}
+.cmDetails div label#cmBdayLabel{
+    margin-left: 60px;
+}
+.cmDetails div input#cmBday{
+    margin-left: 60px;
+}
+.cmDetails div select{
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background: whitesmoke;
+}
+.cmDetails div label#cmBusLabel{
+    margin-left: 55px;
+    margin-top: -5px;
+}
+.cmDetails div input#cmBusiness{
+    margin-left: 55px;
+    width: 200px;
+}
+.cmNetIncome{
+    margin-top: 20px;
+}
+.cmNetComputation{
+    display: flex;
+    justify-content: space-evenly;
+}
+.cmNetComputation ul{
+    list-style: none;
+}
+.cmNetComputation label{
+    font-size: 10px;
+}
+.cmNetComputation p{
+    font-size: 12px;
+}
+.cmNetComputation input{
+    text-align: right;
+    height: 30px;
+    width: 100px;
+    margin: 2px 3px;
+    border-radius: 5px;
+    border: none;
+    background: whitesmoke;
+}
+.cdAgree{
+    margin-top: 82px;
+    text-align: center;
+    align-items: center;
+}
+.cdAgree label{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 500;
+    margin-top: -10px;
+}
+.ccInsert button#cmButtonCl{
+    display: none;
+}
+.piViewButton.pageFour{
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.ccInsertModal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.ccModal{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    top: 0;
+    left: 0;
+    transform: translate(0%, 100%);
+    text-align: center;
+    border: 1px solid #888;
+    height: 200px;
+    width: 450px;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.ccText{
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+}
+.ccText h3{
+    font-size: 20px;
+}
+.ccText h3 span{
+    margin: 0 5px;
+    font-style: italic;
+}
+.ccText p{
+    font-size: 10px;
+}
+.ccText button{
+    margin-top: 30px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.ccText button:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+}
+/* ADD TO ADDCLIENT .CSS */
+.sigmatura,
+.sigmatura2  {
+    position: relative;
+    bottom: -30px;
+    -webkit-text-decoration-line: overline; 
+    text-decoration-line: overline; 
+    display: none;
+}
+.disclaimer{
+    display: none;
+}

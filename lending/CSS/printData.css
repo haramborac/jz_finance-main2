@@ -1,0 +1,61 @@
+@media print{
+    .dataRecords{
+        height: auto;
+        padding: -50px;
+    }
+     nav a{
+         zoom: 1.5;
+         position: absolute;
+         top: -10px;
+         left: -10px;
+     }
+    #navSelection,
+    .dataRecords h1,
+    #btnPrintData,
+    #btnLogOut,
+    .accountOpen{
+        display: none;
+    }
+    .dataContent{
+        top: 150px;
+        position: absolute;
+        left: -2px;
+    }
+    .cadrCont.first{
+        margin-right: 5px;
+    }
+    .cadrCont.second{
+        margin-right: 5px;
+    }
+    .cadrCont.first,
+    .cadrCont.second,
+    .cadrCont.third{
+        height: 750px;
+    }
+    .caDataReport div{
+        display: flex;
+        margin-left: 50px;
+    }
+    .caDataReport{
+        transform: scale(1.5);
+        position: absolute;
+        display: block;
+        top: 100px;
+        left: 250px;
+    }
+    .doAllSale{
+        position: absolute;
+        top: 950px;
+        right: -250px;
+    }
+    #caNameID,
+    .doAllSale div p{
+        appearance: none;
+        border: none;
+        font-style: bold;
+        font-size: 15px;
+    }
+}
+@page{
+    size: A4 LANDSCAPE;
+}
