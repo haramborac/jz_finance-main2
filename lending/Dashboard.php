@@ -557,20 +557,23 @@
                                 </div>
                             </div>
                         </div>
--->
-                        <?php 
-                        
-
-                        ?>
+                        -->
                         <div class="dbTopCA">
+                            <?php 
+                                $ncq = mysqli_query($connection,"SELECT count(*) as nc FROM `insert_client` WHERE month(clisteddate) = month(CURRENT_DATE()) and year(clisteddate) = year(CURRENT_DATE()) and ccycle = 1");
+                                    while($ncrow =mysqli_fetch_assoc($ncq)){
+                                        $nc = $ncrow['nc'];
+                                    }
+              
+                            ?>
                             <div class="topCA">
                                     <h3>New Clients</h3>
-                                    99
+                                    <?php echo $nc ?>
 
                             </div>
                             <div class="topCA">
                                     <h3>Renewal Clients</h3>
-                                    99
+                                    To be followed
                             </div>
                             <div class="topCA">
                                     <h3>Total Release for New Clients</h3>
