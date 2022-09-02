@@ -575,21 +575,42 @@
                                     <h3>Renewal Clients</h3>
                                     To be followed
                             </div>
+                            <?php 
+                                $trncq = mysqli_query($connection,"SELECT sum(cloanamount) as nc FROM `insert_client` WHERE month(clisteddate) = month(CURRENT_DATE()) and year(clisteddate) = year(CURRENT_DATE()) and ccycle = 1");
+                                    while($trncrow =mysqli_fetch_assoc($trncq)){
+                                        $trnc = $trncrow['nc'];
+                                    }
+              
+                            ?>
                             <div class="topCA">
                                     <h3>Total Release for New Clients</h3>
-                                    99
+                                    ₱ <?php echo number_format($trnc) ?>
                             </div>
                             <div class="topCA">
                                     <h3>Total Release for Renewal Clients</h3>
-                                    99
+                                    To be followed
                             </div>
+                            <?php 
+                                $tcoq = mysqli_query($connection,"SELECT sum(coverdue) as nc FROM `insert_client` WHERE month(clisteddate) = month(CURRENT_DATE()) and year(clisteddate) = year(CURRENT_DATE()) ");
+                                    while($tcorow =mysqli_fetch_assoc($tcoq)){
+                                        $tco = $tcorow['nc'];
+                                    }
+              
+                            ?>
                             <div class="topCA">
                                     <h3>Total Clients with Overdue</h3>
-                                    99
+                                    ₱ <?php echo number_format($tco)?>
                             </div>
+                            <?php 
+                                $otcq = mysqli_query($connection,"SELECT count(*) as nc FROM `insert_client`");
+                                    while($otcrow =mysqli_fetch_assoc($otcq)){
+                                        $otc = $otcrow['nc'];
+                                    }
+              
+                            ?>
                             <div class="topCA">
                                     <h3>Overall Total Clients</h3>
-                                    99
+                                    <?php echo number_format($otc)?>
                             </div>
                         </div>
                         <div class="dashBtn">
