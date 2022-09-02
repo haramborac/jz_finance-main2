@@ -502,7 +502,7 @@
                     </div>
                     <div class="dbProfile">
                         <div class="dbExtras">
-                            <h4>Monthly Sales Update</h4>
+                            <h1>Monthly Sales Update</h1>
                             <!-- <div class="dbSaleUpdate">
                                 <div>
                                     <p>Actual Sales</p>
@@ -564,22 +564,29 @@
                         ?>
                         <div class="dbTopCA">
                             <div class="topCA">
-                                    New Clients
+                                    <h3>New Clients</h3>
+                                    99
+
                             </div>
                             <div class="topCA">
-                                    Renewal Clients
+                                    <h3>Renewal Clients</h3>
+                                    99
                             </div>
                             <div class="topCA">
-                                    Total Release for New Clients
+                                    <h3>Total Release for New Clients</h3>
+                                    99
                             </div>
                             <div class="topCA">
-                                    Total Release for Renewal Clients
+                                    <h3>Total Release for Renewal Clients</h3>
+                                    99
                             </div>
                             <div class="topCA">
-                                    Total Clients with Overdue
+                                    <h3>Total Clients with Overdue</h3>
+                                    99
                             </div>
                             <div class="topCA">
-                                    Overall Total Clients
+                                    <h3>Overall Total Clients</h3>
+                                    99
                             </div>
                         </div>
                         <div class="dashBtn">
