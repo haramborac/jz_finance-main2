@@ -470,7 +470,7 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` EVENT `deduc_advance` ON SCHEDULE EVERY 1 DAY STARTS '2022-05-11 17:59:55' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE insert_client SET cadvance = cadvance - (cloanamount/100) WHERE cloanstatus = 'OnGoing' AND cadvance>0$$
 
-CREATE DEFINER=`root`@`localhost` EVENT `update_overdue` ON SCHEDULE EVERY 1 DAY STARTS '2022-05-11 18:00:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE insert_client SET coverdue = coverdue + cloanamount/100 WHERE cloanstatus = 'OnGoing' AND paydate < CURDATE() AND cadvance = 0$$$$
+CREATE DEFINER=`root`@`localhost` EVENT `update_overdue` ON SCHEDULE EVERY 1 DAY STARTS '2022-05-11 18:00:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE insert_client SET coverdue = coverdue + (cloanamount/100) WHERE cloanstatus = 'OnGoing' AND paydate < CURDATE() AND cadvance = 0$$
 
 CREATE DEFINER=`root`@`localhost` EVENT `update_payment` ON SCHEDULE EVERY 1 DAY STARTS '2022-05-11 18:00:00' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE insert_client SET coverdue = coverdue-(cadvance), cadvance = 0 WHERE cloanstatus = 'Ongoing' AND paydate < CURDATE() AND cadvance < 0$$
 
