@@ -2,7 +2,7 @@
      include_once 'header.php';
 ?>
 <style>
-    <?php include_once 'CSS/weekly.css'?>
+    <?php // include_once 'CSS/weekly.css'?>
 </style>
 <div id="print">
 <div class="table-wrapper">
@@ -43,7 +43,8 @@
                 
         </tr>
         </thead>
-        <tbody><?php
+        <tbody>
+            <?php
         if($bnm == "all"){
                 $query2 = "SELECT * FROM insert_client WHERE cloanstatus in('OnGoing','Released')  ORDER BY ccarea ASC, clastname ASC"; 
             }else{
@@ -75,11 +76,8 @@
             <td></td>
             <td></td>
             <td></td>
-
-
         </tr>                    
         <?php } ?>
-
         <tbody>
     </table>
 </div>

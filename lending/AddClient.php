@@ -106,13 +106,17 @@
                                     </script>
                                     <div class="clientNo">
                                         <?php
-                                            $q = "SELECT * FROM insert_client order by id desc limit 1";
+                                            $q = "select count(*) as total from insert_client where cbranch = '$bnm'";
                                             $qq = mysqli_query($connection,$q);
-                                            $JZ = "JZMB";
-
+                                            if($bnm == 'tandangsora'){
+                                                $JZ = "GLTS";
+                                            }elseif($bnm == 'stamaria'){
+                                                $JZ = "GLSM";
+                                            }
+                                    
                                             if(mysqli_num_rows($qq)> 0){
                                                 while($row = mysqli_fetch_assoc($qq)){
-                                                $ID = $row['id'];
+                                                $ID = $row['total'];
 
                                                 $numID = str_pad($ID+1, 5, '0', STR_PAD_LEFT);
                                                 $formatID = $JZ.$numID;

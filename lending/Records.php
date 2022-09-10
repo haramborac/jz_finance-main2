@@ -103,7 +103,7 @@
                             $drIndex ++;
                             $maturity_date1 = $row['cmaturitydate'];
                             $status = $row['cloanstatus'];
-
+                            $crid = $row['clientid'];
                             if($status == "Pending"){
                                 $stats = "<td width='6%' id='crmStatus' class='crmStatus' ><div style='background-color:Orange'><p id='crmStatusP'></p><p>Pending</p></div> </td>";
                             }
@@ -265,7 +265,7 @@
                                                 <table id="uctcTable">
                                                 <?php 
                                                     // if($bnm == "all"){
-                                                    $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid' and payment>0";
+                                                    $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid'";
 
                                                     // }else{
                                                     //     $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid' and ipbranch = '$bnm' and payment>0";
@@ -373,6 +373,7 @@
                                             </h4>
                                             <p>Area <?php echo $row2['ccarea'] ?></p>
                                         </div>
+                                        <!-- <input type="text" name="caCycle" id=""> -->
                                         <div class="ucCycle">
                                             <div>
                                                 <span id="eCycle<?php echo $loop ?>"><?php echo $row2['ccycle'] ?></span>
@@ -568,7 +569,7 @@
                                     <p>₱
                                         <input type="hidden" name="checkdate" value="<?php echo date('y-m-d', strtotime($row2['paydate'])) ?>">
                                         <?php
-                                        
+                                       
                                             $checkday = "SELECT * FROM insert_payment WHERE clientid = '$clientid' ORDER BY id DESC LIMIT 1 ";
                                             $checkday_query = mysqli_query($connection, $checkday);
                                             while($checkdy = mysqli_fetch_assoc($checkday_query)){
@@ -576,6 +577,7 @@
                                         <input type="hidden" name="checkid" value="<?php echo $row2['id'] ?>">
                                         <input type="hidden" name="checkarea" value="<?php echo $row2['ccarea'] ?>">
                                         <input type="hidden" name="checkdays" value="<?php echo $checkdy['days']; ?>">
+                                        <input type="hidden" name="checkcycle" value="<?php echo $row2['ccycle']; ?>">
                                         <?php } ?>
                                         <input type="hidden" name="bnm" value="<?php echo $row2['cbranch']?>">
                                         <input type="hidden" name="creditanalyst" value="<?php echo $row2['ccreditanalyst'] ?>">

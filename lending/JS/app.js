@@ -1057,8 +1057,6 @@ function setIndex1(){
                 }
             }
     }
-
-        console.log("hehe");
     }
 }
 function setIndex2(){
@@ -1089,8 +1087,6 @@ function setIndex2(){
                 }
             }
     }
-
-        console.log("hehe");
     }
 }
 function searchorindex(){
@@ -1119,8 +1115,6 @@ function searchFilter() {
     table = document.getElementById("recordTable");
     tr = table.getElementsByTagName("tr");
     if(input.value===''){
-        console.log('hehe');
-    
     }
     else{
         for (i = 0; i < tr.length; i++) {
@@ -1146,7 +1140,6 @@ function searchFilter2() {
     table = document.getElementById("crrTable2");
     tr = table.getElementsByTagName("tr");
     if(input.value===''){
-        console.log('hehe');
     }
     else{
         for (i = 0; i < tr.length; i++) {
@@ -2148,3 +2141,26 @@ window.onload = function(){
         paymentmodal[showAdd].style.display = "block";
     }
 }
+
+// Disable Inspect element
+// document.addEventListener('contextmenu',(e)=>{
+//     e.preventDefault();
+//   }
+//   );
+//   document.onkeydown = function(e) {
+//   if(event.keyCode == 123) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+//      return false;
+//   }
+// }

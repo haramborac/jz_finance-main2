@@ -10,14 +10,15 @@
         $savings = $_POST['savings'];
         $checkdate = $_POST['checkdate'];
         $checkdays = $_POST['checkdays'];
+        $checkcycle = $_POST['checkcycle'];
         $checkbalance = $_POST['checkbalance'];
         date_default_timezone_set('Asia/Manila');
         $now = date('y-m-d');
         $overdue = $_POST['overdue'];
         $comment = $_POST['payComment'];
         $checkstatus = $_POST['checkstatus'];
-        $new_overdue = $overdue - ($payment);
-        $finished = $checkbalance - ($payment);
+        $new_overdue = $overdue - $payment;
+        $finished = $checkbalance - $payment;
 
 
         //FROM RELEASED TO ONGOING
@@ -34,8 +35,8 @@
                 cloanstatus = 'Finished' 
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm','$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm','$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }else{
@@ -50,8 +51,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -72,23 +73,23 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }else{
                 echo " normal payment but same day";
                 $balance = "UPDATE insert_client SET 
-                cbalance = cbalance-($payment), 
+                cbalance = cbalance-$payment, 
                 camountpaid = camountpaid+$payment, 
                 cadvance = cadvance+$payment,
-                csecdep = csecdep+($savings), 
+                csecdep = csecdep+$savings, 
                 paydate=now() 
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -109,8 +110,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }else{
@@ -124,8 +125,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
     
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -146,8 +147,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -163,8 +164,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }else{
@@ -179,8 +180,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -201,8 +202,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment', $checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }
@@ -218,8 +219,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }else{
@@ -234,8 +235,8 @@
                 WHERE id = '$id' ";
                 mysqli_query($connection, $balance);
                 
-                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment) 
-                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment')";
+                $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
+                VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment',$checkcycle)";
                 mysqli_query($connection, $payment_history);
                 header('location:Records.php');
             }

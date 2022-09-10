@@ -206,6 +206,7 @@
                             $CABranch = $_POST['acbranch'];
                             $query = "INSERT INTO insert_creditanalyst (cabranch, name, area) VALUES ('$CABranch','$CAName', '$CAArea')";
                             mysqli_query($connection, $query);
+                            header('location:settings.php');
                         }
                     
                     ?>
