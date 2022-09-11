@@ -34,8 +34,9 @@
                 <option value="AreaK">Area 11</option>
                 <option value="AreaL">Area 12</option>
             </select>
+            <input type="text" id="searchCID" onkeyup="searchorindex2()" placeholder="Search Client ID">
             <input type="text" id="searchName" onkeyup="searchorindex()" placeholder="Search Name">
-            <button id="searchNameBtn" onclick="searchBar()"><i class="fa fa-search"></i></button>
+            <!-- <button id="searchNameBtn" onclick="searchBar()"><i class="fa fa-search"></i></button> -->
         </div>
         <div class="crtFilter">
             <label for="cfilter">Filter By:</label>
@@ -73,14 +74,15 @@
         <div class="crMiddle default">
             <table id="crtTabCont">
                 <tr class="header">
-                    <th width="13%">Area</th>
+                    <th width="3%">Area</th>
                     <th width="3%">Cycle</th>
-                    <!-- <th width="10%">Branch</th> -->
+                    <th width="5.5%">Branch</th>
+                    <th width="6%">Client ID</th>
                     <th width="15%">Client Name</th>
                     <th width="15%" id="thPayment">Payment</th>
-                    <th width="5.3%">Status</th>
+                    <th width="6%">Status</th>
                     <th width="10%">Loan Amount</th>
-                    <th>Days Remaining</th>
+                    <th>Days <br> Remaining</th>
                     <th width="10%">Over Due</th>
                     <th width="10%">Amount Paid</th>
                     <th width="10%">Balance</th>
@@ -138,8 +140,10 @@
                             }
                     ?>
                     <tr>
-                        <td width="13%"><?php echo $row['ccarea'].' - '.$bname ?></td>
+                        <td width="3%"><?php echo $row['ccarea']?></td>
                         <td width="3%"><?php echo $row['ccycle'] ?></td>
+                        <td width="6%"><?php echo $bname ?></td>
+                        <td width="6%"><?php echo $row['clientid'] ?></td>
                         <td width="15%"><?php echo $row['clastname'].', '.$row['cfirstname'].' '.substr($row['cmidname'],0,1).'.' ?></td>
                         <td width="15%" id="crmUser">
                             <button id="userButton" class="userButtonProfile"><i class="fa fa-user"></i></button>

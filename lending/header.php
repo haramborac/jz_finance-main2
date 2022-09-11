@@ -61,9 +61,12 @@
                 echo " <li class='navSel'><a class='a' href='addclient.php'><i class='fa fa-plus-circle'></i><p>Add Client</p></a></li>";
                     }?>
                 <li class="navSel"><a class="a" href="records.php"><i class="fa fa-folder"></i><p>Records</p></a></li>
-                <li class="navSel"><a class="a" href="ca.php"><i class="fa fa-print"></i><p>CA Data</p></a></li>
-                <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client CA Data</p></a></li>
-                <li class="navSel"><a class="a" href="settings.php"><i class="fa fa-gears"></i><p>Settings</p></a></li>
+                <li class="navSel"><a class="a" href="ca.php"><i class="fa fa-print"></i><p>Weekly Collection</p></a></li>
+                <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li>
+                <?php if($bnm == 'all'){
+                echo "<li class='navSel'><a class='a' href='settings.php'><i class='fa fa-gears'></i><p>Settings</p></a></li>";
+                    }?>
+
             </ul>
             <div class="accountOpen" style="margin-top: -15px;">
                 <span id="accPosition" style="font-size: 12px; margin-right: 5px;"></span><span id="accountName" style="font-size: 12px; text-transform: capitalize;"><?php echo $_SESSION['UNAME'];?></span><br>
@@ -112,7 +115,7 @@
                 $status = $row['cloanstatus'];
                 $crid = $row['clientid'];
                 $cycle = $row['ccycle'];
-                echo "<script>console.log('$crid $cycle')</script>";
+                // echo "<script>console.log('$crid $cycle')</script>";
                 $crd = date_create($row['creleaseddate']);
                 $cmd = date_create($row['cmaturitydate']);
                 $cla = $row['cloanamount'];
@@ -141,7 +144,7 @@
                     $rod = abs(($dif*($cla/100))-$cap);
                 }
                 if($status=="Finished"||$status=="Pending"){
-                    $update = "UPDATE insert_client set camountpaid = 0, csecdep = 0, cbalance = 0, coverdue = 0, cloanamount = 0 where clientid ='$crid'";
+                    $update = "UPDATE insert_client set cbalance = 0, coverdue = 0 where clientid ='$crid'";
                 }elseif($status=="OnGoing"||$status=="Released"){
                     $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$crid'";
                 }

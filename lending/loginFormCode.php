@@ -45,7 +45,7 @@ if(isset($_POST['loginCSS'])){
                 $_0SESSION['IS_LOGIN']=true;
                 $_SESSION['UNAME']=$row['username'];
                 
-                header("location:Home.php?$username");
+                header("location:dashboard.php?$username");
             }else{
                 header ("location:Login.php?login=incorrectpassword");
                 exit ();
