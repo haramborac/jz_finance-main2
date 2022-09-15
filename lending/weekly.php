@@ -104,9 +104,9 @@
 
 
             $diff = date_diff($date1_1,$date2_2);
-            $dif = $diff->format("%a");
+            $def = $diff->format("%a");
             echo "<br> <b>Days Remaining</b> - ";
-            echo 100-$dif." Days";
+            echo 100-$def." Days";
                 
             //OVERDUE
             echo "<br> <b>Loan Amount</b> - ₱".number_format($cla);

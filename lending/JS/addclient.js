@@ -37,7 +37,7 @@ clearButton.onclick = function(){
 
      document.getElementById('coMaker').value = "";
      document.getElementById('coContact').value = "";
-     document.getElementById('loanAmount').value = "";
+     // document.getElementById('loanAmount').value = "";
 
      document.getElementById('ValidID01').selectedIndex = "0";
      document.getElementById('ValidID02').selectedIndex = "0";

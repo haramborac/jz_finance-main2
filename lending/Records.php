@@ -345,7 +345,7 @@
                                     <input type="hidden" name="editid" id="" value="<?php echo $row2['id'] ?>">
                                     <input type="hidden" name="checkbalance" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
                                     <h3>₱
-                                        <select name="approvedloan" id="eAmountLoaned<?php echo $loop ?>" disabled>
+                                        <select name="approvedloan" class ="eAmountLoaned" id="eAmountLoaned<?php echo $loop ?>" disabled>
                                             <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
                                             <?php
 
@@ -357,6 +357,8 @@
                                             ?>
                                             <option value="<?php echo $loans['loan_amount']; ?>"><?php echo $loans['loan_amount']; ?></option>
                                             <?php } ?>
+                                        <option value="0">0</option>
+
                                         </select>
                                     </h3>
                                     <div class="ucaAcc">
@@ -375,7 +377,25 @@
                                                         <?php } ?>
                                                     </select>
                                             </h4>
-                                            <p>Area <?php echo $row2['ccarea'] ?></p>
+                                            <!-- <p>Area <?php //echo $row2['ccarea'] ?></p> -->
+                                            <label for="rArea">Area</label>
+                                            <h4><select name="rArea" id="rArea<?php echo $loop ?>" disabled>
+                                                <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea'] ?></option>       
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+
+                                            </select>
+                                            </h4>
                                         </div>
                                         <!-- <input type="text" name="caCycle" id=""> -->
                                         <div class="ucCycle">
@@ -763,6 +783,7 @@
 <script>
     <?php include 'JS/records.js' ?>
 </script>
+
 <script> //SCRIPT FOR VIEW PROFILE BUTTON 
     var cuserModal = document.getElementsByClassName("userPModal");
     var cuserBtn = document.getElementsByClassName("userButtonProfile");
@@ -781,6 +802,7 @@
         userSpan[b].onclick = function() {
             cuserModal[b].style.display = "none";
             localStorage.removeItem('showProfile');
+            document.getElementById("rArea"+b).setAttribute("disabled",true);
             document.getElementById("editinterest"+b).setAttribute("disabled",true);
             document.getElementById("caName"+b).setAttribute("disabled",true);
             document.getElementById("eAmountLoaned"+b).setAttribute("disabled",true);
@@ -800,8 +822,8 @@
     //             cuserModal[b].style.display = "none";
     //         }
     //     }
-    
 </script>
+
 <script> //SCRIPT FOR ADD PAYMENT BUTTON
     var cpayModal = document.getElementsByClassName("userPayModal");
     var caddPay = document.getElementsByClassName("userButtonAdd");
@@ -929,7 +951,7 @@
     for(let g = 0 ; g<btnEdit.length ; g++){
         btnEdit[g].onclick = function(){
             if(userStatus[g].value == 'Pending' || userStatus[g].value == 'Finished'){
-
+                document.getElementById('rArea'+g).removeAttribute("disabled");
                 document.getElementById("caName"+g).removeAttribute("disabled");
                 document.getElementById("eAmountLoaned"+g).removeAttribute("disabled");
                 document.getElementById("ucaStatus"+g).removeAttribute("disabled");

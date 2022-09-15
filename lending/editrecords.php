@@ -7,6 +7,7 @@ if(isset($_POST['udpateclient'])){
     $editclientid = $_POST['editclientid'];
     $editloan = $_POST['approvedloan'];
     $editca = $_POST['caName'];
+    $editarea = $_POST['rArea'];
     $editcycle = $_POST['editcycle'];
     $editinterest = $_POST['editinterest'];
     $editstatus = $_POST['userStatus'];
@@ -31,6 +32,7 @@ if(isset($_POST['udpateclient'])){
             $edit_client .= "ccreditanalyst = '$editca', ";
             $edit_client .= "ccycle = $editcycle, ";
             $edit_client .= "cloanstatus = '$editstatus', ";
+            $edit_client .= "ccarea = $editarea, ";
             $edit_client .= "camountpaid = 0, ";
             $edit_client .= "cbalance = 0, ";
             $edit_client .= "cadvance = 0, ";
@@ -51,6 +53,7 @@ if(isset($_POST['udpateclient'])){
             $edit_client .= "cloanstatus = 'Released', ";
             $edit_client .= "cloanamount = $editloan,";
             $edit_client .= "cbalance = $editloan, ";
+            $edit_client .= "ccarea = $editarea, ";
             $edit_client .= "camountpaid = 0, ";
             $edit_client .= "coverdue = 0, ";
             $edit_client .= "csecdep = 0, ";

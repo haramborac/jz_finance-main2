@@ -31,7 +31,6 @@ if (isset($_POST['addClientBtn'])){
     $clCoMaker              =   $_POST['coMaker'];
     $clCMContact            =   $_POST['coContact'];
     $clInterest             =   $_POST['int'];
-    $clLoanable             =   $_POST['loanable'];
     $clAgree                =   $_POST['cdAgreeTerms'];
     $fileSize   = 10000000;
     $fileAllowed = array('image/jpg', 'image/jpeg', 'image/png', 'image/webp');
@@ -61,9 +60,9 @@ if (isset($_POST['addClientBtn'])){
     $IDFolder02         = 'ClientID/' . $clValid02;
 
 
-    if (empty($clFirstName) || empty($clLastName) || empty($clcArea) || empty($clContact) || 
+    if (empty($clFirstName) || empty($clLastName) || empty($clContact) || 
         empty($clcHousenum)  ||  empty($clcStreet)  ||   empty($clcBarangay)   ||  empty($clcCity)  ||
-        empty($clAge) || empty($clGender) || empty($clCoMaker) || empty($clCMContact) || empty($clLoanable) ||
+        empty($clAge) || empty($clGender) || empty($clCoMaker) || empty($clCMContact) ||
         empty($cmAddress) || empty($cmBusiness)) {
         header ("location:AddClient.php?add=filloutemptyspace");
         exit ();
@@ -92,11 +91,11 @@ if (isset($_POST['addClientBtn'])){
                 (cbranch, cphoto, clientid, cfirstname, cmidname, clastname, csuffix, ccarea, 
                 cchnumber, ccstreet, ccbarangay, cccity, ccontact, cemail, cage, 
                 cgender, cbirthday, chnumber, cstreet, cbarangay, ccity, chome, cother,
-                cnationality, ccivilstatus, cspouse, cchildren, ccomaker, cccontact, ccreditanalyst, cloanrequest, cinterest, clisteddate) 
+                cnationality, ccivilstatus, cspouse, cchildren, ccomaker, cccontact, ccreditanalyst, cinterest, clisteddate) 
                 VALUES ('$acbranch','$clientImage', '$clAccountID', '$clFirstName', '$clMidName', '$clLastName', '$clSuffix',              
                 '$clcArea', '$clcHousenum', '$clcStreet', '$clcBarangay', '$clcCity', '$clContact', '$clEmail',               
                 '$clAge', '$clGender', '$clBday', '$clHousenum', '$clStreet', '$clBarangay', '$clCity', '$clHome', '$clOther',               
-                '$clNationality', '$clCivilStatus', '$clSpouse', '$clChildren', '$clCoMaker', '$clCMContact', '$clientCA', $clLoanable, $clInterest, now())";
+                '$clNationality', '$clCivilStatus', '$clSpouse', '$clChildren', '$clCoMaker', '$clCMContact', '$clientCA', $clInterest, now())";
                 
                 $sql02 = "INSERT INTO  insert_comaker 
                 (clientid, cmcontact, cmaddress, cmgender, cmage, cmbday, cmprofession, cmnationality, cmcivil, cmbusiness) 

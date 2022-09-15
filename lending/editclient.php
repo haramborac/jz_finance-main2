@@ -164,8 +164,6 @@
                             <label for="coMaker"><span class="errorSign">*</span>Co Maker:</label>
                             <input id="coMaker" type="text" name="coMaker" value="<?php echo $row['ccomaker'] ?>" onkeyup="clientProfile(this)">
                             <input id="coContact" type="number" name="coContact" value="<?php echo $row['cccontact'] ?>" onkeyup="clientProfile(this)">
-                            <label id="labelForRL" for="loanAmount">Request Loan Amount:</label>
-                            ₱ <input id="loanAmount" type="number" name="loanAmount" placeholder="00000.00" onkeyup="clientProfile(this)">
                         </div>
                         <div class="piViewButton pageOne">
                             <div class="cancel"><a href="Records.php"><button type="button">Cancel</button></a></div>
