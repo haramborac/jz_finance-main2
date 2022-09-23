@@ -128,7 +128,7 @@
                 <div class="editDeductModal" id="editDeductModal">
                     <div class="editDeductContent">
                         <span class="deductClose">&times;</span>
-                        <h4>Edit Deduction Values</h4>
+                        <h4>Edit Deduction</h4>
                         <div class="deductionValues">
                             <div>
                                 <input type="hidden" name="editloan_id" value="<?php echo $loans['id'] ?>">

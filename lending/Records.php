@@ -531,7 +531,7 @@
                                         <div class="ucNew">
                                             <button id="cycButton" class="cycButton" type="button">New Cycle</button><br>
                                             <button type="button" class="editButton">Apply Loan</button><br>
-                                            <a href="EditClient.php?edit=<?php echo $row2['id'] ?>"><button type="button" class="ceditinfo">Edit Info</button></a><br>
+                                            <a href="EditClient.php?edit=<?php echo $row2['id'] ?>"><button type="button" class="ceditinfo">Edit Profile</button></a><br>
                                             <button type="submit" name="udpateclient" class="saveButton" disabled>Save</button>
                                         </div>
                                     </div>

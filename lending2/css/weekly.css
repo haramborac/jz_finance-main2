@@ -1,0 +1,75 @@
+/* CSS */
+
+
+
+
+@media print{
+
+    	.table-wrapper button{
+	display:none;
+	}
+
+    .fullContent,#no-print{
+
+        display: none;
+    }
+    #print{
+        height: auto;
+        display: block;
+        width: auto;
+    }
+    *{
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    body{
+        font-family: Helvetica;
+        -webkit-font-smoothing: antialiased;
+        background: rgba( 71, 147, 227, 1);
+    }
+    h2{
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+        padding: 30px 0;
+    }
+    
+    /* Table Styles */
+    .print-table tr{
+        text-transform: capitalize;
+    }
+    .table-wrapper{
+        margin: 0px 0px 0px;
+    }
+    
+    .print-table {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: normal;
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        background-color: white;
+    }
+    
+    .print-table td, .print-table th {
+        text-align: center;
+        padding: 8px;
+    }
+    
+    .print-table td {
+        font-size: 12px;
+    }
+    #print-table thead, td, th{
+        border: 1px solid black;
+    }
+    
+   }
+@page{
+    size: A4 landscape;
+}
