@@ -1,0 +1,145 @@
+@media print{
+
+    
+    nav,
+    .addClient h1,
+    .clientPartner,
+    .clIDSummary,
+    .cdAgree,
+    .ccInsert,
+    .clButtonPrint,
+    .accountOpen{
+        display: none;
+    }
+    .piViewButton{
+        visibility: hidden;
+    }
+    .clientPic{
+        margin-top: 10px;
+    }
+     .addFirst .clientForm1{
+        transform: scale(1.1);
+        position: absolute;
+        top: 10px;
+        left: 125px;
+    }
+    #clientForm1{
+        border :none;
+        box-shadow: none;
+        border-radius: 0px;
+        background: none;
+        backdrop-filter: none;
+    }
+    .addSecond .clientForm2{
+        transform: scale(0.9);
+        position: relative;
+        top: 450px;
+        right: 200px;
+        display: block;
+      
+    }
+    .spun{
+        display: none;
+    }
+    
+    #clientForm2{
+        display:block;
+        border :none;
+        box-shadow: none;
+        border-radius: 0px;
+        background: none;
+        backdrop-filter: none;
+    }
+    .addThird .clientForm3{
+        transform:scale(1);
+        position: relative;
+        top: 460px;
+        right: 200px;
+    }
+    #clientForm3{
+        border :none;
+        box-shadow: none;
+        border-radius: 0px;
+        background: none;
+        backdrop-filter: none;
+    }
+
+    .clValidID{
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+
+    .sigmatura{
+        top: 100px;
+        display:block;
+        margin: -30px;
+        font-size: 15px;
+    }
+    .sigmatura2{
+        top: 565px;
+        font-size: 15px;
+        position: absolute;
+        display:block;
+        padding-left: 260px;
+        padding-bottom: 0px;
+    }
+    .disclaimer{
+        top: 450px;
+        position: absolute;
+        display:block;
+        font-size:12.5px ;
+        padding-top: 150px;
+        padding-bottom: 30px;
+        right: 20px;
+    }
+    #clientArea,
+    #gender,
+    #civil,
+    #clientForm3 select{
+        appearance: none;
+    }
+    .ccSummary hr {
+        display: none;
+    }
+
+    #clientArea,
+    #gender,
+    #civil,
+    #clientForm1 input,
+    #clientForm2 input,
+    #clientForm3 input,
+    #clientForm1 select,
+    #clientForm2 select,
+    #clientForm3 select{
+       border: 1px solid #ccc;
+       border-radius: 4px;
+       box-sizing: border-box;
+    }
+
+    #clientForm3 #ccLoan{
+        border: none;
+        border-radius: none;
+        box-sizing: none;
+
+    }
+    #clientArea,
+    #gender,
+    #civil,
+    #cmGender,
+    #cmCivilStatus,
+    #clientForm1 ::placeholder,
+    #clientForm2 ::placeholder,
+    #clientForm3 ::placeholder{
+     color: lightgray;
+     opacity: 0.2;
+    }
+
+    .clCoMakerInfo{
+        transform: scale(1.1);
+        margin-top: 20px;
+    }
+
+}
+@page{
+    size: A4 PORTRAIT;
+}

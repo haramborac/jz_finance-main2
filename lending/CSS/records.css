@@ -38,6 +38,9 @@
     align-items: center;
     justify-content: space-between;
 }
+.crtSearch input{
+    margin-left: 10px;
+}
 .crtFilter label, 
 .crtStatus label{
     position: absolute;

@@ -21,19 +21,19 @@
                         <div class="stepTool" id="stepNo1" style="background: navy;">
                             <span class="stepText">Personal Infomation</span>
                         </div>
-                        <p>Step 1</p>
+                        <p>Biodata</p>
                     </div>
                     <div class="stepCircle">
                         <div class="stepTool" id="stepNo2">
                             <span class="stepText">Income Statement</span>
                         </div>
-                        <p>Step 2</p>
+                        <p>Financial</p>
                     </div>
                     <div class="stepCircle">
                         <div class="stepTool" id="stepNo3">
                             <span class="stepText">IDs and Credentials</span>
                         </div>
-                        <p>Step 3</p>
+                        <p>Co Maker</p>
                     </div>
                     <div class="stepCircle">
                         <div class="stepTool" id="stepNo4">
@@ -88,7 +88,7 @@
                                     </div>
                                     <div id="clientPic" class="clientPic">
                                         <label for="image" id="labelForImg"><span class="errorSign">*</span></label>
-                                        <img id="image" src="" alt="" onerror="this.src='IMG/defaultpic.jpg';">
+                                        <img id="image" src="" alt="" onerror="this.src='IMG/defaultpic2.jpg';">
                                         <input id="clientDP" type="file" onchange="getImagePreview(event)" name="clientDP">
                                     </div>
                                     <label id="labelPic" for="clientPic">Insert 2x2 Picture</label>
@@ -106,13 +106,17 @@
                                     </script>
                                     <div class="clientNo">
                                         <?php
-                                            $q = "SELECT * FROM insert_client order by id desc limit 1";
+                                            $q = "select count(*) as total from insert_client where cbranch = '$bnm'";
                                             $qq = mysqli_query($connection,$q);
-                                            $JZ = "JZMB";
-
+                                            if($bnm == 'tandangsora'){
+                                                $JZ = "GLTS";
+                                            }elseif($bnm == 'stamaria'){
+                                                $JZ = "GLSM";
+                                            }
+                                    
                                             if(mysqli_num_rows($qq)> 0){
                                                 while($row = mysqli_fetch_assoc($qq)){
-                                                $ID = $row['id'];
+                                                $ID = $row['total'];
 
                                                 $numID = str_pad($ID+1, 5, '0', STR_PAD_LEFT);
                                                 $formatID = $JZ.$numID;
@@ -150,17 +154,17 @@
                                     </div>
                                     <div class="clientAddress data">
                                         <label for="clientName"><span class="errorSign">*</span> Address</label>
-                                        <Select id="clientArea" name="clientArea" value="Area" onchange="clientProfileInfo()">
+                                        <!-- <Select id="clientArea" name="clientArea" value="Area" onchange="clientProfileInfo()">
                                             <option selected disabled hidden>Area</option>
                                             <?php
-                                                $show_ca = "SELECT area FROM insert_creditanalyst group by area order by area ASC ";
-                                                $show_ca_query = mysqli_query($connection, $show_ca);
-                                                while($row = mysqli_fetch_assoc($show_ca_query)){
-                                                    $caarea = $row['area'];
+                                                // $show_ca = "SELECT area FROM insert_creditanalyst group by area order by area ASC ";
+                                                // $show_ca_query = mysqli_query($connection, $show_ca);
+                                                // while($row = mysqli_fetch_assoc($show_ca_query)){
+                                                //     $caarea = $row['area'];
                                             ?>
-                                                <option value="<?php echo $caarea ?>"><?php echo $caarea ?></option>
-                                            <?php } ?>              
-                                        </Select>
+                                                <option value="<?php //echo $caarea ?>"><?php //echo $caarea ?></option>
+                                            <?php //} ?>              
+                                        </Select> -->
                                         <input id="houseNo" type="number" name="houseNo" placeholder="House #" onchange="clientProfileInfo()" onkeyup="clientProfile(this)">
                                         <input id="street" type="text" name="street" placeholder="Bldg/Lot/Street" onchange="clientProfileInfo()" onkeyup="clientProfile(this)">
                                         <input id="barangay" type="text" name="barangay" placeholder="Barangay" onchange="clientProfileInfo()" onkeyup="clientProfile(this)">
@@ -221,8 +225,8 @@
                                         <label for="coMaker"><span class="errorSign">*</span>Co Maker:</label>
                                         <input id="coMaker" type="text" name="coMaker" placeholder="Fullname" onkeyup="clientProfile(this)">
                                         <input id="coContact" type="number" name="coContact" placeholder="Contact No." onkeyup="clientProfile(this)">
-                                        <label id="labelForRL" for="loanAmount">Request Loan Amount:</label>
-                                        ₱ <input id="loanAmount" type="number" name="loanAmount" placeholder="00000.00" onkeyup="clientProfile(this)">
+                                        <!-- <label id="labelForRL" for="loanAmount">Request Loan Amount:</label>
+                                        ₱ <input id="loanAmount" type="number" name="loanAmount" placeholder="00000.00" onkeyup="clientProfile(this)"> -->
                                     </div>
                                     <div class="piViewButton pageOne">
                                         <button type="button" id="clearButton">Clear Form</button>
@@ -382,22 +386,22 @@
                                                     <span id="clCPrev"></span>
                                                 </p>
                                             </div>
-                                            <div class="clID CAName">
+                                            <!-- <div class="clID CAName">
                                                 <label for="clientCA">Credit Analyst:</label>
                                                 <select name="clientCA" id="clientCA" style="padding-left:5px;" onchange="clientProfileInfo()">
                                                     <option selected  >SELECT YOUR AREA AT STEP 1</option>
                                                 <?php                                                            
-                                                    $show_ca = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name ASC";
-                                                    $show_ca_query = mysqli_query($connection, $show_ca);
-                                                    while($row = mysqli_fetch_assoc($show_ca_query)){
-                                                        $credanalArea = $row['area'];
-                                                        $creditanalyst = $row['name']; 
-                                                        $credbranch = $row['cabranch'];                                            
+                                                    // $show_ca = "SELECT * FROM insert_creditanalyst ORDER BY area asc, name ASC";
+                                                    // $show_ca_query = mysqli_query($connection, $show_ca);
+                                                    // while($row = mysqli_fetch_assoc($show_ca_query)){
+                                                    //     $credanalArea = $row['area'];
+                                                    //     $creditanalyst = $row['name']; 
+                                                    //     $credbranch = $row['cabranch'];                                            
                                                 ?>
-                                                    <option value="<?php echo $creditanalyst ?>"><?php echo $credanalArea.' : '.$creditanalyst.' ('.$credbranch.')'?></option>
-                                                <?php } ?>  
+                                                    <option value="<?php // echo $creditanalyst ?>"><?php //echo $credanalArea.' : '.$creditanalyst.' ('.$credbranch.')'?></option>
+                                                <?php //} ?>  
                                            </select>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <?php
@@ -521,10 +525,10 @@
                                         <hr>
                                     </div>
 
-                                    <div class="ccAllowed">
+                                    <!-- <div class="ccAllowed">
                                         <p>Loanable Amount <span>(Including Deductions)</span></p>
                                         <div><span class="errorSign" style="color:red">*</span>₱ <input id="ccLoan" name="loanable" type="number" placeholder="0000.00" value="0.00"></div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="piViewButton pageThree">
                                         <button type="button" onclick="insertCValid()">Prev</button>
@@ -683,7 +687,7 @@
     document.getElementById('cmGross2').addEventListener("focusout",removeNan2);
     document.getElementById('cmExpenses1').addEventListener("focusout",removeNan2);
     document.getElementById('cmExpenses2').addEventListener("focusout",removeNan2);
-    document.getElementById('ccLoan').addEventListener("focusout",removeNan3);
+    // document.getElementById('ccLoan').addEventListener("focusout",removeNan3);
 </script>
 <script>
     var civil_status = document.getElementById('civil');
@@ -713,23 +717,23 @@
 </script>
 
 <script >
-var input;
-let lcn = document.getElementById("clientArea");
+// var input;
+// let lcn = document.getElementById("clientArea");
 
-    lcn.onchange = function(){
+//     lcn.onchange = function(){
 
-        let index = lcn.options[lcn.selectedIndex].index;
+//         let index = lcn.options[lcn.selectedIndex].index;
 
-        let lca = document.getElementById("clientCA");
-        let selected = lca.selectedIndex = index;
-        if(selected<0){
+//         let lca = document.getElementById("clientCA");
+//         let selected = lca.selectedIndex = index;
+//         if(selected<0){
          
-        } else{
-            lca.selectedIndex = index;
-        }
-        console.log(index);
+//         } else{
+//             lca.selectedIndex = index;
+//         }
+//         console.log(index);
 
-}
+// }
 </script>
 
 <script>
@@ -748,11 +752,11 @@ let lcn = document.getElementById("clientArea");
     document.getElementById("nationality").value        = getSavedValue("nationality");
     document.getElementById("coMaker").value            = getSavedValue("coMaker");
     document.getElementById("coContact").value          = getSavedValue("coContact");
-    document.getElementById("loanAmount").value         = getSavedValue("loanAmount");
-    document.getElementById("clientCA").value           = getSavedValue("clientCA");
+    // document.getElementById("loanAmount").value         = getSavedValue("loanAmount");
+    // document.getElementById("clientCA").value           = getSavedValue("clientCA");
     document.getElementById("idNos1").value             = getSavedValue("idNos1");
     document.getElementById("idNos2").value             = getSavedValue("idNos2");
-    document.getElementById("ccLoan").value             = getSavedValue("ccLoan");
+    // document.getElementById("ccLoan").value             = getSavedValue("ccLoan");
     document.getElementById("cmAddress").value          = getSavedValue("cmAddress");
     document.getElementById("cmAge").value              = getSavedValue("cmAge");
     document.getElementById("cmBday").value             = getSavedValue("cmBday");

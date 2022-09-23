@@ -5,6 +5,19 @@
     <?php include_once 'CSS/dashboard.css'; ?>
     <?php include_once 'CSS/printDashboard.css'; ?>
 </style>
+<div id="idcanvas">
+<div id='date' style="display:flex; margin:10%;"></div>
+<canvas id="canvas" width="150" height="150"></canvas>
+</div>
+                    <script>
+                        function startDate() {
+                            var d = new Date();
+                            var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                            var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+                            document.getElementById("date").innerHTML = months[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
+                        }
+                        startDate();
+                    </script>
             <section id="Dashboard" class="navContent">
                 <div class="dbDashboard">
                     <div class="dbSummary">
@@ -619,6 +632,7 @@
                     </div>
                 </div>
                 <script>
+                    <?php include 'JS/dashboard.js'?>
                 // Get the modal
                     var modal = document.getElementById("dbcaModal");
                     var btn = document.getElementById("viewcaModal");

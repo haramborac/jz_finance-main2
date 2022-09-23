@@ -34,8 +34,9 @@
                 <option value="AreaK">Area 11</option>
                 <option value="AreaL">Area 12</option>
             </select>
+            <input type="text" id="searchCID" onkeyup="searchorindex2()" placeholder="Search Client ID">
             <input type="text" id="searchName" onkeyup="searchorindex()" placeholder="Search Name">
-            <button id="searchNameBtn" onclick="searchBar()"><i class="fa fa-search"></i></button>
+            <!-- <button id="searchNameBtn" onclick="searchBar()"><i class="fa fa-search"></i></button> -->
         </div>
         <div class="crtFilter">
             <label for="cfilter">Filter By:</label>
@@ -73,14 +74,15 @@
         <div class="crMiddle default">
             <table id="crtTabCont">
                 <tr class="header">
-                    <th width="13%">Area</th>
+                    <th width="3%">Area</th>
                     <th width="3%">Cycle</th>
-                    <!-- <th width="10%">Branch</th> -->
+                    <th width="5.5%">Branch</th>
+                    <th width="6%">Client ID</th>
                     <th width="15%">Client Name</th>
                     <th width="15%" id="thPayment">Payment</th>
-                    <th width="5.3%">Status</th>
+                    <th width="6%">Status</th>
                     <th width="10%">Loan Amount</th>
-                    <th>Days Remaining</th>
+                    <th>Days <br> Remaining</th>
                     <th width="10%">Over Due</th>
                     <th width="10%">Amount Paid</th>
                     <th width="10%">Balance</th>
@@ -103,7 +105,7 @@
                             $drIndex ++;
                             $maturity_date1 = $row['cmaturitydate'];
                             $status = $row['cloanstatus'];
-
+                            $crid = $row['clientid'];
                             if($status == "Pending"){
                                 $stats = "<td width='6%' id='crmStatus' class='crmStatus' ><div style='background-color:Orange'><p id='crmStatusP'></p><p>Pending</p></div> </td>";
                             }
@@ -138,8 +140,10 @@
                             }
                     ?>
                     <tr>
-                        <td width="13%"><?php echo $row['ccarea'].' - '.$bname ?></td>
+                        <td width="3%"><?php echo $row['ccarea']?></td>
                         <td width="3%"><?php echo $row['ccycle'] ?></td>
+                        <td width="6%"><?php echo $bname ?></td>
+                        <td width="6%"><?php echo $row['clientid'] ?></td>
                         <td width="15%"><?php echo $row['clastname'].', '.$row['cfirstname'].' '.substr($row['cmidname'],0,1).'.' ?></td>
                         <td width="15%" id="crmUser">
                             <button id="userButton" class="userButtonProfile"><i class="fa fa-user"></i></button>
@@ -265,7 +269,7 @@
                                                 <table id="uctcTable">
                                                 <?php 
                                                     // if($bnm == "all"){
-                                                    $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid' and payment>0";
+                                                    $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid'";
 
                                                     // }else{
                                                     //     $show_payment_history = "SELECT * FROM insert_payment WHERE clientid = '$clientid' and ipbranch = '$bnm' and payment>0";
@@ -341,7 +345,7 @@
                                     <input type="hidden" name="editid" id="" value="<?php echo $row2['id'] ?>">
                                     <input type="hidden" name="checkbalance" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
                                     <h3>₱
-                                        <select name="approvedloan" id="eAmountLoaned<?php echo $loop ?>" disabled>
+                                        <select name="approvedloan" class ="eAmountLoaned" id="eAmountLoaned<?php echo $loop ?>" disabled>
                                             <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
                                             <?php
 
@@ -353,6 +357,8 @@
                                             ?>
                                             <option value="<?php echo $loans['loan_amount']; ?>"><?php echo $loans['loan_amount']; ?></option>
                                             <?php } ?>
+                                        <option value="0">0</option>
+
                                         </select>
                                     </h3>
                                     <div class="ucaAcc">
@@ -371,8 +377,27 @@
                                                         <?php } ?>
                                                     </select>
                                             </h4>
-                                            <p>Area <?php echo $row2['ccarea'] ?></p>
+                                            <!-- <p>Area <?php //echo $row2['ccarea'] ?></p> -->
+                                            <label for="rArea">Area</label>
+                                            <h4><select name="rArea" id="rArea<?php echo $loop ?>" disabled>
+                                                <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea'] ?></option>       
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+
+                                            </select>
+                                            </h4>
                                         </div>
+                                        <!-- <input type="text" name="caCycle" id=""> -->
                                         <div class="ucCycle">
                                             <div>
                                                 <span id="eCycle<?php echo $loop ?>"><?php echo $row2['ccycle'] ?></span>
@@ -506,7 +531,7 @@
                                         <div class="ucNew">
                                             <button id="cycButton" class="cycButton" type="button">New Cycle</button><br>
                                             <button type="button" class="editButton">Apply Loan</button><br>
-                                            <a href="EditClient.php?edit=<?php echo $row2['id'] ?>"><button type="button" class="ceditinfo">Edit Info</button></a><br>
+                                            <a href="EditClient.php?edit=<?php echo $row2['id'] ?>"><button type="button" class="ceditinfo">Edit Profile</button></a><br>
                                             <button type="submit" name="udpateclient" class="saveButton" disabled>Save</button>
                                         </div>
                                     </div>
@@ -568,7 +593,7 @@
                                     <p>₱
                                         <input type="hidden" name="checkdate" value="<?php echo date('y-m-d', strtotime($row2['paydate'])) ?>">
                                         <?php
-                                        
+                                       
                                             $checkday = "SELECT * FROM insert_payment WHERE clientid = '$clientid' ORDER BY id DESC LIMIT 1 ";
                                             $checkday_query = mysqli_query($connection, $checkday);
                                             while($checkdy = mysqli_fetch_assoc($checkday_query)){
@@ -576,6 +601,7 @@
                                         <input type="hidden" name="checkid" value="<?php echo $row2['id'] ?>">
                                         <input type="hidden" name="checkarea" value="<?php echo $row2['ccarea'] ?>">
                                         <input type="hidden" name="checkdays" value="<?php echo $checkdy['days']; ?>">
+                                        <input type="hidden" name="checkcycle" value="<?php echo $row2['ccycle']; ?>">
                                         <?php } ?>
                                         <input type="hidden" name="bnm" value="<?php echo $row2['cbranch']?>">
                                         <input type="hidden" name="creditanalyst" value="<?php echo $row2['ccreditanalyst'] ?>">
@@ -757,6 +783,7 @@
 <script>
     <?php include 'JS/records.js' ?>
 </script>
+
 <script> //SCRIPT FOR VIEW PROFILE BUTTON 
     var cuserModal = document.getElementsByClassName("userPModal");
     var cuserBtn = document.getElementsByClassName("userButtonProfile");
@@ -775,6 +802,7 @@
         userSpan[b].onclick = function() {
             cuserModal[b].style.display = "none";
             localStorage.removeItem('showProfile');
+            document.getElementById("rArea"+b).setAttribute("disabled",true);
             document.getElementById("editinterest"+b).setAttribute("disabled",true);
             document.getElementById("caName"+b).setAttribute("disabled",true);
             document.getElementById("eAmountLoaned"+b).setAttribute("disabled",true);
@@ -794,8 +822,8 @@
     //             cuserModal[b].style.display = "none";
     //         }
     //     }
-    
 </script>
+
 <script> //SCRIPT FOR ADD PAYMENT BUTTON
     var cpayModal = document.getElementsByClassName("userPayModal");
     var caddPay = document.getElementsByClassName("userButtonAdd");
@@ -923,7 +951,7 @@
     for(let g = 0 ; g<btnEdit.length ; g++){
         btnEdit[g].onclick = function(){
             if(userStatus[g].value == 'Pending' || userStatus[g].value == 'Finished'){
-
+                document.getElementById('rArea'+g).removeAttribute("disabled");
                 document.getElementById("caName"+g).removeAttribute("disabled");
                 document.getElementById("eAmountLoaned"+g).removeAttribute("disabled");
                 document.getElementById("ucaStatus"+g).removeAttribute("disabled");

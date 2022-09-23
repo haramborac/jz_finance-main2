@@ -39,8 +39,7 @@
 
                 <th>Date</th>
                 <th>Sign</th>
-
-                
+   
         </tr>
         </thead>
         <tbody><?php
@@ -74,12 +73,54 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-
-
         </tr>                    
         <?php } ?>
-
         <tbody>
     </table>
+</div>
+<div>
+  <?php 
+
+            $allq = mysqli_query($connection,"SELECT * FROM INSERT_CLIENT ORDER BY ccarea ASC, ccycle ASC, clastname ASC");
+            while($allqrow = mysqli_fetch_assoc($allq)){
+            $crd = date_create($allqrow['creleaseddate']);
+            $cmd = date_create($allqrow['cmaturitydate']);
+            $cla = $allqrow['cloanamount'];
+            $cap = $allqrow['camountpaid'];
+            $date1 = date_format($crd,"Y-m-d");
+            $date2 = date("Y-m-d");
+            $m = date_format($cmd,"Y-m-d");
+
+            $date1_1 = date_create($date1);
+            $date2_2 = date_create($date2);
+            
+
+            //DAYS REMAINING
+
+            echo "<br> ".strtoupper($allqrow['clastname']);
+            echo "<br> <b>Released Date</b> - ".$date1;
+            echo "<br> <b>Maturity Date</b> - ".$m;
+            echo "<br> <b>Current Date</b> - ".date("Y-m-d");
+
+
+            $diff = date_diff($date1_1,$date2_2);
+            $def = $diff->format("%a");
+            echo "<br> <b>Days Remaining</b> - ";
+            echo 100-$def." Days";
+                
+            //OVERDUE
+            echo "<br> <b>Loan Amount</b> - ₱".number_format($cla);
+            echo "<br> <b>Amount Paid</b>- ₱".number_format($cap);
+            echo "<br> <b>Total Over Due</b> - ₱".number_format($dif*($cla/100));
+            if(($dif*($cla/100))-$cap<0){
+                $rod = 0;
+            }else{
+                $rod = abs(($dif*($cla/100))-$cap);
+            }
+            echo "<br> <b>Remaining Over Due</b> - ₱".$rod;
+            echo "<br>  ____________________________________";
+            }
+
+
+  ?>
 </div>

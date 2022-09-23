@@ -2,15 +2,17 @@
 
 include "db.php";
 if(isset($_POST['udpateclient'])){
+    
     $editid = $_POST['editid'];
     $editclientid = $_POST['editclientid'];
     $editloan = $_POST['approvedloan'];
-    echo $editca = $_POST['caName'];
+    $editca = $_POST['caName'];
+    $editarea = $_POST['rArea'];
     $editcycle = $_POST['editcycle'];
     $editinterest = $_POST['editinterest'];
     $editstatus = $_POST['userStatus'];
     $checkbalance = $_POST['checkbalance'];
-    $checksavings = $_POST['checksavings'];
+    // $checksavings = $_POST['checksavings'];
 
     if($checkbalance >= 0){
         echo " edit info but no loan updates";
@@ -30,6 +32,7 @@ if(isset($_POST['udpateclient'])){
             $edit_client .= "ccreditanalyst = '$editca', ";
             $edit_client .= "ccycle = $editcycle, ";
             $edit_client .= "cloanstatus = '$editstatus', ";
+            $edit_client .= "ccarea = $editarea, ";
             $edit_client .= "camountpaid = 0, ";
             $edit_client .= "cbalance = 0, ";
             $edit_client .= "cadvance = 0, ";
@@ -50,6 +53,7 @@ if(isset($_POST['udpateclient'])){
             $edit_client .= "cloanstatus = 'Released', ";
             $edit_client .= "cloanamount = $editloan,";
             $edit_client .= "cbalance = $editloan, ";
+            $edit_client .= "ccarea = $editarea, ";
             $edit_client .= "camountpaid = 0, ";
             $edit_client .= "coverdue = 0, ";
             $edit_client .= "csecdep = 0, ";
@@ -61,8 +65,8 @@ if(isset($_POST['udpateclient'])){
             mysqli_query($connection, $edit_client);
 
             $payment_history = "INSERT INTO insert_payment 
-            (clientid, creditanalyst, date_paid, payment, secdep, comment)
-            VALUES ('$editclientid', '$editca', now(), 0, 0, 'NEW CYCLE')";
+            (clientid, creditanalyst, date_paid, payment, secdep, comment, ipcycle)
+            VALUES ('$editclientid', '$editca', now(), 0, 0, 'NEW LOAN - CYCLE $editcycle',$editcycle)";
             mysqli_query($connection, $payment_history);
             header('location:Records.php');
         

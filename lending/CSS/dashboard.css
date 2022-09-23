@@ -1,3 +1,11 @@
+#idcanvas{
+    position: absolute;
+    display: inline-flex;
+    z-index: 1;
+    right: 15%;
+    margin: 0;
+
+}
 #Dashboard{
     height: 100%;
     width: 100%;
