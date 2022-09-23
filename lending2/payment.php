@@ -240,7 +240,6 @@
                 mysqli_query($connection, $payment_history);
                 header('location:records.php');
             }
-            
         }
     }
 ?>

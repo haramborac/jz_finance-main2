@@ -118,7 +118,7 @@
                                                 while($row = mysqli_fetch_assoc($qq)){
                                                 $ID = $row['total'];
 
-                                                $numID = str_pad($ID+1, 5, '0', STR_PAD_LEFT);
+                                                $numID = str_pad($ID+2, 5, '0', STR_PAD_LEFT);
                                                 $formatID = $JZ.$numID;
                                                 }
                                             }else{

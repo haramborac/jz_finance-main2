@@ -5,7 +5,6 @@ clearButton.onclick = function(){
      document.getElementById('lastName').value = "";
      document.getElementById('suffix').value = "";
 
-     document.getElementById('clientArea').selectedIndex = "0";
      document.getElementById('houseNo').value = "";
      document.getElementById('street').value = "";
      document.getElementById('barangay').value = "";
@@ -42,7 +41,6 @@ clearButton.onclick = function(){
      document.getElementById('ValidID02').selectedIndex = "0";
      document.getElementById('idNos1').value = "";
      document.getElementById('idNos2').value = "";
-     document.getElementById('ccLoan').value = "";
 
      document.getElementById('cmContact').value = "";
      document.getElementById('cmAddress').value = "";

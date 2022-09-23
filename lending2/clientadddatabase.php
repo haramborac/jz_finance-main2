@@ -8,7 +8,6 @@ if (isset($_POST['addClientBtn'])){
     $clMidName              =   $_POST['middleName'];
     $clLastName             =   $_POST['lastName'];
     $clSuffix               =   $_POST['suffix'];
-    $clcArea                =   $_POST['clientArea'];
     $clcHousenum            =   $_POST['houseNo'];
     $clcStreet              =   $_POST['street'];
     $clcBarangay            =   $_POST['barangay'];
