@@ -63,17 +63,24 @@
             <form action="" method="post">
                 <table>
                     <tr>
-                        <th width="20%">Loan Amount</th>
+                        <th width="10%">Loan Type</th>
+                        <th width="10%">Loan Amount</th>
                         <th width="10%">DC</th>
                         <th width="10%">PF</th>
                         <th width="10%">IP</th>
                         <th width="10%">SD</th>
-                        <th width="30%">Tools</th>
+                        <th width="20%">Tools</th>
                     </tr>
                     </tr>
+                        <td><select name="slt" id="slt">
+                            <option value="mbl">17%-100D</option>
+                            <option value="sbl">20%-60D</option>
+                            <option value="il">10%-20D</option>
+                            <option value="sl">+1.5%/D</option>
+                        </select></td>
                         <td id="customSetLoan"><p><span>₱</span> <input type="number" id="inputla" name="loanAmount" value="0"></p></td>
                         <td><p><span>₱</span> <input type="number" name="dailyCollection" value="0" id='dcol'></p></td>
-                        <td><p><span>₱</span> <input type="number" name="processingFee" value="0"></p></td>
+                        <td><p><span>₱</span> <input type="number" id="prcfee" name="processingFee" value="0"></p></td>
                         <td><p><span>₱</span> <input type="number" name="insPremium" value="0"></p></td>
                         <td><p><span>₱</span> <input type="number" name="secDeposit" value="0"></p></td>
                         <td id="addLoanPlan"><p><span><button type="submit" name="addloan">Add Loan Plan</button></span></p></td>
@@ -81,45 +88,90 @@
                     <script defer>
                         let inputla = document.getElementById('inputla');
                         let dcol = document.getElementById('dcol');
+                        let slt = document.getElementById("slt");
 
                         inputla.onkeyup = function(){
                             let la = inputla.value;
-                            let val = la / 100;
+                            let val;
+
+                            if(slt.value == 'mbl'){
+                                val = la/100;
+                            }
+                            if(slt.value == 'sbl'){
+                                val = la/60;
+                            }
+                            if(slt.value == 'il'){
+                                val = la/20;
+                            }
+                            if(slt.value == 'sl'){
+                                val = 0;
+                            }
+                            let vl = val.toFixed();
+                            dcol.value = vl;
+                        }
+                        
+                        slt.onchange = function(){
+                            let la = inputla.value;
+                            let val
+
+                            if(slt.value == 'mbl'){
+                                val = la / 100;
+                            }
+                            if(slt.value == 'sbl'){
+                                val = la/ 60;
+                            }
+                            if(slt.value == 'il'){
+                                val = la / 20;
+                            }
+                            if(slt.value == 'sl'){
+                                val = 0;
+                            }
 
                             dcol.value = val;
+                            if(slt.value == 'il'){
+                                document.getElementById("prcfee").value = 100;
+                            }else{
+                                document.getElementById("prcfee").value = 0;
+                            }
                         }
-
                     </script>
                 </table>
                 <div class="cdeducTitle">
-                    <p>Current Deductions</p>
+                 
+                    <p>Loan Amount & Deductions of <span id="spancd"></span></p>
                 </div>
+                <select name="dlt" id="dlt" onchange="cdTable()">
+                        <option value="0">17%-100D</option>
+                        <option value="1">20%-60D</option>
+                        <option value="2">10%-20D</option>
+                        <option value="3">+1.5%/D</option>
+                    </select>
                 <div class="currentDeductions">
-                    <table id="curDeducTable">
+                    <table id="curDeducTable1" class="curDeducTable">
                         <?php 
                             $show_loans = "SELECT * FROM insert_deduction ORDER BY loan_amount ASC";
-                            $show_loans_query = mysqli_query($connection, $show_loans);
+                            $show_loans_query = mysqli_query($connection, $show_loans); 
                             while($loans = mysqli_fetch_assoc($show_loans_query)){
                         
                         ?>
                         <tr>
-                            <td width="20%"><p><span>₱ <?php echo $loans['loan_amount'] ?></span></p></td>
+                            <td width="10%"><p><span><?php echo strtoupper($loans['loantype'])?></span></p></td>
+                            <td width="20%"><p><span>₱ <?php echo number_format($loans['loan_amount'],2) ?></span></p></td>
                             <td width="15%"><p><span>₱ <?php echo $loans['daily_collection'] ?></span></p></td>
                             <td width="11%"><p><span>₱ <?php echo $loans['processing_fee'] ?></span></p></td>
                             <td width="11%"><p><span>₱ <?php echo $loans['ins_premium'] ?></span></p></td>
                             <td width="11%"><p><span>₱ <?php echo $loans['sec_deposit'] ?></span></p></td>
-                            <!-- <td><p><span>₱</span> <input type="number" value="<?php //echo $loans['others'] ?>"></p></td> -->
                             <td width="30%" id="deductTools">
                                 <a type="button" id="editDeduct" class="editDeduct">Edit</a>
                                 <a href="settings.php?delete_loan=<?php echo $loans['id'] ?>" id="deleteDeduct" class="deleteDeduct">Delete</a>
                             </td>
                         </tr>
                         <?php }?>
-                    </table>
+                    </table>   
                 </div>
             </form>
             <?php 
-                $show_loans = "SELECT * FROM insert_deduction";
+                $show_loans = "SELECT * FROM insert_deduction ORDER BY loan_amount ASC";
                 $show_loans_query = mysqli_query($connection, $show_loans);
                 while($loans = mysqli_fetch_assoc($show_loans_query)){
             
@@ -462,6 +514,7 @@
         </div>
     </div>
 </div>
+
 <script>
     var adminAccount    = document.getElementById("accountName");
     var restricted      = document.getElementById("adminBlockSetup");
@@ -474,7 +527,7 @@
             deductions[delD].style.display = "block";
         }
     }
-
+    <?php include 'js/settings.js'?>
 </script>
 <?php
 
@@ -492,7 +545,8 @@
         $procfee = $_POST['processingFee'];
         $insprem = $_POST['insPremium'];
         $secdep = $_POST['secDeposit'];
-        $add_loan = "INSERT INTO insert_deduction (loan_amount, daily_collection, processing_fee, ins_premium, sec_deposit) VALUES ($addloan, $daily, $procfee, $insprem, $secdep)";
+        $dloantype = $_POST['slt'];
+        $add_loan = "INSERT INTO insert_deduction (loan_amount, daily_collection, processing_fee, ins_premium, sec_deposit, loantype) VALUES ($addloan, $daily, $procfee, $insprem, $secdep,'$dloantype')";
         mysqli_query($connection, $add_loan);
         header('location:settings.php');
 

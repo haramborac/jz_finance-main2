@@ -62,7 +62,7 @@ function setIndex2(){
     }
     }
 }
-function searchorindex(){
+function searchorindex1(){
     let searchName = document.getElementById('searchName');
         if(searchName.value.length==0){
             setIndex();
@@ -198,11 +198,20 @@ function searchorindex2(){
             searchFilter3();
         }
 }
+let sc1 = document.getElementById('searchCID');
+let sn1 = document.getElementById('searchName');
+
+sc1.onclick = function(){
+    sn1.value = "";
+    localStorage.removeItem('setvalue');
+}
+sn1.onclick = function(){
+    sc1.value = "";
+    localStorage.removeItem('setvalue2');
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 //CALLING SORT FUNCTIONS 1 & 2 FOR CLIENT RECORDS 
 function mainFilter(){
@@ -524,7 +533,6 @@ let sl = document.getElementsByClassName("sl");
 for(let lm = 0; lm < mbl.length; lm++){
     mbl[lm].onclick = function(){
    
-        mbl[lm].setAttribute("disabled",true);
         mbl[lm].style.backgroundColor = "blue";
         mbl[lm].style.color = "white";
 
@@ -535,24 +543,30 @@ for(let lm = 0; lm < mbl.length; lm++){
         sl[lm].style.backgroundColor = "white";
         sl[lm].style.color = "black";  
 
-        sbl[lm].removeAttribute("disabled");
-        il[lm].removeAttribute("disabled");
-        sl[lm].removeAttribute("disabled");
-
-        document.getElementById("eAmountLoaned"+lm).removeAttribute("disabled");
-
         document.getElementsByClassName("editinterest")[lm].value = 17;
         document.getElementsByClassName("editinterestspan")[lm].innerHTML = "17%";
          
         document.getElementsByClassName("userNCycle2")[lm].style.display = "none"; 
 
         document.getElementsByClassName("loantype")[lm].value = "mbl";
+
+        document.getElementsByClassName('eAmountLoaned1')[lm].setAttribute("name","approvedloan");
+        document.getElementsByClassName('eAmountLoaned1')[lm].style.display = "block";
+
+        document.getElementsByClassName('eAmountLoaned0')[lm].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned2')[lm].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned3')[lm].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned4')[lm].style.display = "none";
+
+        document.getElementsByClassName('eAmountLoaned0')[lm].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned2')[lm].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned3')[lm].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned4')[lm].removeAttribute("name");
     }
 }
 for(let lsb = 0; lsb < sbl.length; lsb++){
     sbl[lsb].onclick = function(){
 
-        sbl[lsb].setAttribute("disabled",true);
         sbl[lsb].style.backgroundColor = "blue";
         sbl[lsb].style.color = "white";
 
@@ -563,12 +577,6 @@ for(let lsb = 0; lsb < sbl.length; lsb++){
         sl[lsb].style.backgroundColor = "white";
         sl[lsb].style.color = "black";
 
-        mbl[lsb].removeAttribute("disabled");
-        il[lsb].removeAttribute("disabled");
-        sl[lsb].removeAttribute("disabled");
-
-        document.getElementById("eAmountLoaned"+lsb).removeAttribute("disabled");
-
         document.getElementsByClassName("editinterest")[lsb].value = 10;
         document.getElementsByClassName("editinterestspan")[lsb].innerHTML = "10%";
          
@@ -576,12 +584,23 @@ for(let lsb = 0; lsb < sbl.length; lsb++){
 
         document.getElementsByClassName("loantype")[lsb].value = "sbl";
 
+        document.getElementsByClassName('eAmountLoaned2')[lsb].setAttribute("name","approvedloan");
+        document.getElementsByClassName('eAmountLoaned2')[lsb].style.display = "block";
+
+        document.getElementsByClassName('eAmountLoaned0')[lsb].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned1')[lsb].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned3')[lsb].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned4')[lsb].style.display = "none";
+
+        document.getElementsByClassName('eAmountLoaned0')[lsb].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned1')[lsb].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned3')[lsb].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned4')[lsb].removeAttribute("name");
     }
 }
 for(let li = 0; li < il.length; li++){
     il[li].onclick = function(){
 
-        il[li].setAttribute("disabled",true);
         il[li].style.backgroundColor = "blue";
         il[li].style.color = "white";
 
@@ -592,24 +611,30 @@ for(let li = 0; li < il.length; li++){
         sl[li].style.backgroundColor = "white";
         sl[li].style.color = "black";
 
-        mbl[li].removeAttribute("disabled");
-        sbl[li].removeAttribute("disabled");
-        sl[li].removeAttribute("disabled");
-
-        document.getElementById("eAmountLoaned"+li).removeAttribute("disabled");
-
         document.getElementsByClassName("editinterest")[li].value = 10;
         document.getElementsByClassName("editinterestspan")[li].innerHTML = "10%";
          
         document.getElementsByClassName("userNCycle2")[li].style.display = "none"; 
 
         document.getElementsByClassName("loantype")[li].value = "il";
+
+        document.getElementsByClassName('eAmountLoaned3')[li].setAttribute("name","approvedloan");
+        document.getElementsByClassName('eAmountLoaned3')[li].style.display = "block";
+
+        document.getElementsByClassName('eAmountLoaned0')[li].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned1')[li].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned2')[li].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned4')[li].style.display = "none";
+
+        document.getElementsByClassName('eAmountLoaned0')[li].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned1')[li].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned2')[li].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned4')[li].removeAttribute("name");
     }
 }
 for(let ls = 0; ls < sl.length; ls++){
     sl[ls].onclick = function(){
 
-        sl[ls].setAttribute("disabled",true);
         sl[ls].style.backgroundColor = "blue";
         sl[ls].style.color = "white";
 
@@ -620,17 +645,24 @@ for(let ls = 0; ls < sl.length; ls++){
         il[ls].style.backgroundColor = "white";
         il[ls].style.color = "black";
 
-        mbl[ls].removeAttribute("disabled");
-        sbl[ls].removeAttribute("disabled");
-        il[ls].removeAttribute("disabled");
-
-        document.getElementById("eAmountLoaned"+ls).removeAttribute("disabled");
-
-        document.getElementsByClassName("editinterest")[ls].value = 10;
-        document.getElementsByClassName("editinterestspan")[ls].innerHTML = "10%";
+        document.getElementsByClassName("editinterest")[ls].value = 1.5;
+        document.getElementsByClassName("editinterestspan")[ls].innerHTML = "1.5%";
          
         document.getElementsByClassName("userNCycle2")[ls].style.display = "none"; 
 
         document.getElementsByClassName("loantype")[ls].value = "sl";
+
+        document.getElementsByClassName('eAmountLoaned4')[ls].setAttribute("name","approvedloan");
+        document.getElementsByClassName('eAmountLoaned4')[ls].style.display = "block";
+
+        document.getElementsByClassName('eAmountLoaned0')[ls].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned1')[ls].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned3')[ls].style.display = "none";
+        document.getElementsByClassName('eAmountLoaned2')[ls].style.display = "none";
+    
+        document.getElementsByClassName('eAmountLoaned0')[ls].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned1')[ls].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned3')[ls].removeAttribute("name");
+        document.getElementsByClassName('eAmountLoaned2')[ls].removeAttribute("name");
     }
 }

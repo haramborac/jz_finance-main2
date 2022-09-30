@@ -4,15 +4,20 @@
 ?>
 <style>
     <?php include_once 'css/records.css'; ?>
-    <?php include_once 'js/app.js'; ?>
     <?php include_once 'css/printrecords.css'; ?>
     <?php include_once 'css/printmodal.css'; ?>
 </style>
 <script>
+    <?php include_once 'js/app.js'; ?>
+</script>
+<script>
     document.addEventListener('DOMContentLoaded',function (e){
         let setvalue = localStorage.getItem('setvalue');
         document.getElementById('searchName').value = setvalue;
-        searchorindex();
+        let setvalue2 = localStorage.getItem('setvalue2');
+        document.getElementById('searchCID').value = setvalue2;
+        searchorindex2();
+        searchorindex1();
     });
 </script>
 <div class="clientRecords">
@@ -20,7 +25,7 @@
     <div class="crTop">
         <div class="crtSearch">
             <input type="text" id="searchCID" onkeyup="searchorindex2()" placeholder="Search Client ID">
-            <input type="text" id="searchName" onkeyup="searchorindex()" placeholder="Search Name">
+            <input type="text" id="searchName" onkeyup="searchorindex1()" placeholder="Search Name">
         </div>
         <div class="crtFilter">
 	<label for="sArea">Filter by Area</label>
@@ -159,7 +164,7 @@
                 $lt = 20;
             }
             if($row['cloantype']  == 'sl'){
-                $lt = 15;
+                $lt = 0;
             }
 
             if($row['cloanstatus']=="Pending" || $row['cloanstatus']=="Finished"){
@@ -325,23 +330,87 @@
                                     <input type="hidden" name="editid" id="" value="<?php echo $row2['id'] ?>">
                                     <input type="hidden" name="checkbalance" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
                                     <input type="hidden" name="loantype" class="loantype" value="<?php echo $row2['cloantype']?>">
-                                    <h3>₱
-                                        <select name="approvedloan" class ="eAmountLoaned" id="eAmountLoaned<?php echo $loop ?>" disabled>
+                                    <h3>
+                                        <select class="eAmountLoaned0" name="approvedloan">
                                         <?php 
                                         if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>0</option>";
+                                            echo "<option value='0'>₱ 0</option>";
+                                        } 
+                                        ?>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                        </select>
+                                        <select class ="eAmountLoaned1" id="eAmountLoaned<?php echo $loop ?>" >
+                                        <?php 
+                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                            echo "<option value='0'>₱ 0</option>";
                                         } 
                                         ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
                                             <?php
 
-                                                $show_loans = "SELECT * FROM insert_deduction";
+                                                $show_loans = "SELECT * FROM insert_deduction where loantype = 'mbl'";
                                                 $show_loans_query = mysqli_query($connection, $show_loans);
                                                 while($loans = mysqli_fetch_assoc($show_loans_query)){
                                                     
                                             
                                             ?>
-                                            <option value="<?php echo $loans['loan_amount']; ?>"><?php echo $loans['loan_amount']; ?></option>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                        <select class ="eAmountLoaned2" id="eAmountLoaned<?php echo $loop ?>" >
+                                        <?php 
+                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                            echo "<option value='0'>₱ 0</option>";
+                                        } 
+                                        ?>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <?php
+
+                                                $show_loans = "SELECT * FROM insert_deduction where loantype = 'sbl'";
+                                                $show_loans_query = mysqli_query($connection, $show_loans);
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
+                                                    
+                                            
+                                            ?>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                        <select class ="eAmountLoaned3" id="eAmountLoaned<?php echo $loop ?>" >
+                                        <?php 
+                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                            echo "<option value='0'>₱ 0</option>";
+                                        } 
+                                        ?>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <?php
+
+                                                $show_loans = "SELECT * FROM insert_deduction where loantype = 'il'";
+                                                $show_loans_query = mysqli_query($connection, $show_loans);
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
+                                                    
+                                            
+                                            ?>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <select class ="eAmountLoaned4" id="eAmountLoaned<?php echo $loop ?>" >
+                                        <?php 
+                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                            echo "<option value='0'>₱ 0</option>";
+                                        } 
+                                        ?>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <?php
+
+                                                $show_loans = "SELECT * FROM insert_deduction where loantype = 'sl'";
+                                                $show_loans_query = mysqli_query($connection, $show_loans);
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
+                                                    
+                                            
+                                            ?>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
                                             <?php } ?>
                                         </select>
                                     </h3>
@@ -399,8 +468,8 @@
                                     </div>
                                     <br><hr><br>
                                     <?php 
-                                    
-                                        $show_deductions = "SELECT * FROM insert_deduction WHERE loan_amount = $loan ";
+                                        $loantp = $row2['cloantype'];
+                                        $show_deductions = "SELECT * FROM insert_deduction WHERE loan_amount = $loan and loantype = '$loantp'";
                                         $show_deductions_query = mysqli_query($connection, $show_deductions);
                                         if(mysqli_num_rows($show_deductions_query)>0){
 
@@ -411,7 +480,12 @@
                                             $secdep = $deduction['sec_deposit'];
                                             $ddc =$deduction['daily_collection'];
                                             $interest_deduc = ($interest/100) * $loan_amount;
-                                            $amount_received = $loan_amount - $interest_deduc - $procfee - $insprem - $secdep;
+                                            if($row2['cloantype']!='sl'){
+                                                $amount_received = $loan_amount - $interest_deduc - $procfee - $insprem - $secdep;
+                                            }
+                                            else{
+                                                $amount_received = $loan_amount - $procfee - $insprem - $secdep;
+                                            }
                                             
                                     ?>
 
@@ -437,7 +511,7 @@
                                             $lt2 = 20;
                                         }
                                         if($row2['cloantype']  == 'sl'){
-                                            $lt2 = 15;
+                                            $lt2 = 0;
                                         }  
                                         if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
                                             $ddf2 = 0;
@@ -447,12 +521,22 @@
                                             $mntrcvd = 0;
                                             $dlycllctn = 0;
                                         }else{
-                                            $ddf2 = $lt2-$dif2;
-                                            $pprvdln = $loan_amount;
-                                            $prcf = $procfee;
-                                            $nsprm = $insprem;
-                                            $mntrcvd = $amount_received;
-                                            $dlycllctn = $ddc;
+                                            if($row2['cloantype']!='sl'){
+                                                $ddf2 = $lt2-$dif2;
+                                                $pprvdln = $loan_amount;
+                                                $prcf = $procfee;
+                                                $nsprm = $insprem;
+                                                $mntrcvd = $amount_received;
+                                                $dlycllctn = $ddc;
+                                                
+                                            }else{
+                                                $ddf2 = $dif2;
+                                                $pprvdln = $loan_amount;
+                                                $prcf = 100;
+                                                $nsprm = $insprem;
+                                                $mntrcvd = $amount_received;
+                                                $dlycllctn = 0;     
+                                            }
                                         }
                                     ?>
                                     <div class="ucaLoan">
@@ -559,7 +643,6 @@
                                 <div>
                                     <label for="payment">Payments</label>
                                     <p>₱
-                                        <input type="hidden" name="checkdate" value="<?php echo date('y-m-d', strtotime($row2['paydate'])) ?>">
                                         <?php
                                         
                                             $checkday = "SELECT * FROM insert_payment WHERE clientid = '$clientid' ORDER BY id DESC LIMIT 1 ";
@@ -743,10 +826,10 @@
                 <span class="cycClose2">&times;</span>
                     <h2 style="text-align:center; margin-top:3%; margin-left:6%;">SELECT LOAN TYPE</h2>
                     <div class="cycleConfirmation2">
-                        <button class="mbl">Micro Business Loan</button>
-                        <button class="sbl">Small Business Loan</button>
-                        <button class="il">Item Loan</button>
-                        <button class="sl">Salary Loan</button>
+                        <button class="mbl">17% Interest | 100 Days</button>
+                        <button class="sbl">20% Intereset | 60 Days</button>
+                        <button class="il">10% Interest | 20 Days</button>
+                        <button class="sl">1.5% Interest per Day</button>
                     </div>              
                 </div>
             </div>
@@ -779,7 +862,21 @@
         userSpan[b].onclick = function() {
             cuserModal[b].style.display = "none";
             localStorage.removeItem('showProfile');
-            document.getElementById("eAmountLoaned"+b).setAttribute("disabled",true);
+
+            document.getElementsByClassName('eAmountLoaned0')[b].removeAttribute("name");
+            document.getElementsByClassName('eAmountLoaned1')[b].removeAttribute("name");
+            document.getElementsByClassName('eAmountLoaned2')[b].removeAttribute("name");
+            document.getElementsByClassName('eAmountLoaned3')[b].removeAttribute("name");
+            document.getElementsByClassName('eAmountLoaned4')[b].removeAttribute("name");
+
+            document.getElementsByClassName('eAmountLoaned0')[b].style.display = "block";
+            document.getElementsByClassName('eAmountLoaned0')[b].setAttribute("name","approvedloan");
+
+
+            document.getElementsByClassName('eAmountLoaned1')[b].style.display = "none";
+            document.getElementsByClassName('eAmountLoaned2')[b].style.display = "none";
+            document.getElementsByClassName('eAmountLoaned3')[b].style.display = "none";
+            document.getElementsByClassName('eAmountLoaned4')[b].style.display = "none";
         }
     }
 </script>
@@ -844,7 +941,11 @@
         
         resetAdv[i].onclick = function(){
 
-            document.getElementById("eAmountLoaned"+i).value = 0;
+            document.getElementsByClassName("eAmountLoaned0")[i].value = 0;
+            document.getElementsByClassName("eAmountLoaned1")[i].value = 0;
+            document.getElementsByClassName("eAmountLoaned2")[i].value = 0;
+            document.getElementsByClassName("eAmountLoaned0")[i].value = 0;
+            document.getElementsByClassName("eAmountLoaned4")[i].value = 0;
             let cycle = document.getElementById("eCycle"+i).innerHTML;
             let cycleinput = document.getElementById("ecycleinput"+i).value;
             cycle = parseInt(cycle) +1;
@@ -889,11 +990,6 @@
     for(let gi = 0 ; gi< userStatus.length; gi++){
         cycSpan2[gi].onclick = function(){
             userCycle2[gi].style.display = "none";
-            
-            document.getElementsByClassName("mbl")[gi].removeAttribute("disabled");
-            document.getElementsByClassName("sbl")[gi].removeAttribute("disabled");
-            document.getElementsByClassName("il")[gi].removeAttribute("disabled");
-            document.getElementsByClassName("sl")[gi].removeAttribute("disabled");
 
             document.getElementsByClassName("mbl")[gi].style.backgroundColor = "white";
             document.getElementsByClassName("sbl")[gi].style.backgroundColor = "white";
@@ -904,6 +1000,8 @@
             document.getElementsByClassName("sbl")[gi].style.color = "black";
             document.getElementsByClassName("il")[gi].style.color = "black";
             document.getElementsByClassName("sl")[gi].style.color = "black";
+
+
         }
     }
 
@@ -950,4 +1048,8 @@
             localStorage.setItem('setvalue',srchnme.value);
         })
 
+    let srchid = document.getElementById('searchCID');
+        srchid.addEventListener('keyup',function(){
+            localStorage.setItem('setvalue2',srchid.value);
+        })
 </script>

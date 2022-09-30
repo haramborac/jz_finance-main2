@@ -12,7 +12,7 @@
     <?php include 'css/style.css;' ?>
 </style>
 <script>
-        <?php include_once 'js/data.js'; ?>
+    <?php include_once 'js/data.js'; ?>
     <?php include_once 'js/app.js'; ?>
 </script>
 <?php include "db.php"; ?>
@@ -147,18 +147,67 @@
                 }
                 $cbal = $row['cloanamount']-$camtpdresult; // CBALANCE
 
-                if(($dif*($cla/100))-$cap<0){
-                    $rod = 0;
-                }else{
-                    $rod = abs(($dif*($cla/100))-$cap);
+
+                
+                if($row['cloantype']=='mbl'){
+                    if(($dif*($cla/100))-$cap<0){
+                        $rod = 0;
+                    }
+                    else{
+                        $rod = abs(($dif*($cla/100))-$cap);
+                    }
+
+                    if($status=="Finished"||$status=="Pending"){
+                        $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
+                    }
+                    elseif($status=="OnGoing"||$status=="Released"){
+                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$crid'";
+                    }
                 }
-                if($status=="Finished"||$status=="Pending"){
-                    $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
-                }elseif($status=="OnGoing"||$status=="Released"){
-                    $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$crid'";
+                elseif($row['cloantype']=='sbl'){
+                    if(($dif*($cla/60))-$cap<0){
+                        $rod = 0;
+                    }
+                    else{
+                        $rod = abs(($dif*($cla/60))-$cap);
+                    }
+
+                    if($status=="Finished"||$status=="Pending"){
+                        $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
+                    }
+                    elseif($status=="OnGoing"||$status=="Released"){
+                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$crid'";
+                    }
+                }
+                elseif($row['cloantype']=='il'){
+                    if(($dif*($cla/20))-$cap<=0){
+                        $rod = 0;
+                    }
+                    else{
+                        $rod = abs(($dif*($cla/20))-$cap);
+                    }
+
+                    if($status=="Finished"||$status=="Pending"){
+                        $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
+                    }elseif($status=="OnGoing"||$status=="Released"){
+                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$crid'";
+                    }
+
+                }
+                elseif($row['cloantype']=='sl'){
+                   
+                    $rod = abs((($dif+1)*($cla*.015))-$cap);
+
+                    if($status=="Finished"||$status=="Pending"){
+                        $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
+                    }elseif($status=="OnGoing"||$status=="Released"){
+                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal+$rod, coverdue = 0 where clientid ='$crid'";
+                    }
                 }
 
-                    mysqli_query($connection,$update);
+
+
+                mysqli_query($connection,$update);
             }
         ?>
 <script>

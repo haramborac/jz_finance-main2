@@ -709,7 +709,7 @@ td#crmOverdue button{
 
 
 .ucCredentials{
-    height: 400px;
+    height: 380;
     width: 525px;
     margin-top: -20px;
     padding: 20px;
@@ -985,4 +985,11 @@ td#crmOverdue button{
     cursor: pointer;
     border: solid 1px;
     margin: 3% 3%;
+}
+
+.eAmountLoaned1,
+.eAmountLoaned2,
+.eAmountLoaned3,
+.eAmountLoaned4{
+    display: none;
 }

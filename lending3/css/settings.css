@@ -219,17 +219,17 @@
 .currentDeductions::-webkit-scrollbar{
     display: none;
 }
-.currentDeductions table#curDeducTable{
+.currentDeductions table.curDeducTable{
     margin-top: 0px;
     width: 100%;
     text-align: center;
 }
-.currentDeductions table#curDeducTable tr td#deductTools{
+.currentDeductions table.curDeducTable tr td#deductTools{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
 }
-.currentDeductions table#curDeducTable tr td#deductTools a{
+.currentDeductions table.curDeducTable tr td#deductTools a{
     font-size: 12px;
     text-decoration: none;
     color: black;
@@ -239,7 +239,7 @@
     border: solid 1px;
     cursor: pointer;
 }
-.currentDeductions table#curDeducTable tr td#deductTools a#deleteDeduct{
+.currentDeductions table.curDeducTable tr td#deductTools a#deleteDeduct{
     display: none;
 }
 .deductTitles{
