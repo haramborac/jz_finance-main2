@@ -1,0 +1,995 @@
+.clientRecords{
+    height: 100%;
+    width: 100%;
+    padding: 100px;
+}
+.clientRecords h1{
+    font-size: 30px;
+}
+.crTop{
+    height: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+.crTop select{
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    border: solid 1px;
+}
+.crTop input{
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+    border: solid 1px;
+    padding: 2px 5px;
+}
+.crTop button{
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 1px;
+}
+.crtSearch{
+    width: 370px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.crtSearch input{
+    margin-left: 10px;
+}
+.crtFilter label, 
+.crtStatus label{
+    position: absolute;
+    font-size: 10px;
+    margin-top: -15px;
+}
+.crtFilter #cfilter{
+    width: 120px;
+}
+.crtStatus #cStatus{
+    width: 100px;
+}
+.crtButtons{
+    display: flex;
+}
+.crtButtons button{
+    width: 200px;
+    margin: 0 2px;
+}
+.crtButtons button:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+}
+.crtButtons button#crtAll{
+    display: none;
+}
+
+
+
+
+
+.crMiddle{
+    height: 680px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 10px;
+    border: solid 1px;
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.crMiddle.default table#crtTabCont{
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+}
+.crMiddle.default table tr th{
+    font-size: 13px;
+    border: solid 1px lightgray;
+    border-radius: 2px;
+    font-weight: 700;
+}
+
+
+
+
+.crtTableContent{
+    height: 620px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.crtTableContent::-webkit-scrollbar{
+    display: none;
+}
+.crtTableContent table#recordTable{
+    width: 100%;
+    text-align: center;
+    text-transform: capitalize;
+}
+.crtTableContent table#recordTable tr td{
+    height: 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
+table#recordTable tr td#crmUser button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-left: 15px;
+    text-align: center;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+table#recordTable tr td#crmUser button#userPayment{
+    float: left;
+    justify-content: space-evenly;
+    height: 20px;
+    width: 150px;
+    margin-left: 15px;
+}
+table#recordTable tr td div.tdDaysRemaining{
+    display: flex;
+    justify-content: center;
+}
+table#recordTable tr td div.tdDaysRemaining span{
+    margin-right: 5px;
+}
+table#recordTable td#crmStatus div {
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 90px;
+}
+#recordTable{
+    border-collapse: collapse;
+}
+#recordTable tr:hover{
+background-color: rgb(238, 232, 232);
+}
+td#crmDays button, 
+td#crmOverdue button{
+    float: right;
+    margin-right: 5px;
+    margin-top: -20px;
+}
+
+
+
+.crBottom{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.crbButtons{
+    width: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+.crbButtons button{
+    height: 25px;
+    width: 25px;
+    padding: 3px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.crbButtons button:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+}
+
+
+
+.crRecentlyAdded{
+    width: 100%;
+}
+.crMiddle.recent table#crrTable1{
+    width: 100%;
+    text-align: center;
+}
+.crMiddle.recent table#crrTable1 tr th{
+    font-size: 13px;
+    border: solid 1px lightgray;
+    border-radius: 2px;
+    font-weight: 700;
+}
+.crmRContent::-webkit-scrollbar {
+    display: none;
+}
+.crmRContent{
+    height: 620px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 5px 0;
+}
+.crmRContent table#crrTable2{
+    margin-top: -5px;
+    width: 100%;
+}
+.crmRContent table#crrTable2 tr td{
+    height: 25px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+.userPModal{
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+}
+.userModal{
+    height: 500px;
+    width: 70%;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 10px;
+    border: solid 1.5px gray;
+    
+}
+.userModal #userClose {
+    position: absolute;
+    z-index: 2; 
+    font-size: 28px;
+    font-weight: bold;
+    color: gray;
+    left: 83%;
+}
+.userModal #userClose:hover,
+.userModal #userClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 300ms;
+}
+.userContent{
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    display: flex;
+}
+.userContent .ucProfile{
+    text-align: center;
+    margin: 20px 30px;
+}
+.ucProfile img{
+    height: 300px;
+    width: 300px;
+    border-radius: 5px;
+}
+.ucProfile .ucpDetails{
+    margin-top: 20px;
+    line-height: 15px;
+}
+.ucpDetails p{
+    font-size: 12px;
+}
+.ucpDetails h4{
+    margin: 2px 0;
+}
+.ucpDetails p{
+    text-align: center;
+    text-transform: capitalize;
+    margin: 5px 0;
+}
+.ucpDetails p#pclientName{
+    width: 295px;
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.ucDetails{
+    width: 100%;
+    margin-top: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ucDetails p{
+    font-size: 10px;
+}
+.ucDetails .ucAmount{
+    margin-top: 10px;
+}
+.ucAmount h3{
+    margin-left: 20px;
+    font-size: 50px;
+}
+.ucAmount h3 select{
+    width: 200px;
+    text-align: center;
+    padding: 0 3px;
+    margin-left: -4px;
+    border-radius: 5px;
+    font-size: 50px;
+    font-weight: 700;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    background: transparent;
+}
+.ucAmount .ucaAcc{
+    display: flex;
+    justify-content: space-between;
+}
+.ucaAcc .caAssignment #caName{
+    width: 220px;
+    padding: 0 5px;
+    margin-left: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+.ucaAcc .caAssignment p{
+    margin-top: 10px;
+}
+.ucaAcc .ucCycle{
+    position: relative;
+    text-align: right;
+    margin: 0 15px;
+    margin-top: -75px;
+}
+.ucaAcc .ucCycle div span{
+    font-size: 20px;
+    font-weight: 700;
+}
+.ucaAcc .ucCycle div input{
+    width: 30px;
+    margin-right: 5px;
+    background: white;
+    outline: none;
+    padding: 0 3px;
+    border: solid 1px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+.ucaAcc .ucCycle div select{
+    border: none;
+    padding: 0 2px;
+    text-align: right;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    font-weight: 700;
+}
+.ucAmount .ucaTransaction{
+    margin-top: 20px;
+}
+.ucaTransaction .ucaDaily{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.ucaDaily div{
+    margin: 0 15px;
+}
+.ucaDaily div span{
+    font-size: 13px;
+    font-weight: 700;
+}
+.ucaLoan .ucalRecord{
+    text-align: center;
+    display: flex;
+}
+.ucalRecord div{
+    margin: 0 22px;
+}
+.ucalRecord div span{
+    font-size: 13px;
+    font-weight: 700;
+}
+.ucaButtons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.ucaButtons button{
+    text-align: center;
+    font-size: 12px;
+    align-items: center;
+    border-radius: 5px;
+    border: solid 1px;
+    padding: 2px;
+    margin: 2px;
+    width: 120px;
+    cursor: pointer;
+}
+.ucaButtons button#ucHide{
+    display: none;
+}
+.ucNew{
+    margin-top: 10px;
+    width: 100%;
+}
+.ucNew button{
+    width: 100%;
+    margin: 2px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+.userPayModal{
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 10px;
+}
+.paymentModal{
+    height: 520px;
+    width: 40%;
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 10px;
+    border: solid 1.5px gray;
+}
+.paymentModal #upayClose {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    position: absolute;
+    z-index: 5;
+    margin-top: 20px;
+    margin-left: 33vw;
+    font-size: 28px;
+    font-weight: bold;
+    color: gray;
+    background: none;
+    border: none;
+}
+.paymentModal #upayClose:hover,
+.paymentModal #upayClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 300ms;
+}
+.paymentContent{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+}
+.paymentContent form{
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.paymentContent form h2{
+    margin-top: 20px;
+}
+.paymentContent form p{
+    font-size: 10px;
+    font-style: italic;
+}
+.paymentContent form h3{
+    text-transform: capitalize;
+}
+.paymentContent form .paymentAmount{
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+.paymentContent form .paymentAmount p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 700;
+    font-style: normal;
+}
+.paymentContent form .paymentAmount p input{
+    width: 150px;
+    padding: 0 5px;
+    margin: 0 10px;
+    font-size: 40px;
+    border-radius: 10px;
+    border: solid 1px;
+    outline: none;
+}
+.paymentContent form textarea{
+    margin-top: 10px;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    border-radius: 10px;
+}
+.paymentContent form button{
+    height: 30px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.paymentContent form button i{
+    font-size: 15px;
+    color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ucdHistory{
+    height: 360px;
+    width: 535px;
+    position: absolute;
+    padding: 0 10px;
+    margin-left: -10px;
+    z-index: 7;
+    border-radius: 5px;
+    background: white;
+}
+.ucdHistory p{
+    font-size: 10px;
+}
+
+.ucrHistory{
+    float: right;
+    text-align: right;
+    line-height: 18px;
+}
+.ucrHistory span{
+    font-size: 20px;
+    font-weight: 700;
+}
+.uctHistory table#ucttTable tr th{
+    width: 25%;
+}
+.uctHistory .uctcContent{
+    height: 170px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 5px 0;
+}
+.uctcContent::-webkit-scrollbar{
+    display: none;
+}
+.uctHistory table#ucttTable{
+    width: 100%;
+}
+.uctHistory table#uctcTable{
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+}
+.uctHistory table#uctcTable tr td{
+    height: 15px;
+    width: 25%;
+}
+.uctHistory table#uctcTable tr td#uphComment{
+    text-align: center;
+}
+.ucaButtons button#ucHHistory{
+    display: none;
+}
+
+.upcComment {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+.upcComment i{
+    font-size: 15px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.upcComment .commContent {
+    font-size: 10px;
+    font-weight: 500;
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 3;
+    top: -3px;
+    left: 40px;
+}
+
+.upcComment:hover .commContent {
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+.ucCredentials{
+    height: 380;
+    width: 525px;
+    margin-top: -20px;
+    padding: 20px;
+    position: absolute;
+    z-index: 7;
+    border-radius: 5px;
+    background: white;
+}
+.ucCredentials h4{
+    text-align: center;
+    text-transform: capitalize;
+}
+.ucCredentials p span{
+    font-size: 12px;
+    font-weight: 700;
+}
+.ucPersonal{
+    margin: 10px 0;
+}
+.ucPersonal h4{
+    font-size: 25px;
+    line-height: 20px;
+}
+.ucComaker{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0;
+    text-transform: capitalize;
+}
+.ucValidID{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px 0;
+}
+
+
+
+
+
+
+
+
+
+
+.userPDel{
+    display: none;
+    position: fixed;
+    z-index: 9;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.userDel{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    top: 0;
+    left: 0;
+    transform: translate(0%, 100%);
+    text-align: center;
+    border: 1px solid #888;
+    height: 200px;
+    width: 450px;
+}
+.delClose {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.delClose:hover,
+.delClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.delConfirmation{
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+}
+.delConfirmation button{
+    margin-top: 30px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.delConfirmation button a{
+    color: black;
+    padding: 5px 35px;
+    text-decoration: none;
+}
+.delConfirmation button:hover,.userButtonAdd:hover, .userButtonProfile:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+}
+.delConfirmation button a:hover{
+    color: white;
+    transition: 800ms;
+}
+.delConfirmation p{
+    color: red;
+}
+.delConfirmation p#delTerms{
+    font-size: 10px;
+    margin-top: 5px;
+    color: red;
+}
+.delConfirmation p span{
+    color: red;
+    font-style: italic;
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+
+
+
+
+
+.userNCycle{
+    display: none;
+    position: fixed;
+    z-index: 9;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.userCycle{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    top: 0;
+    left: 0;
+    transform: translate(0%, 100%);
+    text-align: center;
+    border: 1px solid #888;
+    height: 200px;
+    width: 450px;
+}
+.cycClose {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.cycClose:hover,
+.cycClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cycleConfirmation{
+    height: 100%;
+    width: 100%;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+}
+.cycleConfirmation button{
+    margin-top: 30px;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: solid 1px;
+    cursor: pointer;
+}
+.cycleConfirmation button:hover{
+    background: blue;
+    color: white;
+    transition: 800ms;
+}
+.cycleConfirmation p#cycTerms{
+    font-size: 10px;
+    margin-top: 5px;
+}
+.cycleConfirmation p span{
+    font-style: italic;
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.userNCycle2{
+    display: none;
+    position: fixed;
+    z-index: 9;
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.userCycle2{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    top: 0;
+    left: 0;
+    transform: translate(0%, 100%);
+    text-align: center;
+    border: 1px solid #888;
+    height: 220px;
+    width: 400px;
+}
+.cycClose2 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.cycClose2:hover,
+.cycClose2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cycleConfirmation2{
+    height: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.cycleConfirmation2 button {
+    display: block;
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 1px;
+    margin: 3% 3%;
+}
+
+.cycleConfirmation2 select{
+    display: none;
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 1px;
+    margin: 3% 3%;
+}
+
+.eAmountLoaned1,
+.eAmountLoaned2,
+.eAmountLoaned3,
+.eAmountLoaned4{
+    display: none;
+}
