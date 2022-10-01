@@ -33,23 +33,14 @@
     text-align: left;
     border-collapse: collapse;
 }
-*{
-    /* border: 1px solid red; */
-}
 .caContent{
     overflow-y: auto;
 }
 #theadtr{
     text-align: left;
 }
-
-.fullContent,
-#no-print{
-    /* display: none; */
-}
-
 #print{
-    /* border: 1px solid black; */
+
     height: 100%;
     display: none;
 }

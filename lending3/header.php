@@ -12,8 +12,8 @@
     <?php include 'css/style.css;' ?>
 </style>
 <script>
-    <?php include_once 'js/data.js'; ?>
-    <?php include_once 'js/app.js'; ?>
+    <?php //include_once 'js/data.js'; ?>
+    <?php // ?>
 </script>
 <?php include "db.php"; ?>
 
@@ -26,9 +26,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="shortcut icon" href="IMG/logo.png"> -->
     <script src="js/app.js"></script>
     <title>Goyo Lending</title>
+    <link rel = "icon" href = 
+"img/gl.jpg" 
+        type = "image/x-icon">
 </head>
 <header>
     <div class="fullContent">
@@ -201,7 +203,7 @@
                     if($status=="Finished"||$status=="Pending"){
                         $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$crid'";
                     }elseif($status=="OnGoing"||$status=="Released"){
-                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal+$rod, coverdue = 0 where clientid ='$crid'";
+                        $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal+$rod, coverdue = 0, cmaturitydate = now() where clientid ='$crid'";
                     }
                 }
 
@@ -300,3 +302,29 @@ function drawHand(ctx, pos, length, width) {
                         }
                         startDate();
                     </script>
+
+<script>
+   // Disable Inspect element
+document.addEventListener('contextmenu',(e)=>{
+    e.preventDefault();
+  }
+  );
+  document.onkeydown = function(e) {
+  if(event.keyCode == 123) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+     return false;
+  }
+  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+     return false;
+  }
+}
+
+</script>

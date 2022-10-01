@@ -1,6 +1,5 @@
 <?php 
     include_once 'header.php';
-    
 ?>
 <style>
     <?php include_once 'css/records.css'; ?>
@@ -8,7 +7,6 @@
     <?php include_once 'css/printmodal.css'; ?>
 </style>
 <script>
-    <?php include_once 'js/app.js'; ?>
 </script>
 <script>
     document.addEventListener('DOMContentLoaded',function (e){
@@ -163,16 +161,17 @@
             if($row['cloantype']  == 'il'){
                 $lt = 20;
             }
-            if($row['cloantype']  == 'sl'){
-                $lt = 0;
-            }
+
 
             if($row['cloanstatus']=="Pending" || $row['cloanstatus']=="Finished"){
                 $ddf = 0;
                 $lnmt = 0;
             }else{
-
-                $ddf = $lt-$dif;
+                if($row['cloantype']  == 'sl'){
+                    $ddf = $dif;
+                }else{
+                    $ddf = $lt-$dif; 
+                }
                 $lnmt = number_format($row['cloanamount']);
             }
                     ?>
@@ -189,7 +188,15 @@
                         <?php echo $stats?>
                         <td width="10%">₱ <input type="hidden" class="hiddenstatus" value="<?php echo $status ?>"><?php echo $lnmt?></td>
 
-			            <td><?php echo $ddf." Days"?></td>
+			            <td><?php 
+                        $ddf_1 = abs($ddf);
+                            if($ddf_1==1){
+                                echo $ddf_1." Day";
+                            }else{
+                                echo $ddf_1." Days";
+                            }
+                        
+                        ?></td>
                         <td  width="10%" id="crmOverdue"><p><?php echo "₱ ".number_format($row['coverdue']) ?></p></td>
                         <td width="10%" id="crmDays"><p><?php echo "₱ ".number_format($row['camountpaid'])?></p></td>
                         <td width="10%"><?php echo "₱ ".number_format($row['cbalance'])?></td>
@@ -245,15 +252,14 @@
                                 <div class="ucAmount">
                                     <div id="ucdHistory" class="ucdHistory" style="display: none;">
                                         <p>Amount Loaned:</p>
-                                        <h3>₱ <?php echo $loan ?></h3>
+                                        <h3>₱ <?php echo number_format($loan) ?></h3>
                                         <div class="uctHistory">
                                             <table id="ucttTable">
                                                 <tr>
                                                     <th>Date</th>
                                                     <th>Day</th>
                                                     <th>Payment</th>
-                                                    <th>Savings</th>
-                                                    
+                                                    <th>Savings</th>                                                  
                                                 </tr>
                                             </table>
                                             <div class="uctcContent">
@@ -276,8 +282,8 @@
                                                             </div>
                                                         </td>
                                                         <td><?php echo $pay['days'] ?></td>
-                                                        <td>₱ <?php echo number_format($pay['payment'], 2) ?></td>
-                                                        <td>₱ <?php echo number_format($pay['secdep'], 2) ?></td>
+                                                        <td>₱ <?php echo number_format($pay['payment']) ?></td>
+                                                        <td>₱ <?php echo number_format($pay['secdep']) ?></td>
                                                         
                                                     </tr>
                                                     <?php } ?>
@@ -287,7 +293,7 @@
                                         </div>
                                         <div class="ucrHistory">
                                             <p>Remaining Balance:</p>
-                                            <span>₱ <?php echo $row2['cbalance'] ?></span>
+                                            <span>₱ <?php echo number_format($row2['cbalance']) ?></span>
                                         </div>
                                     </div>
                                     <div id="ucCredentials" class="ucCredentials" style="display: none;">
@@ -332,30 +338,30 @@
                                     <input type="hidden" name="loantype" class="loantype" value="<?php echo $row2['cloantype']?>">
                                     <h3>
                                         <select class="eAmountLoaned0" name="approvedloan">
-                                        <?php 
-                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>₱ 0</option>";
-                                        } 
-                                        ?>
-                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <?php 
+                                            if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                                echo "<option value='0'>₱ 0</option>";
+                                            } 
+                                            ?>
+                                                <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                         </select>
                                         <select class ="eAmountLoaned1" id="eAmountLoaned<?php echo $loop ?>" >
-                                        <?php 
-                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>₱ 0</option>";
-                                        } 
-                                        ?>
-                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
-                                            <?php
-
-                                                $show_loans = "SELECT * FROM insert_deduction where loantype = 'mbl'";
-                                                $show_loans_query = mysqli_query($connection, $show_loans);
-                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
-                                                    
-                                            
+                                            <?php 
+                                            if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
+                                                echo "<option value='0'>₱ 0</option>";
+                                            } 
                                             ?>
-                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
-                                            <?php } ?>
+                                                <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
+                                                <?php
+
+                                                    $show_loans = "SELECT * FROM insert_deduction where loantype = 'mbl'";
+                                                    $show_loans_query = mysqli_query($connection, $show_loans);
+                                                    while($loans = mysqli_fetch_assoc($show_loans_query)){
+                                                        
+                                                
+                                                ?>
+                                                <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
+                                                <?php } ?>
                                         </select>
 
                                         <select class ="eAmountLoaned2" id="eAmountLoaned<?php echo $loop ?>" >
@@ -364,7 +370,7 @@
                                             echo "<option value='0'>₱ 0</option>";
                                         } 
                                         ?>
-                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
 
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sbl'";
@@ -373,7 +379,7 @@
                                                     
                                             
                                             ?>
-                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
                                         </select>
 
@@ -383,7 +389,7 @@
                                             echo "<option value='0'>₱ 0</option>";
                                         } 
                                         ?>
-                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
 
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'il'";
@@ -392,7 +398,7 @@
                                                     
                                             
                                             ?>
-                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
                                         </select>
                                         <select class ="eAmountLoaned4" id="eAmountLoaned<?php echo $loop ?>" >
@@ -401,7 +407,7 @@
                                             echo "<option value='0'>₱ 0</option>";
                                         } 
                                         ?>
-                                            <option value="<?php echo $loan ?>" hidden><?php echo $loan ?></option>
+                                            <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
 
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sl'";
@@ -410,7 +416,7 @@
                                                     
                                             
                                             ?>
-                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo $loans['loan_amount']; ?></option>
+                                            <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
                                         </select>
                                     </h3>
@@ -420,7 +426,12 @@
                                                         <option value="<?php echo $row2['ccreditanalyst'] ?>"><?php echo $row2['ccreditanalyst'] ?></option>
                                                         <?php
 
+                                                        if($bnm != 'all'){
+                                                            $show_ca = "SELECT * FROM insert_creditanalyst where cabranch = '$bnm' group by name";
+
+                                                        }else{
                                                             $show_ca = "SELECT * FROM insert_creditanalyst group by name";
+                                                        }
                                                             $show_ca_query = mysqli_query($connection, $show_ca);
                                                             while($ca = mysqli_fetch_assoc($show_ca_query)){
                                                                 
@@ -544,7 +555,7 @@
                                         <div class="ucalRecord">
                                             <div>
                                                 <p>Approved Loan</p>
-                                                <span id="eApprovedLoan<?php echo $loop ?>">₱ <?php echo $pprvdln ?></span>
+                                                <span id="eApprovedLoan<?php echo $loop ?>">₱ <?php echo number_format($pprvdln) ?></span>
                                             </div>
                                             <div>
                                                 <p>ProcFee</p>
@@ -556,11 +567,11 @@
                                             </div>
                                             <div>
                                                 <p>Savings</p>
-                                                <span id="eSecDep<?php echo $loop ?>">₱ <?php echo $row2['csecdep']+$secdep ?></span>
+                                                <span id="eSecDep<?php echo $loop ?>">₱ <?php echo number_format($row2['csecdep']+$secdep) ?></span>
                                             </div>
                                             <div>
                                                 <p>Amount Received</p>
-                                                <span id="eAmountReceived<?php echo $loop ?>">₱ <?php echo $mntrcvd ?></span>
+                                                <span id="eAmountReceived<?php echo $loop ?>">₱ <?php echo number_format($mntrcvd) ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -578,15 +589,15 @@
                                             </div>
                                             <div>
                                                 <p>Overdue</p>
-                                                <span id="eOverDue<?php echo $loop ?>">₱ <?php echo $row2['coverdue'] ?></span>
+                                                <span id="eOverDue<?php echo $loop ?>">₱ <?php echo number_format($row2['coverdue']) ?></span>
                                             </div>
                                             <div>
                                                 <p>Amount Paid</p>
-                                                <span id="eAmountPaid<?php echo $loop ?>">₱ <?php echo $row2['camountpaid'] ?></span>
+                                                <span id="eAmountPaid<?php echo $loop ?>">₱ <?php echo number_format($row2['camountpaid']) ?></span>
                                             </div>
                                             <div>
                                                 <p>Balance</p>
-                                                <span id="eBalance<?php echo $loop ?>">₱ <?php echo $row2['cbalance'] ?></span>
+                                                <span id="eBalance<?php echo $loop ?>">₱ <?php echo number_format($row2['cbalance']) ?></span>
                                             </div>
                                         </div>
                                     </div><br>
@@ -780,8 +791,8 @@
                         <td width="3%"><?php echo $cycle2 ?></td>
                         <td width="20%"><?php echo $name2 ?></td>
                         <?php echo $stats2?>
-                        <td width="10%">? <?php echo number_format($loan_amount2,2) ?></td>
-                        <td width="10%">? <?php echo number_format($amount_received,2) ?></td>
+                        <td width="10%">? <?php echo number_format($loan_amount2) ?></td>
+                        <td width="10%">? <?php echo number_format($amount_received) ?></td>
                         <td width="18%"><?php echo $credit_analyst2 ?></td>
                         <td width="10%"><?php echo $ld2 ?></td>
                         <td width="10%"><?php echo $rd2 ?></td>

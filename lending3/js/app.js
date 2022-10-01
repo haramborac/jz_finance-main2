@@ -389,34 +389,6 @@ function CIS(){
     CHIE();
     ONI();
 }
-//GENERATE RANDOM ACCOUNT ID NUMBER
-function generate(){
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var lChar = characters.length;
-    var numbers = '0123456789';
-    var lNum = numbers.length;
-    var rChar = '';
-    var rNum = '';
-    var rChar2 = '';
-    var rNum2 = ''; 
-    var result;
-    for (var i=0;i<2;i++){
-        rChar += characters.charAt(Math.floor(Math.random()*lChar));
-    }
-
-    for (var j=0;j<2;j++){
-        rNum += numbers.charAt(Math.floor(Math.random()*lNum));
-    }
-    for (var k=0;k<3;k++){
-        rChar2 += characters.charAt(Math.floor(Math.random()*lChar));
-    }
-    for (var l=0;l<2;l++){
-        rNum2 += numbers.charAt(Math.floor(Math.random()*lNum));
-    }
-    result = rChar.concat(rNum).concat(rChar2).concat(rNum2);
-    document.getElementById('randAccNo').value = result;
-    document.getElementById('randAccNo2').innerHTML = result;
-}
 //SET VALUE TO 0 IF CLIENT INCOME STATEMENT INPUT FORM IS EMPTY
 function removeNan(){
 
@@ -558,7 +530,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";             
                     } 
                     else {
@@ -575,7 +547,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input ) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -592,7 +564,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -609,7 +581,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -626,7 +598,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -643,7 +615,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -660,7 +632,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -677,7 +649,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -694,7 +666,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -711,7 +683,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -728,7 +700,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -745,7 +717,7 @@ function areaFilter1(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -785,7 +757,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";             
                     } 
                     else {
@@ -802,7 +774,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -819,7 +791,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -836,7 +808,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -853,7 +825,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -870,7 +842,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -887,7 +859,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -904,7 +876,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -921,7 +893,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -938,7 +910,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -955,7 +927,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -972,7 +944,7 @@ function areaFilter2(){
             td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
                 txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                    if (txtValue === input) {
                         tr[i].style.display = "";
                     } 
                     else {
@@ -1000,437 +972,6 @@ function areaFilter2(){
     }     
 }
 
-
-
-//CALLING FILTER BY STATUS FUNCTIONS 1 & 2 ON CLIENT RECORDS
-function statusFilter(){
-
-    var statC = document.getElementById("cStatus").value;
-    if(statC==="Pending"){
-        statusPending();
-        statusPending2();
-    }
-    if(statC==="Released"){
-        statusReleased();
-        statusReleased2(); 
-    } 
-    if(statC==="OnGoing"){
-        statusOnGoing();
-        statusOnGoing2();     
-    } 
-    if(statC==="Finished"){
-        statusFinished();  
-        statusFinished2();   
-    }
-    if(statC==="Cancelled"){
-        statusCancelled();
-        statusCancelled2();  
-    } 
-    if(statC==="Terminated"){
-        statusTerminated();  
-        statusTerminated2();  
-    }
-    if(statC==="Blacklisted"){
-        statusBlackListed();
-        statusBlackListed2();
-    }
-    if(statC==="All"){
-        statusAll();
-        statusAll2();
-    }
-}
-//FILTER BY STATUS FUNCTIONS 1 (FOR ALL TRANSACTIONS)
-//PENDING
-function statusPending(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-    var dispTable = document.getElementById("crDefaultView");
-
-    inputC = "Pending";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";           
-                } 
-                else {
-                    trC[iC].style.display = "none";                   
-                }
-            }
-    }
-}
-//RELEASED
-function statusReleased(){
-    
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Released";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//ONGOING
-function statusOnGoing(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "On going";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//FINISHED
-function statusFinished(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Finished";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//CANCELLED
-function statusCancelled(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Cancelled";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//TERMINATED
-function statusTerminated(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Terminated";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//BLACKLISTED
-function statusBlackListed(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Blacklisted";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//ALL STATUS
-function statusAll(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = '';
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("recordTable");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                }
-            }
-    }
-}
-
-//FILTER BY STATUS FUNCTIONS 2 (FOR TODAY'S TRANSACTION)
-//PENDING
-function statusPending2(){
-
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-    var dispTable = document.getElementById("crDefaultView");
-
-
-
-    // if(dispTable.style.display==="block"){
-    inputC = "Pending";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";           
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//RELEASED
-function statusReleased2(){
-    
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Released";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//ONGOING
-function statusOnGoing2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "On going";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//FINISHED
-function statusFinished2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Finished";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//CANCELLED
-function statusCancelled2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Cancelled";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//TERMINATED
-function statusTerminated2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Terminated";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//BLACKLISTED
-function statusBlackListed2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = "Blacklisted";
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                    
-                }
-            }
-    }
-}
-//ALL STATUS
-function statusAll2(){
-
-    var statC = document.getElementById("cStatus").value;
-    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
-
-    inputC = '';
-    filterC = inputC.toUpperCase();
-    tableC = document.getElementById("crrTable2");
-    trC = tableC.getElementsByTagName("tr");
-    for (iC = 0; iC < trC.length; iC++) {
-        tdC = trC[iC].getElementsByTagName("td")[4];
-            if (tdC) {
-            txtValueC = tdC.textContent || tdC.innerText;
-                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
-                    trC[iC].style.display = "";     
-                } 
-                else {
-                    trC[iC].style.display = "none";
-                }
-            }
-    }
-}
-
-
 window.onload = function(){
     let usercontent = document.getElementsByClassName('userPModal');
     let paymentmodal = document.getElementsByClassName('userPayModal');
@@ -1439,7 +980,6 @@ window.onload = function(){
     if(showProfile != undefined){
         usercontent[showProfile].style.display = "block";
     }
-
     if(showAdd != undefined){
         paymentmodal[showAdd].style.display = "block";
     }

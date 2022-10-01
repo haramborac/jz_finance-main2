@@ -12,9 +12,6 @@
             <tr>
                 <th colspan="26">Date :</th>
             </tr>
-            <!-- <tr>
-                <th colspan="15">Area 1 - CA Shieanne</th>
-            </tr> -->
             <tr>
                 <th colspan="26">Weekly Collection Form</th>
             </tr>

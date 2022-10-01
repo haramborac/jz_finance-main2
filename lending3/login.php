@@ -24,13 +24,6 @@
         </div>
         <form action="loginformcode.php" method="POST">
             <div class="loginContent">
-                <!-- <label for="cssBranch">Branch</label>
-                <select name="cssBranch" id="cssBranch">
-                    <option value="all">All Branches</option>
-                    <option value="stamaria">Sta. Maria</option>
-                    <option value="marilao">Marilao</option>
-                    <option value="tandangsora">Tandang Sora</option>
-                </select><br> -->
                 <label for="cssUserName">CSS Username</label>
                 <input type="text" id="cssUserName" name="username"><br>
                 <label for="cssPassword">Password</label>
