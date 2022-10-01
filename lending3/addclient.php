@@ -10,11 +10,6 @@
 <script>
     <?php include_once 'js/app.js'; ?>
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded',function (e){
-    //    generate();
-    });
-</script>
             <section id="Add" class="navContent">
                 <div class="addSteps">
                     <div class="stepCircle">
@@ -714,9 +709,6 @@
         }
         return localStorage.getItem(v);
     }
-
-
-
 </script>
 <script>
     const complete  = document.getElementById("addClientForm");

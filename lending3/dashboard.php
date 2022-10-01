@@ -55,7 +55,7 @@
                                     <i class="fa fa-money-bill" style="color: green;"></i>
                                     <p>Running Sales</p>
                                     <span>Overall total of money to be collected by Credit Analysts</span>
-                                    <h2>₱<?php echo number_format($rApp,2)?></h2>
+                                    <h2>₱<?php echo number_format($rApp)?></h2>
                                 </div>
                                 <div class="card totalOverdue">
                                     <?php 
@@ -101,7 +101,7 @@
                                     <i class="fa fa-bullhorn" style="color: purple;"></i>
                                     <p>Total Overdue</p>
                                     <span>Overall overdue payment to be collected, area to be focused. </span>
-                                    <h2>₱<?php echo number_format($rAO,2)?></h2>
+                                    <h2>₱<?php echo number_format($rAO)?></h2>
                                 </div> 
                                 <?php        
                                     if($bnm == "all"){
@@ -147,7 +147,7 @@
                                     <i class="fa fa fa-thumbs-up" style="color: blue;"></i>
                                     <p>Running Collection</p>
                                     <span>Overall running collection of money from the clients</span>
-                                    <h2>₱<?php echo number_format($rsHC,2) ?></h2>
+                                    <h2>₱<?php echo number_format($rsHC) ?></h2>
                                 </div>
                                 <?php    
                                     if($bnm == "all"){
@@ -259,9 +259,9 @@
                                             <td width="10%"><?php echo $caArea ?></td> 
                                             <td width="20%"><?php echo $caName ?></td> 
                                             <td width="10%"><?php echo $caClientNo." Clients" ?></td> 
-                                            <td width="20%">₱ <?php echo number_format($caLoanAmount,2)?></td> 
-                                            <td width="20%">₱ <?php echo number_format($caTPay,2)?></td> 
-                                            <td width="20%">₱ <?php echo number_format($caOverDue,2)?></td>
+                                            <td width="20%">₱ <?php echo number_format($caLoanAmount)?></td> 
+                                            <td width="20%">₱ <?php echo number_format($caTPay)?></td> 
+                                            <td width="20%">₱ <?php echo number_format($caOverDue)?></td>
                                         </tr>    
                                     <?php }?>
                                 </table>

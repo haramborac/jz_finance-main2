@@ -75,7 +75,7 @@
             <td ><p><?php echo $row2['ccarea']?></p></td>
             <td ><?php echo $canalyst?></td>
             <td><p><?php echo $row2['clastname'].", ".$row2['cfirstname']?></p></td>
-            <td ><p>₱ <?php echo number_format($approvedloan,2)?></p></td>
+            <td ><p>₱ <?php echo number_format($approvedloan)?></p></td>
             <td ><p><?php echo $approvedloan/100 ?></p></td>
             <td >20</td>
             <td  id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><p class="days"></p>                        
@@ -122,9 +122,6 @@
             <tr>
                 <th colspan="15">Date :</th>
             </tr>
-            <!-- <tr>
-                <th colspan="15">Area 1 - CA Shieanne</th>
-            </tr> -->
             <tr>
                 <th colspan="15">Cash Collections & Savings</th>
             </tr>
@@ -164,10 +161,10 @@
             <td ><p><?php echo $row2['ccarea']?></p></td>
             <td ><?php echo $canalyst?></td>
             <td><p><?php echo $row2['clastname'].", ".$row2['cfirstname']?></p></td>
-            <td ><p>₱ <?php echo number_format($approvedloan,2)?></p></td>
-            <td><p>₱ <?php echo number_format($row2['camountpaid'],2)?></p></td>
-            <td><p>₱ <?php echo number_format($row2['cbalance'],2)?></p></td>
-            <td><p>₱ <?php echo number_format($row2['csecdep'],2)?></p></td>
+            <td ><p>₱ <?php echo number_format($approvedloan)?></p></td>
+            <td><p>₱ <?php echo number_format($row2['camountpaid'])?></p></td>
+            <td><p>₱ <?php echo number_format($row2['cbalance'])?></p></td>
+            <td><p>₱ <?php echo number_format($row2['csecdep'])?></p></td>
             <td ><p><?php echo $approvedloan/100 ?></p></td>
             <td >20</td>
             <td id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><p class="days"></p>                        
@@ -201,7 +198,7 @@
                     }
                 });
             </script></td>
-        <td>₱ <?php echo number_format($row2['coverdue'],2)?></td>
+        <td>₱ <?php echo number_format($row2['coverdue'])?></td>
         </tr>                    
         <?php } ?>
 

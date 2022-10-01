@@ -235,34 +235,6 @@ function mainFilter(){
     }
 }
 //SORTING FUNCTIONS 1 (FOR ALL TRANSACTIONS)
-//ASCENDING 
-function sortingArea(){
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("recordTable");
-    switching = true;
-
-    while(switching){
-
-        switching = false;
-        rows = table.rows;
-
-        for(i=0;i<(rows.length -1);i++){
-            shouldSwitch = false;
-
-            x = rows[i].getElementsByTagName("td")[0];
-            y = rows[i+1].getElementsByTagName("td")[0];
-
-            if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
-                shouldSwitch = true;
-                break;
-            }
-        }
-        if(shouldSwitch){
-            rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
-            switching = true;
-        }
-    }
-}
 //ASCENDING
 function sortName(){
     var table, rows, switching, i, x, y, shouldSwitch;
@@ -309,7 +281,7 @@ function sortCycle(){
             x = rows[i].getElementsByTagName("td")[1];
             y = rows[i+1].getElementsByTagName("td")[1];
 
-            if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
+            if(parseInt(x.innerHTML.match(/\d+/))> parseInt(y.innerHTML.match(/\d+/))){
                 shouldSwitch = true;
                 break;
             }
@@ -382,34 +354,6 @@ function sortLoan(){
 
 //SORTING FUNCTIONS 2 (FOR TODAY'S TRANSACTION)
 //ASCENDING 
-function sortingArea2(){
-    var table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("crrTable2");
-    switching = true;
-
-    while(switching){
-
-        switching = false;
-        rows = table.rows;
-
-        for(i=0;i<(rows.length -1);i++){
-            shouldSwitch = false;
-
-            x = rows[i].getElementsByTagName("td")[0];
-            y = rows[i+1].getElementsByTagName("td")[0];
-
-            if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
-                shouldSwitch = true;
-                break;
-            }
-        }
-        if(shouldSwitch){
-            rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
-            switching = true;
-        }
-    }
-}
-//ASCENDING
 function sortName2(){
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("crrTable2");
@@ -455,7 +399,7 @@ function sortCycle2(){
             x = rows[i].getElementsByTagName("td")[1];
             y = rows[i+1].getElementsByTagName("td")[1];
 
-            if(x.innerHTML.toLowerCase()> y.innerHTML.toLowerCase()){
+            if(parseInt(x.innerHTML.match(/\d+/))< parseInt(y.innerHTML.match(/\d+/))){
                 shouldSwitch = true;
                 break;
             }
@@ -664,5 +608,416 @@ for(let ls = 0; ls < sl.length; ls++){
         document.getElementsByClassName('eAmountLoaned1')[ls].removeAttribute("name");
         document.getElementsByClassName('eAmountLoaned3')[ls].removeAttribute("name");
         document.getElementsByClassName('eAmountLoaned2')[ls].removeAttribute("name");
+    }
+}
+//CALLING FILTER BY STATUS FUNCTIONS 1 & 2 ON CLIENT RECORDS
+function statusFilter(){
+
+    var statC = document.getElementById("cStatus").value;
+    if(statC==="Pending"){
+        statusPending();
+        statusPending2();
+    }
+    if(statC==="Released"){
+        statusReleased();
+        statusReleased2(); 
+    } 
+    if(statC==="OnGoing"){
+        statusOnGoing();
+        statusOnGoing2();     
+    } 
+    if(statC==="Finished"){
+        statusFinished();  
+        statusFinished2();   
+    }
+    if(statC==="Cancelled"){
+        statusCancelled();
+        statusCancelled2();  
+    } 
+    if(statC==="Terminated"){
+        statusTerminated();  
+        statusTerminated2();  
+    }
+    if(statC==="Blacklisted"){
+        statusBlackListed();
+        statusBlackListed2();
+    }
+    if(statC==="All"){
+        statusAll();
+        statusAll2();
+    }
+}
+//FILTER BY STATUS FUNCTIONS 1 (FOR ALL TRANSACTIONS)
+//PENDING
+function statusPending(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+    var dispTable = document.getElementById("crDefaultView");
+
+    inputC = "Pending";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";           
+                } 
+                else {
+                    trC[iC].style.display = "none";                   
+                }
+            }
+    }
+}
+//RELEASED
+function statusReleased(){
+    
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Released";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";
+                    
+                }
+            }
+    }
+}
+//ONGOING
+function statusOnGoing(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "On Going";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                
+                }
+            }
+    }
+}
+//FINISHED
+function statusFinished(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Finished";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                  
+                }
+            }
+    }
+}
+//CANCELLED
+function statusCancelled(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Cancelled";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                   
+                }
+            }
+    }
+}
+//TERMINATED
+function statusTerminated(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Terminated";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                   
+                }
+            }
+    }
+}
+//BLACKLISTED
+function statusBlackListed(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Blacklisted";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                    
+                }
+            }
+    }
+}
+//ALL STATUS
+function statusAll(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = '';
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("recordTable");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[6];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";
+                }
+            }
+    }
+}
+
+//FILTER BY STATUS FUNCTIONS 2 (FOR TODAY'S TRANSACTION)
+//PENDING
+function statusPending2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+    var dispTable = document.getElementById("crDefaultView");
+
+    inputC = "Pending";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";           
+                } 
+                else {
+                    trC[iC].style.display = "none";               
+                }
+            }
+    }
+}
+//RELEASED
+function statusReleased2(){
+    
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Released";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";            
+                }
+            }
+    }
+}
+//ONGOING
+function statusOnGoing2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "On going";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                
+                }
+            }
+    }
+}
+//FINISHED
+function statusFinished2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Finished";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";           
+                }
+            }
+    }
+}
+//CANCELLED
+function statusCancelled2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Cancelled";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";
+                }
+            }
+    }
+}
+//TERMINATED
+function statusTerminated2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Terminated";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                  
+                }
+            }
+    }
+}
+//BLACKLISTED
+function statusBlackListed2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = "Blacklisted";
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";                  
+                }
+            }
+    }
+}
+//ALL STATUS
+function statusAll2(){
+
+    var statC = document.getElementById("cStatus").value;
+    var inputC, filterC, tableC, trC, tdC, iC, txtValueC;
+
+    inputC = '';
+    filterC = inputC.toUpperCase();
+    tableC = document.getElementById("crrTable2");
+    trC = tableC.getElementsByTagName("tr");
+    for (iC = 0; iC < trC.length; iC++) {
+        tdC = trC[iC].getElementsByTagName("td")[3];
+            if (tdC) {
+            txtValueC = tdC.textContent || tdC.innerText;
+                if (txtValueC.toUpperCase().indexOf(filterC) > -1) {
+                    trC[iC].style.display = "";     
+                } 
+                else {
+                    trC[iC].style.display = "none";
+                }
+            }
     }
 }

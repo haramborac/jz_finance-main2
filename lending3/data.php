@@ -5,6 +5,7 @@
     <?php include_once 'css/data.css'; ?>
     <?php include_once 'css/printdata.css'; ?>
 </style>
+
 <script>
     document.addEventListener('DOMContentLoaded',function (e){
         caFilter();
@@ -96,7 +97,6 @@
                 <?php
                         if($bnm == "all"){
                             $query = "SELECT * FROM insert_client WHERE cloanstatus = 'Pending' ORDER BY ccarea ASC, clastname ASC";
-
                         }else{
                             $query = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus = 'Pending' ORDER BY ccarea ASC, clastname ASC";
                         }
@@ -146,7 +146,7 @@
                         <td style ="display:none" class="canal"><?php echo $row2['ccreditanalyst']?></td>
                         <td width="10%"><?php echo $row2['ccarea']?></td>
                         <td width="40%"><span><?php echo $row2['clastname'].", ".$row2['cfirstname']?></span></td>
-                        <td width="15%"><span>₱ </span><span><?php echo number_format($approvedloan,2)?></span></td>
+                        <td width="15%"><span>₱ </span><span><?php echo number_format($approvedloan)?></span></td>
                         <td width="15%" id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><span class="days"></span>                        
 
                         <script>
@@ -178,7 +178,6 @@
                                         }, 1);
                                 }
                             });
-
                         </script></td>
                         <td width="20%"><p><span><?php echo date('m-d-Y',strtotime($row2['creleaseddate'].'+ 100 days'));?></span></p></td>
                         <td style ="display:none"><?php echo $row2['ccreditanalyst'] ?></td>
@@ -197,9 +196,8 @@
                                 $procfee = $deductions['processing_fee'];
                                 $ins_premium = $deductions['ins_premium'];
                                 $sec_deposit = $deductions['sec_deposit'];
-                                $others = $deductions['others'];
                                 $int_deduc = ($int/100)*$approvedloan;
-                                $amount_received = $approvedloan - $int_deduc - $procfee - $ins_premium - $sec_deposit - $others;
+                                $amount_received = $approvedloan - $int_deduc - $procfee - $ins_premium - $sec_deposit ;
                         ?>
                         <td style ="display:none" id="asdasd"><?php echo $amount_received ?></td>
                         <?php 
@@ -212,7 +210,6 @@
                                         $sumpay = $amtpdrow['smpymnt'];
                                     }
                                 }
-
                         ?>
                         <td style ="display:none"><?php echo $row2['camountpaid'] ?></td>
                         <td style ="display:none"><?php echo $row2['cbalance'] ?></td>
@@ -273,10 +270,10 @@
         <div>
             <p>Total Money Uncollected</p>
             <span id="tmUCol"></span>
-
         </div>
         <div>
             <button id="btnPrintData" onclick="window.print(); return false;" media = "print">Print <i class="fa fa-print"></i></button>
         </div>
     </div>
 </div>
+<script><?php include_once 'js/data.js'; ?></script>
