@@ -1,4 +1,4 @@
-@media print{
+/* @media print{
     .fullContent .navSelection,
     .clientRecords h1,
     .crtSearch,
@@ -98,4 +98,12 @@
 @page{
     size: A4 LANDSCAPE;
 }
+ */
+/* ============================================================================= */
 
+@media print{
+    
+}
+@page{
+
+}

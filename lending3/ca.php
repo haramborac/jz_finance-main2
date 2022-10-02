@@ -127,8 +127,9 @@
             </tr>
         </thead>
         <thead class="ccol">
-        <tr>
-        <th width="7%">Area</th>
+            <tr>
+                <th>No.</th>
+                <th width="7%">Area</th>
                 <th width="20%">Credit Analyst</th>
                 <th width="30%">Client Name</th>
                 <th width="15%">Total <br> Loan Amount</th>
@@ -139,24 +140,28 @@
                 <th width="10%">Daily <br> Savings</th>
                 <th width="15%">Remaining <br> Days</th>
                 <th>Overdue</th>
-        </tr>
+            </tr>
         </thead>
-        <tbody><?php
-        if($bnm == "all"){
-                $query2 = "SELECT * FROM insert_client WHERE cloanstatus in('OnGoing','Released')  ORDER BY ccarea ASC, clastname ASC"; 
-            }else{
-                $query2 = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC"; 
-            }
-            $result2 = mysqli_query($connection,$query2);
-            $drIndex2 = -1;
-            while($row2  = mysqli_fetch_assoc($result2)){
-                $acctid = $row2['clientid'];
-                $drIndex2 ++;
-                $int = $row2['cinterest'];
-                $canalyst = $row2['ccreditanalyst'];
-                $approvedloan = $row2['cloanamount'];
-    ?>
+        <tbody>
+        <?php
+            $i = 0;
+            if($bnm == "all"){
+                    $query2 = "SELECT * FROM insert_client WHERE cloanstatus in('OnGoing','Released')  ORDER BY ccarea ASC, clastname ASC"; 
+                }else{
+                    $query2 = "SELECT * FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in('OnGoing','Released') ORDER BY ccarea ASC, clastname ASC"; 
+                }
+                $result2 = mysqli_query($connection,$query2);
+                $drIndex2 = -1;
+                while($row2  = mysqli_fetch_assoc($result2)){
+                    $i++;
+                    $acctid = $row2['clientid'];
+                    $drIndex2 ++;
+                    $int = $row2['cinterest'];
+                    $canalyst = $row2['ccreditanalyst'];
+                    $approvedloan = $row2['cloanamount'];
+        ?>
         <tr>
+            <td><?php echo $i?></td>
             <td  style ="display:none" ><?php echo $row2['ccreditanalyst']?></td>
             <td ><p><?php echo $row2['ccarea']?></p></td>
             <td ><?php echo $canalyst?></td>

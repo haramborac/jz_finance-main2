@@ -195,14 +195,12 @@
                             }else{
                                 echo $ddf_1." Days";
                             }
-                        
                         ?></td>
                         <td  width="10%" id="crmOverdue"><p><?php echo "₱ ".number_format($row['coverdue']) ?></p></td>
                         <td width="10%" id="crmDays"><p><?php echo "₱ ".number_format($row['camountpaid'])?></p></td>
                         <td width="10%"><?php echo "₱ ".number_format($row['cbalance'])?></td>
-                    	<td style="display: none;"><?php echo $row['cloanamount']?></td>
+                    	<td style="display: none;"><?php echo $lnmt?></td>
 			            <td style="display: none;"><?php echo $row['coverdue']?></td>
-
                     </tr>            
                     <?php } ?>
                 </table>
@@ -283,8 +281,7 @@
                                                         </td>
                                                         <td><?php echo $pay['days'] ?></td>
                                                         <td>₱ <?php echo number_format($pay['payment']) ?></td>
-                                                        <td>₱ <?php echo number_format($pay['secdep']) ?></td>
-                                                        
+                                                        <td>₱ <?php echo number_format($pay['secdep']) ?></td>                                                      
                                                     </tr>
                                                     <?php } ?>
                                                 </table>
@@ -310,12 +307,10 @@
                                             <p>Contact No. : <span><?php echo $row2['cccontact'] ?></span></p>
                                         </div>
                                         <h4>Valid IDs</h4>
-                                        <?php
-                                        
+                                        <?php                                     
                                             $show_ids = "SELECT * FROM insert_id WHERE clientid = '$clientid' ";
                                             $show_ids_query = mysqli_query($connection, $show_ids);
-                                            while($id = mysqli_fetch_assoc($show_ids_query)){
-                                        
+                                            while($id = mysqli_fetch_assoc($show_ids_query)){                                  
                                         ?>
                                         <div class="ucValidID">
                                             <div>
@@ -328,10 +323,7 @@
                                             </div>
                                         </div>
                                         <?php } ?>
-                                    </div>
-
-
-                                
+                                    </div>                              
                                     <p>Amount Loaned:</p>
                                     <input type="hidden" name="editid" id="" value="<?php echo $row2['id'] ?>">
                                     <input type="hidden" name="checkbalance" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
@@ -353,12 +345,9 @@
                                             ?>
                                                 <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                                 <?php
-
                                                     $show_loans = "SELECT * FROM insert_deduction where loantype = 'mbl'";
                                                     $show_loans_query = mysqli_query($connection, $show_loans);
-                                                    while($loans = mysqli_fetch_assoc($show_loans_query)){
-                                                        
-                                                
+                                                    while($loans = mysqli_fetch_assoc($show_loans_query)){                                                                    
                                                 ?>
                                                 <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                                 <?php } ?>
@@ -372,12 +361,9 @@
                                         ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
-
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sbl'";
                                                 $show_loans_query = mysqli_query($connection, $show_loans);
-                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
-                                                    
-                                            
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){                                                                                     
                                             ?>
                                             <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
@@ -391,12 +377,9 @@
                                         ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
-
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'il'";
                                                 $show_loans_query = mysqli_query($connection, $show_loans);
-                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
-                                                    
-                                            
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){                                                                                      
                                             ?>
                                             <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
@@ -409,12 +392,9 @@
                                         ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
-
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sl'";
                                                 $show_loans_query = mysqli_query($connection, $show_loans);
-                                                while($loans = mysqli_fetch_assoc($show_loans_query)){
-                                                    
-                                            
+                                                while($loans = mysqli_fetch_assoc($show_loans_query)){                                                                                
                                             ?>
                                             <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
@@ -425,7 +405,6 @@
                                             <h4>CA: <select name="caName" id="caName<?php echo $loop ?>">
                                                         <option value="<?php echo $row2['ccreditanalyst'] ?>"><?php echo $row2['ccreditanalyst'] ?></option>
                                                         <?php
-
                                                         if($bnm != 'all'){
                                                             $show_ca = "SELECT * FROM insert_creditanalyst where cabranch = '$bnm' group by name";
 
@@ -434,14 +413,11 @@
                                                         }
                                                             $show_ca_query = mysqli_query($connection, $show_ca);
                                                             while($ca = mysqli_fetch_assoc($show_ca_query)){
-                                                                
-                                                        
                                                         ?>
                                                         <option value="<?php echo $ca['name']; ?>"><?php echo $ca['name']; ?></option>
                                                         <?php } ?>
                                                     </select>
                                             </h4>
-
                                             <h4>Area: <select name="rArea" id="rArea<?php echo $loop ?>">
                                                 <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea'] ?></option>       
                                                 <option value="1">1</option>
@@ -496,12 +472,9 @@
                                             }
                                             else{
                                                 $amount_received = $loan_amount - $procfee - $insprem - $secdep;
-                                            }
-                                            
+                                            }                  
                                     ?>
-
-                                    <?php } ?>
-                                        
+                                    <?php } ?>                 
                                     <?php } else{
                                         $loan_amount = 0;
                                         $procfee = 0;
@@ -509,8 +482,7 @@
                                         $secdep = 0;
                                         $ddc = 0;
                                         $interest_deduc = 0;
-                                        $amount_received = 0;
-                                        
+                                        $amount_received = 0;         
                                     }
                                         if($row2['cloantype'] == 'mbl'){
                                             $lt2 = 100;
@@ -615,8 +587,7 @@
                                             if(adminAccount.innerHTML === "Chatspeak Admin"){
                                                 for(let counter = 0; counter<deleteAccount.length; counter++){
                                                     deleteAccount[counter].style.display = 'block';
-                                                }
-                                                
+                                                }   
                                             }
                                         </script>
                                     </div>
@@ -655,7 +626,6 @@
                                     <label for="payment">Payments</label>
                                     <p>₱
                                         <?php
-                                        
                                             $checkday = "SELECT * FROM insert_payment WHERE clientid = '$clientid' ORDER BY id DESC LIMIT 1 ";
                                             $checkday_query = mysqli_query($connection, $checkday);
                                             while($checkdy = mysqli_fetch_assoc($checkday_query)){
@@ -692,10 +662,7 @@
                     </div>
                 </div>
             </div>
-
             <?php } ?>
-
-
         </div>
     </div>
     <div id="crRecentlyAdded" class="crRecentlyAdded" style="display: none;">
@@ -717,14 +684,11 @@
             <div class="crmRContent">
                 <table id="crrTable2">
                 <?php 
-                                 if($bnm == "all"){
-                                    $query = "SELECT * FROM insert_client WHERE DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
-        
-                                }else{
-                                    $query = "SELECT * FROM insert_client WHERE cbranch ='$bnm' and DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
-        
-                                }
-                    // $query = "SELECT * FROM insert_client WHERE DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
+                    if($bnm == "all"){
+                        $query = "SELECT * FROM insert_client WHERE DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
+                    }else{
+                        $query = "SELECT * FROM insert_client WHERE cbranch ='$bnm' and DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
+                    }
                     $client_query = mysqli_query($connection,$query);
                     while($row =mysqli_fetch_assoc($client_query)){
 
@@ -748,29 +712,22 @@
                         }
                         if($status2 == "Released"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:Yellow'><p id='crmStatusP'></p><p>Released</p></div> </td>";
-   
                         }
                         if($status2 == "OnGoing"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:#90ee90 '><p id='crmStatusP'></p><p>On Going</p></div> </td>";
- 
                         }
                         if($status2 == "Finished"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:#87cefa'><p id='crmStatusP'></p><p>Finished</p></div> </td>";
-
                         }
                         if($status2 == "Cancelled"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:Red; color:white'><p id='crmStatusP'></p><p>Cancelled</p></div> </td>";
-    
                         }
                         if($status2 == "Terminated"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:Purple; color:white'><p id='crmStatusP'></p><p>Terminated</p></div> </td>";
-
                         }
                         if($status2 == "Blacklisted"){
                             $stats2 = "<td width='6' id='crmStatus' class='crmStatus'><div style='background-color:black; color:white'><p id='crmStatusP'></p><p>Blacklisted</p></div> </td>";
-
                         }
-
                                     
                         $show_deductions = "SELECT * FROM insert_deduction WHERE loan_amount = $loan_amount2 ";
                         $show_deductions_query = mysqli_query($connection, $show_deductions);
@@ -783,7 +740,6 @@
                             
                             $interest_deduc = ($interest/100) * $loan_amount;
                             $amount_received = $loan_amount - $interest_deduc - $procfee - $insprem - $secdep;
-
                 ?>
                     <tr>
                         
@@ -809,7 +765,6 @@
                 $show_table_query2 = mysqli_query($connection, $show_table2);
                     while($row2 = mysqli_fetch_assoc($show_table_query2)){
                 ?>
-
             <div id="userPDel" class="userPDel">
                 <div class="userDel">
                     <span class="delClose">&times;</span>
@@ -820,7 +775,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="userNCycle" class="userNCycle">
                 <div class="userCycle">
                     <span class="cycClose">&times;</span>
@@ -831,7 +785,6 @@
                     </div>
                 </div>
             </div>
-            
             <div id="userNCycle2" class="userNCycle2">
                 <div class="userCycle2">
                 <span class="cycClose2">&times;</span>
@@ -844,7 +797,6 @@
                     </div>              
                 </div>
             </div>
-
             <?php }
                 if(isset($_GET['delete_client'])){
                     $delete_id = $_GET['delete_client'];
@@ -853,9 +805,9 @@
                     header('location:records.php');
                 }
             ?>
-<script>
-    <?php include 'js/records.js' ?>
-</script>
+        
+<script><?php include 'js/records.js' ?></script>
+
 <script> 
 //SCRIPT FOR VIEW PROFILE BUTTON 
     var cuserModal = document.getElementsByClassName("userPModal");
@@ -873,7 +825,7 @@
         userSpan[b].onclick = function() {
             cuserModal[b].style.display = "none";
             localStorage.removeItem('showProfile');
-
+            
             document.getElementsByClassName('eAmountLoaned0')[b].removeAttribute("name");
             document.getElementsByClassName('eAmountLoaned1')[b].removeAttribute("name");
             document.getElementsByClassName('eAmountLoaned2')[b].removeAttribute("name");
@@ -883,7 +835,6 @@
             document.getElementsByClassName('eAmountLoaned0')[b].style.display = "block";
             document.getElementsByClassName('eAmountLoaned0')[b].setAttribute("name","approvedloan");
 
-
             document.getElementsByClassName('eAmountLoaned1')[b].style.display = "none";
             document.getElementsByClassName('eAmountLoaned2')[b].style.display = "none";
             document.getElementsByClassName('eAmountLoaned3')[b].style.display = "none";
@@ -891,6 +842,7 @@
         }
     }
 </script>
+
 <script> 
 //SCRIPT FOR ADD PAYMENT BUTTON
     var cpayModal = document.getElementsByClassName("userPayModal");
@@ -912,6 +864,7 @@
         }
     }
 </script>
+
 <script> 
 //SCRIPT FOR DELETE RECORD 
     var cuserDel = document.getElementsByClassName("userPDel");
@@ -929,6 +882,7 @@
         }
     }
 </script>
+
 <script> 
 //SCRIPT FOR SHOWING NEW CYCLE MODAL CONFIRMATION
     var userCycle = document.getElementsByClassName("userNCycle");
@@ -944,6 +898,7 @@
         }
     }
 </script>
+
 <script> 
 //SCRIPT FOR NEW CYCLE BUTTON
     var resetAdv = document.getElementsByClassName("resetadv");
@@ -1011,8 +966,6 @@
             document.getElementsByClassName("sbl")[gi].style.color = "black";
             document.getElementsByClassName("il")[gi].style.color = "black";
             document.getElementsByClassName("sl")[gi].style.color = "black";
-
-
         }
     }
 
@@ -1053,6 +1006,7 @@
             });
         }
 </script>
+
 <script>
     let srchnme = document.getElementById('searchName');
         srchnme.addEventListener('keyup',function(){
