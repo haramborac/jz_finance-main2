@@ -330,19 +330,9 @@
                                     <input type="hidden" name="loantype" class="loantype" value="<?php echo $row2['cloantype']?>">
                                     <h3>
                                         <select class="eAmountLoaned0" name="approvedloan">
-                                            <?php 
-                                            if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                                echo "<option value='0'>₱ 0</option>";
-                                            } 
-                                            ?>
                                                 <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                         </select>
                                         <select class ="eAmountLoaned1" id="eAmountLoaned<?php echo $loop ?>" >
-                                            <?php 
-                                            if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                                echo "<option value='0'>₱ 0</option>";
-                                            } 
-                                            ?>
                                                 <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                                 <?php
                                                     $show_loans = "SELECT * FROM insert_deduction where loantype = 'mbl'";
@@ -354,11 +344,6 @@
                                         </select>
 
                                         <select class ="eAmountLoaned2" id="eAmountLoaned<?php echo $loop ?>" >
-                                        <?php 
-                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>₱ 0</option>";
-                                        } 
-                                        ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sbl'";
@@ -370,11 +355,6 @@
                                         </select>
 
                                         <select class ="eAmountLoaned3" id="eAmountLoaned<?php echo $loop ?>" >
-                                        <?php 
-                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>₱ 0</option>";
-                                        } 
-                                        ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'il'";
@@ -384,12 +364,8 @@
                                             <option value="<?php echo $loans['loan_amount']; ?>">₱ <?php echo number_format($loans['loan_amount']); ?></option>
                                             <?php } ?>
                                         </select>
+
                                         <select class ="eAmountLoaned4" id="eAmountLoaned<?php echo $loop ?>" >
-                                        <?php 
-                                        if($row2['cloanstatus']=="Pending" || $row2['cloanstatus']=="Finished"){
-                                            echo "<option value='0'>₱ 0</option>";
-                                        } 
-                                        ?>
                                             <option value="<?php echo $loan ?>" hidden><?php echo number_format($loan) ?></option>
                                             <?php
                                                 $show_loans = "SELECT * FROM insert_deduction where loantype = 'sl'";
@@ -407,7 +383,6 @@
                                                         <?php
                                                         if($bnm != 'all'){
                                                             $show_ca = "SELECT * FROM insert_creditanalyst where cabranch = '$bnm' group by name";
-
                                                         }else{
                                                             $show_ca = "SELECT * FROM insert_creditanalyst group by name";
                                                         }
@@ -557,7 +532,7 @@
 
                                             <div  id="eDaysRemaining<?php echo $loop ?>" class = "eDR" data-date="<?php echo $row2['cmaturitydate']?>">
                                                 <p>Days Remaining</p>
-                                                <span ><?php echo $ddf2." Days" ?></span>
+                                                <span class="eDaysRem"><?php echo $ddf2." Days" ?></span>
                                             </div>
                                             <div>
                                                 <p>Overdue</p>
@@ -747,8 +722,8 @@
                         <td width="3%"><?php echo $cycle2 ?></td>
                         <td width="20%"><?php echo $name2 ?></td>
                         <?php echo $stats2?>
-                        <td width="10%">? <?php echo number_format($loan_amount2) ?></td>
-                        <td width="10%">? <?php echo number_format($amount_received) ?></td>
+                        <td width="10%">₱ <?php echo number_format($loan_amount2) ?></td>
+                        <td width="10%">₱ <?php echo number_format($amount_received) ?></td>
                         <td width="18%"><?php echo $credit_analyst2 ?></td>
                         <td width="10%"><?php echo $ld2 ?></td>
                         <td width="10%"><?php echo $rd2 ?></td>
@@ -921,15 +896,15 @@
             document.getElementById("ucaStatus"+i).value = "Pending";
             document.getElementById("ucaStatusH"+i).textContent = "Pending";
             document.getElementById("eCycle"+i).innerHTML = cycle;
-            document.getElementById("eApprovedLoan"+i).innerHTML = "? "+ 0;
-            document.getElementById("eProcFee"+i).innerHTML = "? "+ 0;
-            document.getElementById("eInsPremium"+i).innerHTML = "? "+ 0;
-            document.getElementById("eSecDep"+i).innerHTML = "? "+ 0;
-            document.getElementById("eAmountReceived"+i).innerHTML = "? "+ 0;
-            document.getElementById("eDailyCollection"+i).innerHTML = "? "+ 0;
-            document.getElementById("eOverDue"+i).innerHTML = "? "+ 0;
-            document.getElementById("eAmountPaid"+i).innerHTML = "? "+ 0;
-            document.getElementById("eBalance"+i).innerHTML = "? "+ 0;
+            document.getElementById("eApprovedLoan"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eProcFee"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eInsPremium"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eSecDep"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eAmountReceived"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eDailyCollection"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eOverDue"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eAmountPaid"+i).innerHTML = "₱ "+ 0;
+            document.getElementById("eBalance"+i).innerHTML = "₱ "+ 0;
 
             confirmation[i].style.display = "none";
         }
@@ -1017,4 +992,117 @@
         srchid.addEventListener('keyup',function(){
             localStorage.setItem('setvalue2',srchid.value);
         })
+</script>
+
+<script>
+      const mbll = [
+        <?php
+        $query = "select * from insert_deduction where loantype = 'mbl' ";
+        $myQuery = mysqli_query($connection,$query);
+        while($row = mysqli_fetch_assoc($myQuery)){
+            $loan_amount = $row['loan_amount'];
+            $interest_deduc = (17/100) * $loan_amount;
+            $amount_received = $loan_amount - $interest_deduc - $row['processing_fee'] - $row['ins_premium'] - $row['sec_deposit'];        
+        ?>
+        {loan: '<?php echo $row['loan_amount'] ?>', daily:'<?php echo $row['daily_collection'] ?>', procfee:'<?php echo $row['processing_fee'] ?>', insurance:'<?php echo $row['ins_premium'] ?>', secdep:'<?php echo $row['sec_deposit'] ?>', received:'<?php echo $amount_received?>'},
+        <?php 
+            } echo "{loan: '0',daily:'0',procfee:'0',insurance:'0',secdep:'0',received:'0'}"
+            ?>
+    ];
+
+    let ealselect = document.getElementsByClassName('eAmountLoaned1');
+    for(let i = 0; i<ealselect.length; i++){
+        ealselect[i].onchange = function(){
+            document.getElementById("eApprovedLoan"+i).innerHTML = "₱ "+ mbll[parseInt(ealselect[i].selectedIndex)-1].loan;
+                document.getElementById("eProcFee"+i).innerHTML = "₱ "+ mbll[parseInt(ealselect[i].selectedIndex)-1].procfee;
+                document.getElementById("eInsPremium"+i).innerHTML = "₱ "+mbll[parseInt(ealselect[i].selectedIndex)-1].insurance;
+                document.getElementById("eSecDep"+i).innerHTML = "₱ "+ mbll[parseInt(ealselect[i].selectedIndex)-1].secdep;
+                document.getElementById("eAmountReceived"+i).innerHTML = "₱ "+ mbll[parseInt(ealselect[i].selectedIndex)-1].received;
+                document.getElementById("eDailyCollection"+i).innerHTML = "₱ "+ mbll[parseInt(ealselect[i].selectedIndex)-1].daily;
+                document.getElementsByClassName("eDaysRem")[i].innerHTML = "100 Days";
+        }
+    }
+</script>
+
+<script>
+    const sbll = [
+        <?php
+        $query = "select * from insert_deduction where loantype = 'sbl' ";
+        $myQuery = mysqli_query($connection,$query);
+        while($row = mysqli_fetch_assoc($myQuery)){
+            $loan_amount = $row['loan_amount'];
+            $interest_deduc = (20/100) * $loan_amount;
+            $amount_received = $loan_amount - $interest_deduc - $row['processing_fee'] - $row['ins_premium'] - $row['sec_deposit'];
+        ?>
+        {loan: '<?php echo $row['loan_amount'] ?>', daily:'<?php echo $row['daily_collection'] ?>', procfee:'<?php echo $row['processing_fee'] ?>', insurance:'<?php echo $row['ins_premium'] ?>', secdep:'<?php echo $row['sec_deposit'] ?>', received:'<?php echo $amount_received?>'},
+        <?php } echo "{loan: '0',daily:'0',procfee:'0',insurance:'0',secdep:'0',received:'0'}"?>
+    ];
+
+    let ealselect2 = document.getElementsByClassName('eAmountLoaned2');
+        for(let i = 0; i<ealselect2.length; i++){
+            ealselect2[i].onchange = function(){
+                document.getElementById("eApprovedLoan"+i).innerHTML = "₱ "+ sbll[parseInt(ealselect2[i].selectedIndex)-1].loan;
+                    document.getElementById("eProcFee"+i).innerHTML = "₱ "+ sbll[parseInt(ealselect2[i].selectedIndex)-1].procfee;
+                    document.getElementById("eInsPremium"+i).innerHTML = "₱ "+sbll[parseInt(ealselect2[i].selectedIndex)-1].insurance;
+                    document.getElementById("eSecDep"+i).innerHTML = "₱ "+ sbll[parseInt(ealselect2[i].selectedIndex)-1].secdep;
+                    document.getElementById("eAmountReceived"+i).innerHTML = "₱ "+ sbll[parseInt(ealselect2[i].selectedIndex)-1].received;
+                    document.getElementById("eDailyCollection"+i).innerHTML = "₱ "+ sbll[parseInt(ealselect2[i].selectedIndex)-1].daily;
+                    document.getElementsByClassName("eDaysRem")[i].innerHTML = "60 Days";
+            }
+        }
+</script>
+
+<script>
+    const ill = [
+        <?php
+        $query = "select * from insert_deduction where loantype = 'il' ";
+        $myQuery = mysqli_query($connection,$query);
+        while($row = mysqli_fetch_assoc($myQuery)){
+            $loan_amount = $row['loan_amount'];
+            $interest_deduc = (10/100) * $loan_amount;
+            $amount_received = $loan_amount - $interest_deduc - $row['processing_fee'] - $row['ins_premium'] - $row['sec_deposit'];   
+        ?>
+        {loan: '<?php echo $row['loan_amount'] ?>', daily:'<?php echo $row['daily_collection'] ?>', procfee:'<?php echo $row['processing_fee'] ?>', insurance:'<?php echo $row['ins_premium'] ?>', secdep:'<?php echo $row['sec_deposit'] ?>', received:'<?php echo $amount_received?>'},
+        <?php } echo "{loan: '0',daily:'0',procfee:'0',insurance:'0',secdep:'0',received:'0'}"?>
+    ];
+
+    let ealselect3 = document.getElementsByClassName('eAmountLoaned3');
+        for(let i = 0; i<ealselect3.length; i++){
+            ealselect3[i].onchange = function(){
+                document.getElementById("eApprovedLoan"+i).innerHTML = "₱ "+ ill[parseInt(ealselect3[i].selectedIndex)-1].loan;
+                    document.getElementById("eProcFee"+i).innerHTML = "₱ "+ ill[parseInt(ealselect3[i].selectedIndex)-1].procfee;
+                    document.getElementById("eInsPremium"+i).innerHTML = "₱ "+ill[parseInt(ealselect3[i].selectedIndex)-1].insurance;
+                    document.getElementById("eSecDep"+i).innerHTML = "₱ "+ ill[parseInt(ealselect3[i].selectedIndex)-1].secdep;
+                    document.getElementById("eAmountReceived"+i).innerHTML = "₱ "+ ill[parseInt(ealselect3[i].selectedIndex)-1].received;
+                    document.getElementById("eDailyCollection"+i).innerHTML = "₱ "+ ill[parseInt(ealselect3[i].selectedIndex)-1].daily;
+                    document.getElementsByClassName("eDaysRem")[i].innerHTML = "20 Days";
+            }
+        }
+</script>
+
+<script>
+    const sll = [
+        <?php
+        $query = "select * from insert_deduction where loantype = 'sl' ";
+        $myQuery = mysqli_query($connection,$query);
+        while($row = mysqli_fetch_assoc($myQuery)){
+            $loan_amount = $row['loan_amount'];
+            $amount_received = $loan_amount - $row['processing_fee'] - $row['ins_premium'] - $row['sec_deposit'];
+        ?>
+        {loan: '<?php echo $row['loan_amount'] ?>', daily:'<?php echo $row['daily_collection'] ?>', procfee:'<?php echo $row['processing_fee'] ?>', insurance:'<?php echo $row['ins_premium'] ?>', secdep:'<?php echo $row['sec_deposit'] ?>', received:'<?php echo $amount_received?>'},
+        <?php } echo "{loan: '0',daily:'0',procfee:'0',insurance:'0',secdep:'0',received:'0'}"?>
+    ];
+    
+    let ealselect4 = document.getElementsByClassName('eAmountLoaned4');
+        for(let i = 0; i<ealselect4.length; i++){
+            ealselect4[i].onchange = function(){
+                document.getElementById("eApprovedLoan"+i).innerHTML = "₱ "+ sll[parseInt(ealselect4[i].selectedIndex)-1].loan;
+                    document.getElementById("eProcFee"+i).innerHTML = "₱ "+ sll[parseInt(ealselect4[i].selectedIndex)-1].procfee;
+                    document.getElementById("eInsPremium"+i).innerHTML = "₱ "+sll[parseInt(ealselect4[i].selectedIndex)-1].insurance;
+                    document.getElementById("eSecDep"+i).innerHTML = "₱ "+ sll[parseInt(ealselect4[i].selectedIndex)-1].secdep;
+                    document.getElementById("eAmountReceived"+i).innerHTML = "₱ "+ sll[parseInt(ealselect4[i].selectedIndex)-1].received;
+                    document.getElementById("eDailyCollection"+i).innerHTML = "₱ "+ sll[parseInt(ealselect4[i].selectedIndex)-1].daily;
+                    document.getElementsByClassName("eDaysRem")[i].innerHTML = "0 Days";
+            }
+        }
 </script>

@@ -1,7 +1,9 @@
 <style>
     <?php include_once 'css/login.css'; ?>
 </style>
-
+<link rel = "icon" href = 
+"img/gl.jpg" 
+        type = "image/x-icon">
 <div class="loginAccess">
     <div class="loginBgContainer">
         <h2>Welcome to<br><span>Goyo Lending</span></h2>
