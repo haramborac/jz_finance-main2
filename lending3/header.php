@@ -11,12 +11,8 @@
 <style>
     <?php include 'css/style.css;' ?>
 </style>
-<script>
-    <?php //include_once 'js/data.js'; ?>
-    <?php // ?>
-</script>
-<?php include "db.php"; ?>
 
+<?php include "db.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,7 +60,7 @@
                     }?>
                 <li class="navSel"><a class="a" href="records.php"><i class="fa fa-folder"></i><p>Records</p></a></li>
                 <li class="navSel"><a class="a" href="ca.php"><i class="fa-solid fa-peso-sign"></i><p>Weekly Collection</p></a></li>
-                <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li>
+                <!-- <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li> -->
                 <?php if($bnm == 'all'){
                 echo "<li class='navSel'><a class='a' href='settings.php'><i class='fa fa-gears'></i><p>Settings</p></a></li>";
                     }?>   
@@ -305,26 +301,26 @@ function drawHand(ctx, pos, length, width) {
 
 <script>
    // Disable Inspect element
-document.addEventListener('contextmenu',(e)=>{
-    e.preventDefault();
-  }
-  );
-  document.onkeydown = function(e) {
-  if(event.keyCode == 123) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-     return false;
-  }
-  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-     return false;
-  }
-}
+// document.addEventListener('contextmenu',(e)=>{
+//     e.preventDefault();
+//   }
+//   );
+//   document.onkeydown = function(e) {
+//   if(event.keyCode == 123) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//      return false;
+//   }
+//   if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+//      return false;
+//   }
+// }
 
-</script>
+// </script>

@@ -521,7 +521,7 @@ for(let lsb = 0; lsb < sbl.length; lsb++){
         sl[lsb].style.backgroundColor = "white";
         sl[lsb].style.color = "black";
 
-        document.getElementsByClassName("editinterest")[lsb].value = 10;
+        document.getElementsByClassName("editinterest")[lsb].value = 20;
         document.getElementsByClassName("editinterestspan")[lsb].innerHTML = "10%";
          
         document.getElementsByClassName("userNCycle2")[lsb].style.display = "none"; 
