@@ -24,9 +24,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js"></script>
     <title>Goyo Lending</title>
-    <link rel = "icon" href = 
-"img/gl.jpg" 
-        type = "image/x-icon">
+    <link rel = "icon" href ="img/gl.jpg" type = "image/x-icon">
 </head>
 <header>
     <div class="fullContent">
@@ -35,36 +33,35 @@
             <?php
                 $username1 = $_SESSION['UNAME'];
                 $branch1 = mysqli_query($connection,"select branch from insert_cssaccount where username = '$username1'");
-
                     while($rb1= mysqli_fetch_assoc($branch1)){
                         $bnm = $rb1['branch'];
-                        if($bnm == "tandangsora"){
-                            $bname = 'Tandang Sora' ;
-                        }
-                        elseif($bnm == "meycauayan"){
-                            $bname = 'Meycauayan'  ;
-                        }
-                        elseif($bnm == "stamaria"){
-                            $bname = 'Sta. Maria' ;
-                        }
-                        elseif($bnm == "all"){
+                        // if($bnm == "Bulacan"){
+                        //     $bname = 'Bulacan' ;
+                        // }
+                        // elseif($bnm == "meycauayan"){
+                        //     $bname = 'Quezon City'  ;
+                        // }
+                        //else
+                        if($bnm == "All"){
                             $bname = "All Branches";
+                        }else{
+                            $bname = $bnm;
                         }
                     }
             ?>
             <i style="display: inline-flex; color:blue;"><h1><?php echo $bname?></h1></i>
             <ul id="navSelection" class="navSelection">
                 <li class="navSel"><a class="a" href="dashboard.php"><i class="fa fa-chart-line"></i><p>Dashboard</p></a></li>
-                <?php if($bnm != 'all'){
+                <?php if($bnm != 'All'){
                 echo " <li class='navSel'><a class='a' href='addclient.php'><i class='fa fa-plus-circle'></i><p>Add Client</p></a></li>";
                     }?>
                 <li class="navSel"><a class="a" href="records.php"><i class="fa fa-folder"></i><p>Records</p></a></li>
                 <li class="navSel"><a class="a" href="ca.php"><i class="fa-solid fa-peso-sign"></i><p>Weekly Collection</p></a></li>
-                <!-- <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li> -->
-                <?php if($bnm == 'all'){
+                <!-- <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li> --> 
+                <li class="navSel"><a class="a" href="ledger.php"><i class="fa fa-print"></i><p>Ledger</p></a></li>         
+                <?php if($bnm == 'All'){
                 echo "<li class='navSel'><a class='a' href='settings.php'><i class='fa fa-gears'></i><p>Settings</p></a></li>";
-                    }?>   
-                <li class="navSel"><a class="a" href="weekly.php"><i class="fa fa-print"></i><p>Ledger</p></a></li>         
+                    }?>  
 	    </ul>
 
 <div id="dcanvas" style="    position: absolute;
@@ -107,7 +104,7 @@
 </header>
 
         <?php 
-            if($bnm == "all"){
+            if($bnm == "All"){
                 $show_table = "SELECT * FROM insert_client  ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
                 $show_profile = "SELECT * FROM insert_client ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
             }else{

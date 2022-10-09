@@ -75,24 +75,24 @@
         <div class="crMiddle default">
             <table id="crtTabCont">
                 <tr class="header">
-                    <th width="3%">Area</th>
+                    <th width="8%">Area</th>
                     <th width="3%">Cycle</th>
-                    <th width="5.5%">Branch</th>
-                    <th width="6%">Client ID</th>
+                    <th width="8%">Branch</th>
+                    <th width="8%">Client ID</th>
                     <th width="15%">Client Name</th>
-                    <th width="15%" id="thPayment">Payment</th>
+                    <th width="12.5%" id="thPayment">Payment</th>
                     <th width="6%">Status</th>
-                    <th width="10%">Loan Amount</th>
-                    <th>Days <br> Remaining</th>
-                    <th width="10%">Over Due</th>
-                    <th width="10%">Amount Paid</th>
-                    <th width="10%">Balance</th>
+                    <th width="8%">Loan Amount</th>
+                    <th  width="8%">Days <br> Remaining</th>
+                    <th width="8%">Over Due</th>
+                    <th width="8%">Amount Paid</th>
+                    <th width="8%">Balance</th>
                 </tr>
             </table>
             <div class="crtTableContent">
                 <table id="recordTable">
                     <?php 
-                        if($bnm == "all"){
+                        if($bnm == "All"){
                             $show_table = "SELECT * FROM insert_client  ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
                             $show_profile = "SELECT * FROM insert_client ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
                         }else{
@@ -130,15 +130,8 @@
                             }
 
                             $bnm = $row['cbranch'];
-                            if($bnm == "tandangsora"){
-                                $bname = 'Tandang Sora' ;
-                            }
-                            elseif($bnm == "meycauayan"){
-                                $bname = 'Meycauayan'  ;
-                            }
-                            elseif($bnm == "stamaria"){
-                                $bname = 'Sta. Maria' ;
-                            }
+                            $bname = $bnm;
+
             $crd = date_create($row['creleaseddate']);
             $cmd = date_create($row['cmaturitydate']);
             $cla = $row['cloanamount'];
@@ -161,7 +154,9 @@
             if($row['cloantype']  == 'il'){
                 $lt = 20;
             }
-
+            if($row['cloantype']  == 'sl'){
+                $lt = 0;
+            }  
 
             if($row['cloanstatus']=="Pending" || $row['cloanstatus']=="Finished"){
                 $ddf = 0;
@@ -176,29 +171,33 @@
             }
                     ?>
                     <tr>
-                        <td width="3%"><?php echo $row['ccarea']?></td>
+                        <td width="8%"><?php echo $row['ccarea']?></td>
                         <td width="3%"><?php echo $row['ccycle'] ?></td>
-                        <td width="6%"><?php echo $bname ?></td>
-                        <td width="6%"><?php echo $row['clientid'] ?></td>
+                        <td width="8.5%"><?php echo $bname ?></td>
+                        <td width="7.5%"><?php echo $row['clientid'] ?></td>
                         <td width="15%"><?php echo $row['clastname'].', '.$row['cfirstname'].' '.substr($row['cmidname'],0,1).'.' ?></td>
-                        <td width="15%" id="crmUser">
+                        <td width="13%" id="crmUser">
                             <button id="userButton" class="userButtonProfile"><i class="fa fa-user"></i></button>
                             <button id="userPayment" class="userButtonAdd">Add Payment <i class="fa fa-money-bill"></i></button>
                         </td>
                         <?php echo $stats?>
-                        <td width="10%">₱ <input type="hidden" class="hiddenstatus" value="<?php echo $status ?>"><?php echo $lnmt?></td>
+                        <td width="8%">₱ <input type="hidden" class="hiddenstatus" value="<?php echo $status ?>"><?php echo $lnmt?></td>
 
-			            <td><?php 
-                        $ddf_1 = abs($ddf);
-                            if($ddf_1==1){
-                                echo $ddf_1." Day";
-                            }else{
-                                echo $ddf_1." Days";
+			            <td  width="7.5%"><?php 
+                        // $ddf_1 = abs($ddf);
+                            if($ddf==1){
+                                echo $ddf." Day";
+                            }
+                            if($ddf>1){
+                                echo $ddf." Days";
+                            }
+                            if($ddf<=0){
+                                echo $ddf." Days";
                             }
                         ?></td>
-                        <td  width="10%" id="crmOverdue"><p><?php echo "₱ ".number_format($row['coverdue']) ?></p></td>
-                        <td width="10%" id="crmDays"><p><?php echo "₱ ".number_format($row['camountpaid'])?></p></td>
-                        <td width="10%"><?php echo "₱ ".number_format($row['cbalance'])?></td>
+                        <td  width="8%" id="crmOverdue"><p><?php echo "₱ ".number_format($row['coverdue']) ?></p></td>
+                        <td width="8%" id="crmDays"><p><?php echo "₱ ".number_format($row['camountpaid'])?></p></td>
+                        <td width="8%"><?php echo "₱ ".number_format($row['cbalance'])?></td>
                     	<td style="display: none;"><?php echo $lnmt?></td>
 			            <td style="display: none;"><?php echo $row['coverdue']?></td>
                     </tr>            
@@ -381,7 +380,7 @@
                                             <h4>CA: <select name="caName" id="caName<?php echo $loop ?>">
                                                         <option value="<?php echo $row2['ccreditanalyst'] ?>"><?php echo $row2['ccreditanalyst'] ?></option>
                                                         <?php
-                                                        if($bnm != 'all'){
+                                                        if($bnm != 'All'){
                                                             $show_ca = "SELECT * FROM insert_creditanalyst where cabranch = '$bnm' group by name";
                                                         }else{
                                                             $show_ca = "SELECT * FROM insert_creditanalyst group by name";
@@ -394,19 +393,51 @@
                                                     </select>
                                             </h4>
                                             <h4>Area: <select name="rArea" id="rArea<?php echo $loop ?>">
-                                                <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea'] ?></option>       
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
+                                                <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea']?></option>      
+                                                <?php 
+                                                        if($row2['cbranch']  == "Quezon City"){
+                                                            echo "<option value='Tandang Sora'>Tandang Sora</option>
+                                                            <option value='Fairview'>Fairview</option>
+                                                            <option value='Timog'>Timog</option>";
+                                                        }
+                                                        if($row2['cbranch']  == "Bulacan"){
+                                                            echo "<option value='Sta. Maria'>Sta. Maria</option>
+                                                            <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                                                            <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                                                            <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                                                            <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                                                            <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                                                            <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                                            <option value='Marilao'>Marilao</option>
+                                                            <option value='Meycauayan'>Meycauayan</option>
+                                                            <option value='Bocaue'>Bocaue</option>
+                                                            <option value='Pandi'>Pandi</option>
+                                                            <option value='Angat'>Angat</option>
+                                                            <option value='San Jose Del Monte'>San Jose Del Monte</option>
+                                                            <option value='Norzagaray'>Norzagaray</option>
+                                                            <option value='Guiguinto'>Guiguinto</option>";
+                                                        }
+                                                        if($row2['cbranch'] == "All"){
+                                                        echo "<option value='Tandang Sora'>Tandang Sora</option>
+                                                        <option value='Fairview'>Fairview</option>
+                                                        <option value='Timog'>Timog</option>
+                                                        <option value='Sta. Maria'>Sta. Maria</option>
+                                                        <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                                                        <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                                                        <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                                                        <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                                                        <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                                                        <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                                        <option value='Marilao'>Marilao</option>
+                                                        <option value='Meycauayan'>Meycauayan</option>
+                                                        <option value='Bocaue'>Bocaue</option>
+                                                        <option value='Pandi'>Pandi</option>
+                                                        <option value='Angat'>Angat</option>
+                                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
+                                                        <option value='Norzagaray'>Norzagaray</option>
+                                                        <option value='Guiguinto'>Guiguinto</option>";
+                                                    }                                                
+                                                ?>
                                             </select>
                                             </h4>
                                         </div>
@@ -659,7 +690,7 @@
             <div class="crmRContent">
                 <table id="crrTable2">
                 <?php 
-                    if($bnm == "all"){
+                    if($bnm == "All"){
                         $query = "SELECT * FROM insert_client WHERE DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";
                     }else{
                         $query = "SELECT * FROM insert_client WHERE cbranch ='$bnm' and DATE(clisteddate) = CURDATE() OR DATE(creleaseddate) = CURDATE() ORDER BY ccarea ASC, ccycle ASC, clastname ASC ";

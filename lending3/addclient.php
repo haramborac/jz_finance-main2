@@ -86,6 +86,7 @@
                                         <img id="image" src="" alt="" onerror="this.src='IMG/defaultpic2.jpg';">
                                         <input id="clientDP" type="file" onchange="getImagePreview(event)" name="clientDP">
                                     </div>
+                                    
                                     <label id="labelPic" for="clientPic">Insert 2x2 Picture</label>
                                     <script>
                                         var idDiv = document.querySelector('.clientPic');

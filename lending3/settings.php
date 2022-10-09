@@ -266,45 +266,46 @@
                         <div class="ssCAAdd">
                             <div>
                                 <label for="cArea">CA Area:</label>
-                                <select name="caArea" id="caArea">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
+                                    <select name="caArea" id="caArea">
+                                        <option value='Tandang Sora'>Tandang Sora</option>
+                                        <option value='Fairview'>Fairview</option>
+                                        <option value='Timog'>Timog</option>
+                                        <option value='Sta. Maria'>Sta. Maria</option>
+                                        <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                                        <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                                        <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                                        <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                                        <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                                        <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                        <option value='Marilao'>Marilao</option>
+                                        <option value='Meycauayan'>Meycauayan</option>
+                                        <option value='Bocaue'>Bocaue</option>
+                                        <option value='Pandi'>Pandi</option>
+                                        <option value='Angat'>Angat</option>
+                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
+                                        <option value='Norzagaray'>Norzagaray</option>
+                                        <option value='Guiguinto'>Guiguinto</option>
+                                    </select>
                             </div>
                             <div>
-                            <?php 
-                                        echo " 
-                                        <label for='acbranch'>Branch :</label>
-                                        <select name='acbranch'>
-                                            <option value='tandangsora'>Tandang Sora</option>
-                                            <option value='stamaria'>Sta. Maria</option>
-                                            <option value='meycauayan'>Meycauayan</option>
-                                        </select>";
-                                    
-                                    ?>
+                                <label for='acbranch'>Branch :</label>
+                                    <select name='acbranch'>
+                                        <option value='Bulacan'>Bulacan</option>
+                                        <option value='Quezon City'>Quezon City</option>
+                                    </select>
                             </div>
                             <div>
                                 <label for="CA">CA Name:</label>
                                 <input type="text" name="CA" placeholder="Ex. Juan Dela Crus">
                             </div>
-                            <button id="ssCAAddButton" name="addCA" type="submit">Add Credit Analyst</button>
+                            <button id="ssCAAddButton" name="addCA" type="submit">Add</button>
                         </div>
                     </form>
                 </div>
                 <div class="scTable">
                     <table id="caTableTitle">
                         <tr>
-                            <th width="10%">Area</th>
+                            <th width="15%">Area</th>
                             <th width="20">Branch</th>
                             <th width="30%">Credit Analyst Name</th>
                             <th width="40%">Tool</th>
@@ -319,19 +320,10 @@
                                 while($row = mysqli_fetch_assoc($show_ca_query)){
                                     $creditanalyst = $row['name'];
                                     $bnm = $row['cabranch'];
-                                    if($bnm == "tandangsora"){
-                                        $bname = 'Tandang Sora' ;
-                                    }
-                                    elseif($bnm == "meycauayan"){
-                                        $bname = 'Meycauayan'  ;
-                                    }
-                                    elseif($bnm == "stamaria"){
-                                        $bname = 'Sta. Maria' ;
-                                    }
                             ?>
                             <tr>
-                                <td width="10%"><?php echo $row['area'] ?></td>
-                                <td width="20"><?php echo $bname ?></td>
+                                <td width="15%"><?php echo $row['area'] ?></td>
+                                <td width="20"><?php echo $row['cabranch'] ?></td>
                                 <td width="30%"><?php echo $creditanalyst ?></td>
                                 <td width="40%" id="scTabButton">
                                     <button id="editCA" class="editCA" type="button">Edit</button>
@@ -359,9 +351,8 @@
                         <form action="loginformcode.php" method="POST">
                             <div>
                                 <select name="csBranch" id="csBranch" name="csBranch">
-                                    <option value="tandangsora" name="tandangsora">Tandang Sora</option>
-                                    <option value="stamaria" name="stamaria">Sta. Maria</option>
-                                    <option value="meycauayan" name="meycauayan">Meycauayan</option>
+                                    <option value='Bulacan'>Bulacan</option>
+                                    <option value='Quezon City'>Quezon City</option>
                                 </select>
                             </div>
                             <div>
@@ -395,21 +386,9 @@
                                     $name = $cssRow['username'];
                                     $ibrnch = $cssRow['branch'];
 
-                                    if($ibrnch == "tandangsora"){
-                                        $brnch = 'Tandang Sora' ;
-                                    }
-                                    elseif($ibrnch == "meycauayan"){
-                                        $brnch = 'Meycauayan' ;
-                                    }
-                                    elseif($ibrnch == "stamaria"){
-                                        $brnch = 'Sta. Maria' ;
-                                    }
-                                    elseif($ibrnch == "all"){
-                                        $brnch = "All Branches";
-                                    }
                             ?>
                                 <tr >
-                                    <td id="disCssBranch" width="33%"><?php echo $brnch?></td>
+                                    <td id="disCssBranch" width="33%"><?php echo $ibrnch?></td>
                                     <td id="disCssUser" width="33%"><span id="cssAccessAcc"><?php echo $name ?></span></td>
                                     <td id="delCSS" width="33%">
                                         <a href="settings.php?delete_css=<?php echo $cssRow['id'] ?>"><button id="delAccCSS" type="button">Delete</button></a>
@@ -448,33 +427,35 @@
                         <div class="editCreditAnalyst">
                             <div>
                                 <label for="editArea">Area:</label>
-                                <select name="editArea" class="editArea">
-                                <option value="<?php echo $row['area'] ?>"><?php echo $row['area'] ?></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select>
+                                    <select name="editArea" class="editArea">
+                                        <option value="<?php echo $row['area'] ?>"><?php echo $row['area'] ?></option>
+                                        <option value='Tandang Sora'>Tandang Sora</option>
+                                        <option value='Fairview'>Fairview</option>
+                                        <option value='Timog'>Timog</option>
+                                        <option value='Sta. Maria'>Sta. Maria</option>
+                                        <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                                        <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                                        <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                                        <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                                        <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                                        <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                        <option value='Marilao'>Marilao</option>
+                                        <option value='Meycauayan'>Meycauayan</option>
+                                        <option value='Bocaue'>Bocaue</option>
+                                        <option value='Pandi'>Pandi</option>
+                                        <option value='Angat'>Angat</option>
+                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
+                                        <option value='Norzagaray'>Norzagaray</option>
+                                        <option value='Guiguinto'>Guiguinto</option>
+                                    </select>
                             </div>
                             <div>
-                            <?php 
-                                        echo " 
-                                        <label for='acbranch2'>Branch :</label>
-                                        <select name='acbranch2'>
-                                            <option value='tandangsora'>Tandang Sora</option>
-                                            <option value='stamaria'>Sta. Maria</option>
-                                            <option value='meycauayan'>Meycauayan</option>
-                                        </select>";
-                                    
-                                    ?>
+                                <label for='acbranch2'>Branch :</label>
+                                    <select name='acbranch2'>
+                                        <option value="<?php echo $row['cabranch']?>"><?php echo $row['cabranch']?></option>
+                                        <option value='Bulacan'>Bulacan</option>
+                                        <option value='Quezon City'>Quezon City</option>
+                                    </select>
                             </div>
                             <div>
                                 <input type="hidden" name="editcaid" value="<?php echo $idrow ?>">

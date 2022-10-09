@@ -1,7 +1,7 @@
 @media print{
 
-    	.table-wrapper button{
-	display:none;
+    .table-wrapper button{
+	    display:none;
 	}
 
     .fullContent,#no-print{
@@ -12,6 +12,7 @@
         height: auto;
         display: block;
         width: auto;
+        
     }
     *{
         box-sizing: border-box;
@@ -68,3 +69,5 @@
 @page{
     size: A4 landscape;
 }
+
+
