@@ -278,8 +278,8 @@ function sortCycle(){
         for(i=0;i<(rows.length -1);i++){
             shouldSwitch = false;
 
-            x = rows[i].getElementsByTagName("td")[1];
-            y = rows[i+1].getElementsByTagName("td")[1];
+            x = rows[i].getElementsByTagName("td")[2];
+            y = rows[i+1].getElementsByTagName("td")[2];
 
             if(parseInt(x.innerHTML.match(/\d+/))> parseInt(y.innerHTML.match(/\d+/))){
                 shouldSwitch = true;
@@ -522,7 +522,7 @@ for(let lsb = 0; lsb < sbl.length; lsb++){
         sl[lsb].style.color = "black";
 
         document.getElementsByClassName("editinterest")[lsb].value = 20;
-        document.getElementsByClassName("editinterestspan")[lsb].innerHTML = "10%";
+        document.getElementsByClassName("editinterestspan")[lsb].innerHTML = "20%";
          
         document.getElementsByClassName("userNCycle2")[lsb].style.display = "none"; 
 
@@ -1019,5 +1019,131 @@ function statusAll2(){
                     trC[iC].style.display = "none";
                 }
             }
+    }
+}
+
+//AREA FILTER CALLS BOTH AREAFILTER 1 & 2 SELECT ON CLIENT RECORDS
+function areaFilter(){
+    areaFilter1();
+    areaFilter2();
+}
+//AREA FILTER 1 (FOR ALL TRANSACTIONS)
+function areaFilter1(){
+    var input, table, tr, td, i, txtValue;
+    var x = document.getElementById("sArea").value;   
+    
+    if(x==="All"){
+        input = '';
+        table = document.getElementById("recordTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
+    }else{
+        input = x;
+        filterC = input.toUpperCase();
+        table = document.getElementById("recordTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filterC) > -1) {
+                        tr[i].style.display = "";             
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
+    }     
+}
+//AREA FILTER 2 (FOR TODAY'S TRANSACTION)
+function areaFilter2(){
+    var input, table, tr, td, i, txtValue;
+    var x = document.getElementById("sArea").value;    
+  
+
+
+    
+    if(x==="All"){
+        input = '';
+        table = document.getElementById("crrTable2");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
+    }else{
+        input = x;
+        table = document.getElementById("crrTable2");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";             
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
+    }
+}
+function branchFilter(){
+    var input, table, tr, td, i, txtValue;
+    var x = document.getElementById("cBranch").value;    
+    
+    if(x==="All"){
+        input = '';
+        table = document.getElementById("recordTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
+    }else{
+        input = x.toUpperCase();
+        table = document.getElementById("recordTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(input) > -1) {
+                        tr[i].style.display = "";             
+                    } 
+                    else {
+                        tr[i].style.display = "none";
+                    }
+                }
+        }
     }
 }

@@ -5,8 +5,9 @@
     <?php include_once 'css/ledger.css'?>
     <?php include_once 'css/weeklyprint.css'?>
 </style>
+
 <div id="print">
-<div class="table-wrapper">
+    <div class="table-wrapper">
     <table class="print-table" id="print-table">
         <thead class="ccolspan">
             <tr>
@@ -70,5 +71,6 @@
             <?php } ?>
         <tbody>
     </table>
-<button onclick="window.print(); return false;">Print Ledger</button>
+    <button onclick="window.print(); return false;">Print Ledger</button>
+    </div>
 </div>

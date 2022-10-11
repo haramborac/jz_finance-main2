@@ -1,13 +1,10 @@
-<?php 
-    include_once 'header.php';
-?>
+<?php include_once 'header.php';?>
 <style>
     <?php include_once 'css/records.css'; ?>
     <?php include_once 'css/printrecords.css'; ?>
     <?php include_once 'css/printmodal.css'; ?>
 </style>
-<script>
-</script>
+
 <script>
     document.addEventListener('DOMContentLoaded',function (e){
         let setvalue = localStorage.getItem('setvalue');
@@ -26,35 +23,72 @@
             <input type="text" id="searchName" onkeyup="searchorindex1()" placeholder="Search Name">
         </div>
         <div class="crtFilter">
-	<label for="sArea">Filter by Area</label>
-            <select name="Area" value ="AreaAll" class="sArea" id="sArea" onchange="areaFilter()">
-                <option value="AreaAll">All Area</option>
-                <option value="AreaA">Area 1</option>
-                <option value="AreaB">Area 2</option>
-                <option value="AreaC">Area 3</option>
-                <option value="AreaD">Area 4</option>
-                <option value="AreaE">Area 5</option>
-                <option value="AreaF">Area 6</option>
-                <option value="AreaG">Area 7</option>
-                <option value="AreaH">Area 8</option>
-                <option value="AreaI">Area 9</option>
-                <option value="AreaJ">Area 10</option>
-                <option value="AreaK">Area 11</option>
-                <option value="AreaL">Area 12</option>
+        <?php
+                if($bnm == "All"){
+                echo "<label for='cBranch'>Filter by Branch</label>
+                <select style='width:31%' id='cBranch' onchange='branchFilter()'>
+                <option value='All'>All Branches</option>
+                <option value='Quezon City'>Quezon City</option>
+                <option value='Bulacan'>Bulacan</option>
+                </select>";
+                }   
+            ?>
+	        <label for="sArea">Filter by Area</label>
+            <select style="width:33%" name="Area" class="sArea" id="sArea" onchange="areaFilter()">
+            <?php 
+                if($bnm == "Quezon City"){
+                echo "
+                <option value='All'>All Areas</option>
+                <option value='Fairview'>Fairview</option>
+                <option value='Tandang Sora'>Tandang Sora</option>
+                <option value='Timog'>Timog</option>";
+                }
+                if($bnm == "Bulacan"){
+                echo "
+                <option value='All'>All Areas</option>
+                <option value='Sta. Maria'>Sta. Maria</option>
+                <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                <option value='Angat'>Angat</option>
+                <option value='Bocaue'>Bocaue</option>
+                <option value='Guiguinto'>Guiguinto</option>
+                <option value='Marilao'>Marilao</option>
+                <option value='Meycauayan'>Meycauayan</option>
+                <option value='Norzagaray'>Norzagaray</option>
+                <option value='Pandi'>Pandi</option>
+                <option value='San Jose Del Monte'>San Jose Del Monte</option>";
+                }
+                if($bnm == "All"){
+                echo "
+                <option value='All'>All Areas</option>
+                <option value='Fairview'>Fairview</option>
+                <option value='Tandang Sora'>Tandang Sora</option>
+                <option value='Timog'>Timog</option>
+                <option value='Sta. Maria'>Sta. Maria</option>
+                <option value='Sta. Maria 1'>Sta. Maria 1</option>
+                <option value='Sta. Maria 2'>Sta. Maria 2</option>
+                <option value='Sta. Maria 3'>Sta. Maria 3</option>
+                <option value='Sta. Maria 4'>Sta. Maria 4</option>
+                <option value='Sta. Maria 5'>Sta. Maria 5</option>
+                <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                <option value='Angat'>Angat</option>
+                <option value='Bocaue'>Bocaue</option>
+                <option value='Guiguinto'>Guiguinto</option>
+                <option value='Marilao'>Marilao</option>
+                <option value='Meycauayan'>Meycauayan</option>
+                <option value='Norzagaray'>Norzagaray</option>
+                <option value='Pandi'>Pandi</option>
+                <option value='San Jose Del Monte'>San Jose Del Monte</option>";
+                }                                       
+                        
+            ?>
             </select>
-
-            <label for="cfilter">Sort By:</label>
-            <select name="Filter" id="cfilter">
-                <option value="byName">Name</option>
-                <option value="byCycle">Cycle</option>
-                <option value="byLoan">Loan</option>
-                <option value="byODue">Overdue</option>
-            </select>
-            <button onclick="mainFilter()"><i class="fa fa-filter"></i></button>
-        </div>
-        <div class="crtStatus">
-            <label for="cStatus">Filter by Status:</label>
-            <select name="Status" id="cStatus"  onchange="statusFilter()">
+            <label for="cStatus">Filter by Status</label>
+            <select style='width:31%' name="Status" id="cStatus"  onchange="statusFilter()">
                 <option value="All">All Status</option>
                 <option value="Pending">Pending</option>
                 <option value="Released">Released</option>
@@ -64,6 +98,16 @@
                 <option value="Terminated">Terminated</option>
                 <option value="Blacklisted">Blacklisted</option>
             </select>
+        </div>
+        <div class="crtStatus">
+            <label for="cfilter">Sort By</label>
+            <select name="Filter" id="cfilter">
+                <option value="byName">Name</option>
+                <option value="byCycle">Cycle</option>
+                <option value="byLoan">Loan</option>
+                <option value="byODue">Overdue</option>
+            </select>
+            <button onclick="mainFilter()"><i class="fa fa-filter"></i></button>
         </div>
         <div class="crtButtons">
             <button type="button" id="crtAll" onclick="crtViewTransaction()">All Transaction</button>
@@ -75,9 +119,9 @@
         <div class="crMiddle default">
             <table id="crtTabCont">
                 <tr class="header">
+                    <th width="8%">Branch</th>
                     <th width="8%">Area</th>
                     <th width="3%">Cycle</th>
-                    <th width="8%">Branch</th>
                     <th width="8%">Client ID</th>
                     <th width="15%">Client Name</th>
                     <th width="12.5%" id="thPayment">Payment</th>
@@ -171,10 +215,10 @@
             }
                     ?>
                     <tr>
-                        <td width="8%"><?php echo $row['ccarea']?></td>
-                        <td width="3%"><?php echo $row['ccycle'] ?></td>
                         <td width="8.5%"><?php echo $bname ?></td>
-                        <td width="7.5%"><?php echo $row['clientid'] ?></td>
+                        <td width="8%"><?php echo $row['ccarea']?></td>
+                        <td width="2.5%"><?php echo $row['ccycle'] ?></td>
+                        <td width="8%"><?php echo $row['clientid'] ?></td>
                         <td width="15%"><?php echo $row['clastname'].', '.$row['cfirstname'].' '.substr($row['cmidname'],0,1).'.' ?></td>
                         <td width="13%" id="crmUser">
                             <button id="userButton" class="userButtonProfile"><i class="fa fa-user"></i></button>
@@ -226,7 +270,6 @@
 
                     $diff2 = date_diff($date11_1,$date22_2);
                     $dif2 = $diff2->format("%a");
-
             ?>
             <div id="userPModal" class="userPModal">
                 <form id="editClient" action="editrecords.php" method="post">
@@ -396,8 +439,8 @@
                                                 <option value="<?php echo $row2['ccarea'] ?>"><?php echo $row2['ccarea']?></option>      
                                                 <?php 
                                                         if($row2['cbranch']  == "Quezon City"){
-                                                            echo "<option value='Tandang Sora'>Tandang Sora</option>
-                                                            <option value='Fairview'>Fairview</option>
+                                                            echo "<option value='Fairview'>Fairview</option>
+                                                            <option value='Tandang Sora'>Tandang Sora</option>
                                                             <option value='Timog'>Timog</option>";
                                                         }
                                                         if($row2['cbranch']  == "Bulacan"){
@@ -408,18 +451,18 @@
                                                             <option value='Sta. Maria 4'>Sta. Maria 4</option>
                                                             <option value='Sta. Maria 5'>Sta. Maria 5</option>
                                                             <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                                            <option value='Angat'>Angat</option>
+                                                            <option value='Bocaue'>Bocaue</option>
+                                                            <option value='Guiguinto'>Guiguinto</option>
                                                             <option value='Marilao'>Marilao</option>
                                                             <option value='Meycauayan'>Meycauayan</option>
-                                                            <option value='Bocaue'>Bocaue</option>
-                                                            <option value='Pandi'>Pandi</option>
-                                                            <option value='Angat'>Angat</option>
-                                                            <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                                             <option value='Norzagaray'>Norzagaray</option>
-                                                            <option value='Guiguinto'>Guiguinto</option>";
+                                                            <option value='Pandi'>Pandi</option>
+                                                            <option value='San Jose Del Monte'>San Jose Del Monte</option>";
                                                         }
                                                         if($row2['cbranch'] == "All"){
-                                                        echo "<option value='Tandang Sora'>Tandang Sora</option>
-                                                        <option value='Fairview'>Fairview</option>
+                                                        echo "<option value='Fairview'>Fairview</option>
+                                                        <option value='Tandang Sora'>Tandang Sora</option>
                                                         <option value='Timog'>Timog</option>
                                                         <option value='Sta. Maria'>Sta. Maria</option>
                                                         <option value='Sta. Maria 1'>Sta. Maria 1</option>
@@ -428,14 +471,14 @@
                                                         <option value='Sta. Maria 4'>Sta. Maria 4</option>
                                                         <option value='Sta. Maria 5'>Sta. Maria 5</option>
                                                         <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                                        <option value='Angat'>Angat</option>
+                                                        <option value='Bocaue'>Bocaue</option>
+                                                        <option value='Guiguinto'>Guiguinto</option>
                                                         <option value='Marilao'>Marilao</option>
                                                         <option value='Meycauayan'>Meycauayan</option>
-                                                        <option value='Bocaue'>Bocaue</option>
-                                                        <option value='Pandi'>Pandi</option>
-                                                        <option value='Angat'>Angat</option>
-                                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                                         <option value='Norzagaray'>Norzagaray</option>
-                                                        <option value='Guiguinto'>Guiguinto</option>";
+                                                        <option value='Pandi'>Pandi</option>
+                                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>";
                                                     }                                                
                                                 ?>
                                             </select>
@@ -646,7 +689,7 @@
                                         <input type="hidden" name="clientid" value="<?php echo $row2['clientid'] ?>">
                                         <input type="hidden" name="overdue" value="<?php echo $row2['coverdue'] ?>">
                                         <input type="hidden" name="checkstatus" value="<?php echo $row2['cloanstatus'] ?>">
-                                        <input type="hidden" name="checkbalance" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
+                                        <input type="hidden" name="checkbalance" class="checkbalanse" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
                                         <input id="payment" class="payment" type="number" name="amount" value="0">
                                     </p>
                                 </div>
@@ -1001,10 +1044,11 @@
 
 <script>
     let payments = document.getElementsByClassName("payment");
-    let butotn =  document.getElementsByClassName('btnAddPayment')
+    let butotn =  document.getElementsByClassName('btnAddPayment');
+    let balanse = document.getElementsByClassName('checkbalanse');
         for(let i = 0; i< payments.length; i++){
             payments[i].addEventListener('keyup',function(){
-                if(payments[i].value>0){
+                if(parseInt(payments[i].value)>0 && parseInt(payments[i].value) <= parseInt(balanse[i].value)){
                    butotn[i].disabled = false;
                 }else{
                    butotn[i].disabled = true;

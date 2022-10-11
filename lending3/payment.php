@@ -15,14 +15,14 @@
         $checkstatus = $_POST['checkstatus'];
         $finished = $checkbalance - $payment;
 
-
         //FROM RELEASED TO ONGOING
         if($checkstatus == "Released"){
             if($finished <= 0){
-                echo "finished normal pay same day";
+                // echo "finished normal pay same day";
                 $balance = "UPDATE insert_client SET 
                 csecdep = csecdep + $savings, 
-                paydate=now(), 
+                paydate=NULL, 
+                creleaseddate = NULL,
                 cmaturitydate = NULL, 
                 cloanstatus = 'Finished' 
                 WHERE id = '$id' ";
@@ -30,7 +30,7 @@
                 $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
                 VALUES ('$bnm','$clientid', '$area', '$checkca', now(), $checkdays+1, $payment, $savings, '$comment', $checkcycle)";
             }else{
-                echo "first payment after being released";
+                // echo "first payment after being released";
                 $balance = "UPDATE insert_client SET 
                 csecdep = csecdep + $savings, 
                 paydate=now(), 
@@ -45,10 +45,11 @@
         //NORMAL PAYMENT
         if($checkstatus == 'OnGoing'){
             if($finished <= 0){
-                echo "finished normal payment";
+                // echo "finished normal payment";
                 $balance = "UPDATE insert_client SET 
                 csecdep = csecdep+$savings,
-                paydate=now(), 
+                paydate=NULL, 
+                creleaseddate = NULL,
                 cmaturitydate = NULL, 
                 cloanstatus = 'Finished' 
                 WHERE id = '$id' ";
@@ -57,7 +58,7 @@
                 $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
                 VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment', $checkcycle)";
             }else{
-                echo " normal payment";
+                // echo " normal payment";
                 $balance = "UPDATE insert_client SET 
                 csecdep = csecdep + $savings, 
                 paydate=now() 

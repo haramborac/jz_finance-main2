@@ -267,8 +267,8 @@
                             <div>
                                 <label for="cArea">CA Area:</label>
                                     <select name="caArea" id="caArea">
-                                        <option value='Tandang Sora'>Tandang Sora</option>
                                         <option value='Fairview'>Fairview</option>
+                                        <option value='Tandang Sora'>Tandang Sora</option>
                                         <option value='Timog'>Timog</option>
                                         <option value='Sta. Maria'>Sta. Maria</option>
                                         <option value='Sta. Maria 1'>Sta. Maria 1</option>
@@ -277,14 +277,14 @@
                                         <option value='Sta. Maria 4'>Sta. Maria 4</option>
                                         <option value='Sta. Maria 5'>Sta. Maria 5</option>
                                         <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                        <option value='Angat'>Angat</option>
+                                        <option value='Bocaue'>Bocaue</option>
+                                        <option value='Guiguinto'>Guiguinto</option>
                                         <option value='Marilao'>Marilao</option>
                                         <option value='Meycauayan'>Meycauayan</option>
-                                        <option value='Bocaue'>Bocaue</option>
-                                        <option value='Pandi'>Pandi</option>
-                                        <option value='Angat'>Angat</option>
-                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                         <option value='Norzagaray'>Norzagaray</option>
-                                        <option value='Guiguinto'>Guiguinto</option>
+                                        <option value='Pandi'>Pandi</option>
+                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                     </select>
                             </div>
                             <div>
@@ -439,14 +439,14 @@
                                         <option value='Sta. Maria 4'>Sta. Maria 4</option>
                                         <option value='Sta. Maria 5'>Sta. Maria 5</option>
                                         <option value='Sta. Maria 6'>Sta. Maria 6</option>
+                                        <option value='Angat'>Angat</option>
+                                        <option value='Bocaue'>Bocaue</option>
+                                        <option value='Guiguinto'>Guiguinto</option>
                                         <option value='Marilao'>Marilao</option>
                                         <option value='Meycauayan'>Meycauayan</option>
-                                        <option value='Bocaue'>Bocaue</option>
-                                        <option value='Pandi'>Pandi</option>
-                                        <option value='Angat'>Angat</option>
-                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                         <option value='Norzagaray'>Norzagaray</option>
-                                        <option value='Guiguinto'>Guiguinto</option>
+                                        <option value='Pandi'>Pandi</option>
+                                        <option value='San Jose Del Monte'>San Jose Del Monte</option>
                                     </select>
                             </div>
                             <div>
