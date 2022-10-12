@@ -86,6 +86,7 @@
                                         <img id="image" src="" alt="" onerror="this.src='IMG/defaultpic2.jpg';">
                                         <input id="clientDP" type="file" onchange="getImagePreview(event)" name="clientDP">
                                     </div>
+                                    
                                     <label id="labelPic" for="clientPic">Insert 2x2 Picture</label>
                                     <script>
                                         var idDiv = document.querySelector('.clientPic');
@@ -103,10 +104,10 @@
                                         <?php
                                             $q = "select count(*) as total from insert_client where cbranch = '$bnm'";
                                             $qq = mysqli_query($connection,$q);
-                                            if($bnm == 'tandangsora'){
-                                                $JZ = "GLTS";
-                                            }elseif($bnm == 'stamaria'){
-                                                $JZ = "GLSM";
+                                            if($bnm == 'Quezon City'){
+                                                $JZ = "GLQC";
+                                            }elseif($bnm == 'Bulacan'){
+                                                $JZ = "GLBC";
                                             }
                                             if(mysqli_num_rows($qq)> 0){
                                                 while($row = mysqli_fetch_assoc($qq)){

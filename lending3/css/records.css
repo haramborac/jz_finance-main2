@@ -41,6 +41,9 @@
 .crtSearch input{
     margin-left: 10px;
 }
+.crtFilter{
+    width:20% ;
+}
 .crtFilter label, 
 .crtStatus label{
     position: absolute;

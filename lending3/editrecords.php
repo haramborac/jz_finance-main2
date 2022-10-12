@@ -1,5 +1,6 @@
 <?php 
 include "db.php";
+
 if(isset($_POST['udpateclient'])){
     $editid = $_POST['editid'];
     $editclientid = $_POST['editclientid'];
@@ -30,7 +31,7 @@ if(isset($_POST['udpateclient'])){
     $edit_client .= "ccreditanalyst = '$editca', ";
     $edit_client .= "ccycle = $editcycle, ";
     $edit_client .= "cloanstatus = '$editstatus', ";
-    $edit_client .= "ccarea = $editarea, ";
+    $edit_client .= "ccarea = '$editarea', ";
     $edit_client .= "camountpaid = 0, ";
     $edit_client .= "cbalance = 0, ";
     $edit_client .= "cadvance = 0, ";
@@ -61,7 +62,7 @@ if(isset($_POST['udpateclient'])){
                 $edit_client .= "cloanstatus = 'Released', ";
                 $edit_client .= "cloanamount = $editloan,";
                 $edit_client .= "cbalance = $editloan, ";
-                $edit_client .= "ccarea = $editarea, ";
+                $edit_client .= "ccarea = '$editarea', ";
                 $edit_client .= "camountpaid = 0, ";
                 $edit_client .= "coverdue = 0, ";
                 $edit_client .= "csecdep = 0, ";
@@ -86,7 +87,7 @@ if(isset($_POST['udpateclient'])){
                 $edit_client .= "cloanstatus = 'Released', ";
                 $edit_client .= "cloanamount = $editloan,";
                 $edit_client .= "cbalance = $editloan, ";
-                $edit_client .= "ccarea = $editarea, ";
+                $edit_client .= "ccarea = '$editarea', ";
                 $edit_client .= "camountpaid = 0, ";
                 $edit_client .= "coverdue = 0, ";
                 $edit_client .= "csecdep = 0, ";

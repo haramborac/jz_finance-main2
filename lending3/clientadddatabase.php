@@ -34,8 +34,6 @@ if (isset($_POST['addClientBtn'])){
     $fileSize   = 10000000;
     $fileAllowed = array('image/jpg', 'image/jpeg', 'image/png', 'image/webp');
 
-
-
     $cmContact              =   $_POST['coContact'];
     $cmAddress              =   $_POST['cmAddress'];
     $cmGender               =   $_POST['cmGender'];
@@ -46,9 +44,6 @@ if (isset($_POST['addClientBtn'])){
     $cmCivilStatus          =   $_POST['cmCivilStatus'];
     $cmBusiness             =   $_POST['cmBusiness'];
 
-
-
-    $clientCA           = $_POST['clientCA'];
     $clValid01          = $_FILES['idValid01']['name'];
     $clIdType01         = $_POST['ValidID01'];
     $clIdNo01           = $_POST['idNos1'];
@@ -57,7 +52,6 @@ if (isset($_POST['addClientBtn'])){
     $clIdNo02           = $_POST['idNos2'];
     $IDFolder01         = 'clientid/' . $clValid01;
     $IDFolder02         = 'clientid/' . $clValid02;
-
 
     if (empty($clFirstName) || empty($clLastName) || empty($clContact) || 
         empty($clcHousenum)  ||  empty($clcStreet)  ||   empty($clcBarangay)   ||  empty($clcCity)  ||
@@ -87,22 +81,22 @@ if (isset($_POST['addClientBtn'])){
             $target03     =   'clientid/' . $clValid02;
             if(move_uploaded_file($_FILES['clientDP']['tmp_name'], $target01)){
                 $sql01 = "INSERT INTO insert_client 
-                (cbranch, cphoto, clientid, cfirstname, cmidname, clastname, csuffix, ccarea, 
+                (cbranch, cphoto, clientid, cfirstname, cmidname, clastname, csuffix, 
                 cchnumber, ccstreet, ccbarangay, cccity, ccontact, cemail, cage, 
                 cgender, cbirthday, chnumber, cstreet, cbarangay, ccity, chome, cother,
-                cnationality, ccivilstatus, cspouse, cchildren, ccomaker, cccontact, ccreditanalyst, cinterest, clisteddate) 
+                cnationality, ccivilstatus, cspouse, cchildren, ccomaker, cccontact, cinterest, clisteddate) 
                 VALUES ('$acbranch','$clientImage', '$clAccountID', '$clFirstName', '$clMidName', '$clLastName', '$clSuffix',              
-                '$clcArea', '$clcHousenum', '$clcStreet', '$clcBarangay', '$clcCity', '$clContact', '$clEmail',               
+                '$clcHousenum', '$clcStreet', '$clcBarangay', '$clcCity', '$clContact', '$clEmail',               
                 '$clAge', '$clGender', '$clBday', '$clHousenum', '$clStreet', '$clBarangay', '$clCity', '$clHome', '$clOther',               
-                '$clNationality', '$clCivilStatus', '$clSpouse', '$clChildren', '$clCoMaker', '$clCMContact', '$clientCA', $clInterest, now())";
+                '$clNationality', '$clCivilStatus', '$clSpouse', '$clChildren', '$clCoMaker', '$clCMContact', $clInterest, now())";
                 
                 $sql02 = "INSERT INTO  insert_comaker 
                 (clientid, cmcontact, cmaddress, cmgender, cmage, cmbday, cmprofession, cmnationality, cmcivil, cmbusiness) 
                 VALUES ('$clAccountID', '$cmContact','$cmAddress','$cmGender','$cmAge','$cmBday','$cmProfession','$cmNationality','$cmCivilStatus','$cmBusiness')";
 
                 if(move_uploaded_file($_FILES['idValid01']['tmp_name'], $target02) || move_uploaded_file($_FILES['idValid02']['tmp_name'], $target03)){
-                    $sql03 = "INSERT INTO insert_id (clientid, clanalyst, clvalidid1, clidtype1, clidcode1, clvalidid2, clidtype2, clidcode2) 
-                    VALUES ('$clAccountID', '$clientCA', '$clValid01', '$clIdType01', '$clIdNo01', '$clValid02', '$clIdType02', '$clIdNo02')";
+                    $sql03 = "INSERT INTO insert_id (clientid, clvalidid1, clidtype1, clidcode1, clvalidid2, clidtype2, clidcode2) 
+                    VALUES ('$clAccountID', '$clValid01', '$clIdType01', '$clIdNo01', '$clValid02', '$clIdType02', '$clIdNo02')";
                 
                     if(isset($_POST['cdAgreeTerms'])) {
                         mysqli_query($connection, $sql01);
@@ -124,11 +118,5 @@ if (isset($_POST['addClientBtn'])){
             }
         }
     }
-
 }
-
-
-
-
-
 ?>

@@ -13,7 +13,7 @@
                             <div class="dbBalance">
                                 <div class="card totalBorrowed">
                                     <?php 
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qHighestA = "SELECT SUM(cloanamount) AS HighestAll, ccarea from insert_client  WHERE  cloanstatus in ('Ongoing','Released') group by ccarea ORDER BY HighestAll DESC LIMIT 1"; 
                                         }else{
                                             $qHighestA = "SELECT SUM(cloanamount) AS HighestAll, ccarea from insert_client  WHERE cbranch='$bnm' AND cloanstatus in ('Ongoing','Released') group by ccarea ORDER BY HighestAll DESC LIMIT 1"; 
@@ -39,7 +39,7 @@
                                         </span>
                                     </div>
                                     <?php 
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qApp = "SELECT SUM(cloanamount) AS Approved FROM insert_client WHERE cloanstatus in ('Ongoing','Released')"; 
                                         }else{
                                             $qApp = "SELECT SUM(cloanamount) AS Approved FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released')"; 
@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="card totalOverdue">
                                     <?php 
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qHighestO = "SELECT SUM(coverdue) AS HighestOverDue, sum(cloanamount) as SumLoanAmount, ccarea from insert_client  WHERE  cloanstatus in ('Ongoing','Released') group by ccarea ORDER BY HighestOverDue DESC, sum(cloanamount) DESC LIMIT 1"; 
                                         }else{
                                             $qHighestO = "SELECT SUM(coverdue) AS HighestOverDue, sum(cloanamount) as SumLoanAmount, ccarea from insert_client  WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released') group by ccarea ORDER BY HighestOverDue DESC, sum(cloanamount) DESC LIMIT 1"; 
@@ -85,7 +85,7 @@
                                         </span>
                                     </div>
                                     <?php                                          
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qO = "SELECT SUM(coverdue) AS TOTALO FROM insert_client WHERE cloanstatus in ('Ongoing','Released')";
                                         }else{
                                             $qO = "SELECT SUM(coverdue) AS TOTALO FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released')";
@@ -104,7 +104,7 @@
                                     <h2>₱<?php echo number_format($rAO)?></h2>
                                 </div> 
                                 <?php        
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $hoverHC = "SELECT SUM(camountpaid) AS amntpaid, ccarea  FROM insert_client WHERE cloanstatus in ('Ongoing','Released') group by ccarea order by amntpaid desc limit 1"; 
                                     }else{
                                         $hoverHC = "SELECT SUM(camountpaid) AS amntpaid, ccarea  FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released') group by ccarea order by amntpaid desc limit 1"; 
@@ -124,7 +124,7 @@
                                 ?> 
 
                                 <?php       
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qHC = "SELECT SUM(camountpaid) AS amntpaid FROM insert_client WHERE cloanstatus in ('Ongoing','Released') "; 
                                     }else{
                                         $qHC = "SELECT SUM(camountpaid) AS amntpaid FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released')";                                                                         
@@ -150,7 +150,7 @@
                                     <h2>₱<?php echo number_format($rsHC) ?></h2>
                                 </div>
                                 <?php    
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qT = "SELECT COUNT(*) AS TOTALC FROM insert_client WHERE cloanstatus in ('Ongoing','Released')";                                         
                                     }else{
                                         $qT = "SELECT COUNT(*) AS TOTALC FROM insert_client WHERE cbranch = '$bnm' and cloanstatus in ('Ongoing','Released')"; 
@@ -195,7 +195,7 @@
                                 <table id="dbreportContent">
                                     <?php 
                                         //CREDIT ANALYST
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qReport = "SELECT * FROM insert_creditanalyst ORDER BY AREA ASC, NAME ASC";                            
                                         }else{
                                             $qReport = "SELECT * FROM insert_creditanalyst WHERE cabranch = '$bnm' ORDER BY AREA ASC, NAME ASC"; 
@@ -207,7 +207,7 @@
                                             $caArea = $rowReport['area'];
 
                                         //CLIENTS PER CREDIT ANALYST
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qClientNo = "SELECT COUNT(ccreditanalyst) AS CNO, clientid  from insert_client WHERE ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
                                         }else{
                                             $qClientNo = "SELECT COUNT(ccreditanalyst) AS CNO, clientid  from insert_client WHERE cbranch = '$bnm' AND ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
@@ -220,7 +220,7 @@
                                                     }
 
                                         //TOTAL LOAN AMOUNT PER CREDIT ANALYST
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qLoanAmount ="SELECT SUM(cloanamount) AS SLA from insert_client WHERE ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
                                         }else{
                                             $qLoanAmount ="SELECT SUM(cloanamount) AS SLA from insert_client WHERE cbranch ='$bnm' AND ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
@@ -231,7 +231,7 @@
                                                     }
 
                                         //DAILY COLLECTION PER CREDIT ANALYST
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qdaily = "SELECT SUM(payment) as daily, SUM(secdep) as sumdep, creditanalyst from insert_payment WHERE area = '$caArea' AND date_paid = curdate() ";
                                         }else{
                                             $qdaily = "SELECT SUM(payment) as daily, SUM(secdep) as sumdep, creditanalyst from insert_payment WHERE area = '$caArea' AND date_paid = curdate() ";
@@ -244,7 +244,7 @@
                                                     }
 
                                         //TOTAL OVERDUE PER CREDIT ANALYST
-                                        if($bnm == "all"){
+                                        if($bnm == "All"){
                                             $qOverDue = "SELECT SUM(coverdue) as SOD from insert_client WHERE ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
                                         }else{
                                             $qOverDue = "SELECT SUM(coverdue) as SOD from insert_client WHERE cbranch ='$bnm' AND ccarea = '$caArea' AND cloanstatus in ('Ongoing','Released')";
@@ -279,7 +279,7 @@
                                 </div>
                                 <hr>
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qA = "SELECT COUNT(ccarea) AS A FROM insert_client where ccarea = '1' AND cloanstatus IN ('Released', 'OnGoing') "; 
 
                                     }else{
@@ -294,7 +294,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qB = "SELECT COUNT(ccarea) AS B FROM insert_client where ccarea = '2' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qB = "SELECT COUNT(ccarea) AS B FROM insert_client where cbranch ='$bnm' AND ccarea = '2' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -308,7 +308,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qC = "SELECT COUNT(ccarea) AS C FROM insert_client where ccarea = '3' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qC = "SELECT COUNT(ccarea) AS C FROM insert_client where cbranch ='$bnm' AND ccarea = '3' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -322,7 +322,7 @@
                                         }
                                 ?> 
                                 <?php
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qD = "SELECT COUNT(ccarea) AS D FROM insert_client where ccarea = '4' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qD = "SELECT COUNT(ccarea) AS D FROM insert_client where cbranch ='$bnm' AND ccarea = '4' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -336,7 +336,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qE = "SELECT COUNT(ccarea) AS E FROM insert_client where ccarea = '5' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qE = "SELECT COUNT(ccarea) AS E FROM insert_client where cbranch ='$bnm' AND ccarea = '5' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -350,7 +350,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qF = "SELECT COUNT(ccarea) AS F FROM insert_client where ccarea = '6' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qF = "SELECT COUNT(ccarea) AS F FROM insert_client where cbranch ='$bnm' AND ccarea = '6' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -364,7 +364,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qG = "SELECT COUNT(ccarea) AS G FROM insert_client where ccarea = '7' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qG = "SELECT COUNT(ccarea) AS G FROM insert_client where cbranch ='$bnm' AND ccarea = '7' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -378,7 +378,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qH = "SELECT COUNT(ccarea) AS H FROM insert_client where ccarea = '8' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qH = "SELECT COUNT(ccarea) AS H FROM insert_client where cbranch ='$bnm' AND ccarea = '8' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -392,7 +392,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qI = "SELECT COUNT(ccarea) AS I FROM insert_client where ccarea = '9' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qI = "SELECT COUNT(ccarea) AS I FROM insert_client where cbranch ='$bnm' AND ccarea = '9' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -406,7 +406,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qJ = "SELECT COUNT(ccarea) AS J FROM insert_client where ccarea = '10' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qJ = "SELECT COUNT(ccarea) AS J FROM insert_client where cbranch ='$bnm' AND ccarea = '10' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -420,7 +420,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qK = "SELECT COUNT(ccarea) AS K FROM insert_client where ccarea = '11' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qK = "SELECT COUNT(ccarea) AS K FROM insert_client where cbranch ='$bnm' AND ccarea = '11' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -434,7 +434,7 @@
                                         }
                                 ?> 
                                 <?php 
-                                    if($bnm == "all"){
+                                    if($bnm == "All"){
                                         $qL = "SELECT COUNT(ccarea) AS L FROM insert_client where ccarea = '12' AND cloanstatus IN ('Released', 'OnGoing') "; 
                                     }else{
                                         $qL = "SELECT COUNT(ccarea) AS L FROM insert_client where cbranch ='$bnm' AND ccarea = '12' AND cloanstatus IN ('Released', 'OnGoing') "; 
@@ -580,7 +580,6 @@
                                     while($trncrow =mysqli_fetch_assoc($trncq)){
                                         $trnc = $trncrow['nc'];
                                     }
-              
                             ?>
                             <div class="topCA">
                                     <h3>Total Release for New Clients</h3>

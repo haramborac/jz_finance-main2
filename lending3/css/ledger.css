@@ -1,0 +1,166 @@
+#print{
+    display: none;
+}
+
+#no-print{
+    position: absolute; 
+    top: 20%;
+    left: 18%;
+    display: block;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 25px 25px;
+    width: 60%;
+    height: 75%;
+}
+
+
+@media print{
+
+    .table-wrapper button{
+	    display:none;
+	}
+
+    .fullContent,#no-print{
+
+        display: none;
+    }
+    #print{
+        height: auto;
+        display: block;
+        width: auto;
+    }
+    *{
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    body{
+        font-family: Helvetica;
+        -webkit-font-smoothing: antialiased;
+        background: rgba( 71, 147, 227, 1);
+    }
+    h2{
+        text-align: center;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: white;
+        padding: 30px 0;
+    }
+    
+    /* Table Styles */
+    .print-table tr{
+        text-transform: capitalize;
+    }
+    .table-wrapper{
+        margin: 0px 0px 0px;
+    }
+    
+    .print-table {
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: normal;
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+        background-color: white;
+    }
+    
+    .print-table td, .print-table th {
+        text-align: center;
+        padding: 8px;
+    }
+    
+    .print-table td {
+        font-size: 12px;
+    }
+    #print-table thead, td, th{
+        border: 1px solid black;
+    }
+    
+   }
+@page{
+    size: A4 landscape;
+}
+
+
+
+
+.caContent{
+    padding: 25px 25px;
+    border: 3px solid black;
+    border-radius: 10px;
+    height: 70%;
+}
+
+#caNameID{
+    font-size: 20px;
+    padding: 3px 3px;
+    border: 3px solid black;
+    width: 40%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+#tCurrent tr{
+    text-transform: capitalize;
+}
+#tCurrent{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.caContent{
+    overflow-y: auto;
+}
+#theadtr{
+    text-align: left;
+}
+
+
+#button {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 15px;
+  margin-left: 40%;
+  min-height: 20px;
+  min-width: 0;
+  outline: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  will-change: transform;
+}
+
+#button:disabled {
+  pointer-events: none;
+}
+
+#button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+#button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
