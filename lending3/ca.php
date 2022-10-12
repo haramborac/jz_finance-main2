@@ -6,7 +6,7 @@
 </style>
 
 <div id="no-print" class = "caContainer">
-    <h1>Credit Analyst of <?php echo $bname ?></h1>
+    <h1>Weekly Collections of <?php echo $bname ?></h1>
             <select name="caName" id="caNameID" onchange = "caFilter()">
                 <?php 
                     if($bnm == "All"){
@@ -31,7 +31,7 @@
                     echo "<option value=''>No Credit Analyst</option>";
                     }?>
             </select>
-            <h2>Current Clients</h2>
+            <h2>Clients</h2>
         <div class = "caContent">
         <table id="tCurrent">
         <tr id="theadtr">
@@ -114,7 +114,7 @@
         <?php } ?>
     </table>  
             </div>
-            <button id="button" onclick="window.print(); return false;">Print</button>
+            <button id="button" onclick="window.print(); return false;">Print Collections</button>
 </div>
 <div id="print">
 <div class="table-wrapper">
