@@ -1,0 +1,38 @@
+@media print{
+    nav ul,
+    nav button,
+    .caddInfo,
+    .addSteps,
+    .piViewButton button{
+        display: none;
+    }
+    #clientForm2{
+        transform: scale(0.9);
+        position: relative;
+        top: -50px;
+        padding: 0px;
+        border :none;
+        box-shadow: none;
+        border-radius: 0px;
+        background: none;
+        backdrop-filter: none;
+    }
+    #clientForm2 input{
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #clientForm2 ::placeholder{
+        opacity: 0.2;
+    }
+    .sigmatura{
+        transform: scale(0.8);
+        top: 120px;
+        display:block;
+        margin: -30px;
+        font-size: 15px;
+    }
+}
+@page {
+    size: A4 PORTRAIT;
+}

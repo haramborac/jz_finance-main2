@@ -1,4 +1,5 @@
 <?php ob_start() ?>
+
 <?php
     session_start();
 
@@ -29,19 +30,12 @@
 <header>
     <div class="fullContent">
         <nav>
-
             <?php
                 $username1 = $_SESSION['UNAME'];
                 $branch1 = mysqli_query($connection,"select branch from insert_cssaccount where username = '$username1'");
                     while($rb1= mysqli_fetch_assoc($branch1)){
                         $bnm = $rb1['branch'];
-                        // if($bnm == "Bulacan"){
-                        //     $bname = 'Bulacan' ;
-                        // }
-                        // elseif($bnm == "meycauayan"){
-                        //     $bname = 'Quezon City'  ;
-                        // }
-                        //else
+
                         if($bnm == "All"){
                             $bname = "All Branches";
                         }else{
@@ -57,13 +51,11 @@
                     }?>
                 <li class="navSel"><a class="a" href="records.php"><i class="fa fa-folder"></i><p>Records</p></a></li>
                 <li class="navSel"><a class="a" href="ca.php"><i class="fa-solid fa-peso-sign"></i><p>Weekly Collection</p></a></li>
-                <!-- <li class="navSel"><a class="a" href="data.php"><i class="fa fa-database"></i><p>Client Data</p></a></li> --> 
                 <li class="navSel"><a class="a" href="ledger.php"><i class="fa fa-print"></i><p>Ledger</p></a></li>         
                 <?php if($bnm == 'All'){
                 echo "<li class='navSel'><a class='a' href='settings.php'><i class='fa fa-gears'></i><p>Settings</p></a></li>";
                     }?>  
 	    </ul>
-
 <div id="dcanvas" style="    position: absolute;
     display: inline-flex;
     z-index: 1;
@@ -99,17 +91,15 @@
         if(adminAccount.innerHTML == "Chatspeak Admin"){
             accPosition.style.display = "none";
         }
-
     </script>
 </header>
-
         <?php 
             if($bnm == "All"){
-                $show_table = "SELECT * FROM insert_client  ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
-                $show_profile = "SELECT * FROM insert_client ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
+                $show_table = "SELECT clientid, cloanstatus, ccycle, cloanamount, camountpaid, creleaseddate, cmaturitydate, cloantype FROM insert_client  ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
+                // $show_profile = "SELECT * FROM insert_client ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
             }else{
-                $show_table = "SELECT * FROM insert_client WHERE cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
-                $show_profile = "SELECT * FROM insert_client where cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
+                $show_table = "SELECT clientid, cloanstatus, ccycle, cloanamount, camountpaid, creleaseddate, cmaturitydate, cloantype FROM insert_client WHERE cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
+                // $show_profile = "SELECT * FROM insert_client where cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
             }
             $show_table_query = mysqli_query($connection, $show_table);
 
@@ -135,10 +125,15 @@
                 $dif = $diff->format("%a");
     
 
-                $camtpd = mysqli_query($connection,"select sum(payment) as spay, sum(secdep) ssav from insert_payment where clientid = '$crid' and ipcycle = $cycle group by ipcycle");
+                $camtpd = mysqli_query($connection,"select sum(payment) as spay, sum(secdep) ssav from insert_payment where clientid = '$crid' and ipcycle = $cycle ");
                 while($camtpdr = mysqli_fetch_assoc($camtpd)){
-                    $camtpdresult = $camtpdr['spay']; // CAMOUNTPAID
+                    if(is_null($camtpdr['spay'])){
+                        $camtpdresult = 0;
+                        $secdepresult = 0;
+                    } else{
+                        $camtpdresult = $camtpdr['spay'];// CAMOUNTPAID
                     $secdepresult = $camtpdr['ssav']; // TOTAL ADDED SAVINGS + SECDEP FROM DEDUCTION 
+                    }
                 }
                 $cbal = $row['cloanamount']-$camtpdresult; // CBALANCE
 

@@ -185,7 +185,7 @@
                                             <label for="owned">Owned</label>
                                             <input id="mortgaged" type="radio" class="check" value="mortgaged" name="clientHomeInfo" onclick="disable()">
                                             <label for="mortgaged">Mortgaged</label>
-                                            <input id="other" type="radio" class="other" value="others" valname="clientHomeInfo" onclick="enable()">
+                                            <input id="other" type="radio" class="other" value="others" name="clientHomeInfo" onclick="enable()">
                                             <label for="other">Other</label>
                                             <input id="adOthers" type="text" name="adOthers" placeholder="Others" disabled>
                                             <script src="JS/app.js"></script>
