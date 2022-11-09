@@ -1,3 +1,4 @@
 <?php 
-    $connection = mysqli_connect('localhost', 'root', '', 'dbs8473633');
+    $connection = mysqli_connect('localhost', 'root', '', 'test2');
+    //dbs8473633
 ?>

@@ -34,7 +34,6 @@ if(isset($_POST['udpateclient'])){
     $edit_client .= "ccarea = '$editarea', ";
     $edit_client .= "camountpaid = 0, ";
     $edit_client .= "cbalance = 0, ";
-    $edit_client .= "cadvance = 0, ";
     $edit_client .= "coverdue = 0, ";
     $edit_client .= "csecdep = 0, ";
     $edit_client .= "cmaturitydate = NULL ";
@@ -66,7 +65,6 @@ if(isset($_POST['udpateclient'])){
                 $edit_client .= "camountpaid = 0, ";
                 $edit_client .= "coverdue = 0, ";
                 $edit_client .= "csecdep = 0, ";
-                $edit_client .= "cadvance = 0, ";
                 $edit_client .= "creleaseddate = CURDATE(), ";
                 $edit_client .= "cmaturitydate = CURDATE() + INTERVAL $lt DAY, ";
                 $edit_client .= "cloantype = '$loantype',";
@@ -91,7 +89,6 @@ if(isset($_POST['udpateclient'])){
                 $edit_client .= "camountpaid = 0, ";
                 $edit_client .= "coverdue = 0, ";
                 $edit_client .= "csecdep = 0, ";
-                $edit_client .= "cadvance = 0, ";
                 $edit_client .= "creleaseddate = CURDATE(), ";
                 $edit_client .= "cmaturitydate = NULL, ";
                 $edit_client .= "cloantype = '$loantype',";

@@ -144,7 +144,7 @@
                 ?>
                     <tr>
                         <td style ="display:none" class="canal"><?php echo $row2['ccreditanalyst']?></td>
-                        <td width="10%"><?php echo $row2['ccarea']?></td>
+                        <td style ="display:none" width="10%"><?php echo $row2['ccarea']?></td>
                         <td width="40%"><span><?php echo $row2['clastname'].", ".$row2['cfirstname']?></span></td>
                         <td width="15%"><span>₱ </span><span><?php echo number_format($approvedloan)?></span></td>
                         <td width="15%" id="tdDaysRemaining<?php echo $drIndex2?>" class="tdDaysRemaining2" data-date="<?php echo $row2['cmaturitydate']?>"><span class="days"></span>                        
@@ -212,7 +212,7 @@
                                 }
                         ?>
                         <td style ="display:none"><?php echo $row2['camountpaid'] ?></td>
-                        <td style ="display:none"><?php echo $row2['cbalance'] ?></td>
+                        <td style ="display:"><?php echo $row2['cbalance'] ?></td>
                         <td style ="display:none"><?php echo $sumpay?></td>
                         <td style ="display:none"><?php echo $approvedloan?></td>
                     </tr>                    

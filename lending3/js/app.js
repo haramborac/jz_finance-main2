@@ -137,25 +137,25 @@ function cmViewComaker() {
     }
 }
 
-function crtViewTransaction() {
-    var crtDiv = document.getElementById("crRecentlyAdded");
-    var crtDef = document.getElementById("crDefaultView");
-    var crtOpen = document.getElementById("crtRecent");
-    var crtClose = document.getElementById("crtAll");
+// function crtViewTransaction() {
+//     var crtDiv = document.getElementById("crRecentlyAdded");
+//     var crtDef = document.getElementById("crDefaultView");
+//     var crtOpen = document.getElementById("crtRecent");
+//     var crtClose = document.getElementById("crtAll");
 
 
-    if (crtDiv.style.display === "none") {
-        crtDiv.style.display = "block";
-        crtDef.style.display = "none";
-        crtOpen.style.display = "none";
-        crtClose.style.display = "block";
-    } else{
-        crtDiv.style.display = "none";
-        crtDef.style.display = "block";
-        crtOpen.style.display = "block";
-        crtClose.style.display = "none";
-    }
-}
+//     if (crtDiv.style.display === "none") {
+//         crtDiv.style.display = "block";
+//         crtDef.style.display = "none";
+//         crtOpen.style.display = "none";
+//         crtClose.style.display = "block";
+//     } else{
+//         crtDiv.style.display = "none";
+//         crtDef.style.display = "block";
+//         crtOpen.style.display = "block";
+//         crtClose.style.display = "none";
+//     }
+// }
 
 
 

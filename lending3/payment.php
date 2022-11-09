@@ -67,8 +67,7 @@
 
                 $payment_history = "INSERT INTO insert_payment (ipbranch, clientid, area, creditanalyst, date_paid, days, payment, secdep, comment, ipcycle) 
                 VALUES ('$bnm', '$clientid', '$area', '$checkca', now(), $checkdays, $payment, $savings, '$comment', $checkcycle)";
-            }
-            
+            }  
         }
     mysqli_query($connection, $payment_history);
     header('location:records.php');
