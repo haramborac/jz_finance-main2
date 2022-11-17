@@ -107,11 +107,11 @@
 .crtTableContent{
     height: 620px;
     overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    /* -ms-overflow-style: none;
+    scrollbar-width: none; */
 }
 .crtTableContent::-webkit-scrollbar{
-    display: none;
+    /* display: none; */
 }
 .crtTableContent table#recordTable{
     width: 100%;

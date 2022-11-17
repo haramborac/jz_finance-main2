@@ -1,4 +1,5 @@
 <?php include_once 'header.php';?>
+<?php include_once 'apdate.php';?>
 <style>
     <?php include_once 'css/records.css'; ?>
     <?php include_once 'css/printrecords.css'; ?>
@@ -138,10 +139,8 @@
                     <?php 
                         if($bnm == "All"){
                             $show_table = "SELECT * FROM insert_client  ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
-                            // $show_profile = "SELECT * FROM insert_client ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
                         }else{
                             $show_table = "SELECT * FROM insert_client WHERE cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
-                            // $show_profile = "SELECT * FROM insert_client where cbranch = '$bnm' ORDER BY ccarea ASC, ccycle ASC, clastname ASC";
                         }
                         $show_table_query = mysqli_query($connection, $show_table);
                         $drIndex = -1;
@@ -156,7 +155,7 @@
                             }
                             if($status == "Released"){
                                 $stats = "<td width='6%' id='crmStatus' class='crmStatus'><div style='background-color:Yellow'><p id='crmStatusP'></p><p>Released</p></div> </td>";
-                            }
+                             }
                             if($status == "OnGoing"){
                                 $stats = "<td width='6%' id='crmStatus' class='crmStatus'><div style='background-color:#90ee90 '><p id='crmStatusP'></p><p>On Going</p></div> </td>";
                             }
@@ -176,44 +175,131 @@
                             $bnm = $row['cbranch'];
                             $bname = $bnm;
 
-            $crd = date_create($row['creleaseddate']);
-            $cmd = date_create($row['cmaturitydate']);
-            $cla = $row['cloanamount'];
-            $cap = $row['camountpaid'];
-            $date1 = date_format($crd,"Y-m-d");
-            $date2 = date("Y-m-d");
-            $m1 = date_format($cmd,"Y-m-d");
+                            $crd = date_create($row['creleaseddate']);
+                            $cmd = date_create($row['cmaturitydate']);
+                            $cla = $row['cloanamount'];
+                            $cap = $row['camountpaid'];
+                            $date1 = date_format($crd,"Y-m-d");
+                            $date2 = date("Y-m-d");
+                            $m1 = date_format($cmd,"Y-m-d");
 
-            $date1 = date_create($date1);
-            $date2 = date_create($date2);
+                            $date1 = date_create($date1);
+                            $date2 = date_create($date2);
 
-            $diff1 = date_diff($date1,$date2);
-            $dif = $diff1->format("%a");
-            if($row['cloantype'] == 'mbl'){
-                $lt = 100;
-            }
-            if($row['cloantype']  == 'sbl'){
-                $lt = 60;
-            }
-            if($row['cloantype']  == 'il'){
-                $lt = 20;
-            }
-            if($row['cloantype']  == 'sl'){
-                $lt = 0;
-            }
+                            $diff1 = date_diff($date1,$date2);
+                            $dif = $diff1->format("%a");
+                            if($row['cloantype'] == 'mbl'){
+                                $lt = 100;
+                            }
+                            if($row['cloantype']  == 'sbl'){
+                                $lt = 60;
+                            }
+                            if($row['cloantype']  == 'il'){
+                                $lt = 20;
+                            }
+                            if($row['cloantype']  == 'sl'){
+                                $lt = 0;
+                            }
 
-            if($row['cloanstatus']=="Pending" || $row['cloanstatus']=="Finished"){
-                $ddf = 0;
-                $lnmt = 0;
-            }else{
-                if($row['cloantype']  == 'sl'){
-                    $ddf = $dif;
-                }else{
-                    $ddf = $lt-$dif; 
-                }
-                $lnmt = number_format($row['cloanamount']);
-            }
-                    ?>
+                            if($row['cloanstatus']=="Pending" || $row['cloanstatus']=="Finished"){
+                                $ddf = 0;
+                                $lnmt = 0;
+                            }else{
+                                if($row['cloantype']  == 'sl'){
+                                    $ddf = $dif;
+                                }else{
+                                    $ddf = $lt-$dif; 
+                                }
+                                $lnmt = number_format($row['cloanamount']);
+                            }
+                                   
+                    //////////////////////////////////////////////////////////////////////////////
+                    // $maturity_date1h = $row['cmaturitydate'];
+                    // $statush = $row['cloanstatus'];
+                    // $cridh = $row['clientid'];
+                    // $cycleh = $row['ccycle'];
+                    // $crdh = date_create($row['creleaseddate']);
+                    // $cmdh = date_create($row['cmaturitydate']);
+                    // $clah = $row['cloanamount'];
+                    // $caph = $row['camountpaid'];
+                    // $date1h = date_format($crdh,"Y-m-d");
+                    // $date2h = date("Y-m-d");
+                    // $mh = date_format($cmdh,"Y-m-d");
+
+                    // $date1_1h = date_create($date1h);
+                    // $date2_2h = date_create($date2h);
+
+                    // $diffh = date_diff($date1_1h,$date2_2h);
+                    // $difh = $diffh->format("%a");
+
+                    // $camtpd = mysqli_query($connection,"select sum(payment) as spay, sum(secdep) ssav from insert_payment where clientid = '$cridh' and ipcycle = $cycleh ");
+                    // while($camtpdr = mysqli_fetch_assoc($camtpd)){
+                    //     if(is_null($camtpdr['spay'])||is_null($camtpdr['ssav'])){
+                    //         $camtpdresult = 0;
+                    //         $secdepresult = 0;
+                    //     } else{
+                    //         $camtpdresult = $camtpdr['spay'];// CAMOUNTPAID
+                    //     $secdepresult = $camtpdr['ssav']; // TOTAL ADDED SAVINGS + SECDEP FROM DEDUCTION 
+                    //     }
+                    // }
+                    // $cbal = $row['cloanamount']-$camtpdresult; // CBALANCE
+
+                    // if($row['cloantype']=='mbl'){
+                    //     if(($difh*($clah/100))-$caph<0){
+                    //         $rod = 0;
+                    //     }
+                    //     else{
+                    //         $rod = abs(($difh*($clah/100))-$caph);
+                    //     }
+
+                    //     if($statush=="Finished"||$statush=="Pending"){
+                    //         $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$cridh'";
+                    //     }
+                    //     elseif($statush=="OnGoing"||$statush=="Released"){
+                    //         $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$cridh'";
+                    //     }
+                    // }
+                    // elseif($row['cloantype']=='sbl'){
+                    //     if(($difh*($clah/60))-$caph<0){
+                    //         $rod = 0;
+                    //     }
+                    //     else{
+                    //         $rod = abs(($difh*($clah/60))-$caph);
+                    //     }
+
+                    //     if($statush=="Finished"||$statush=="Pending"){
+                    //         $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$cridh'";
+                    //     }
+                    //     elseif($statush=="OnGoing"||$statush=="Released"){
+                    //         $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$cridh'";
+                    //     }
+                    // }
+                    // elseif($row['cloantype']=='il'){
+                    //     if(($difh*($clah/20))-$caph<=0){
+                    //         $rod = 0;
+                    //     }
+                    //     else{
+                    //         $rod = abs(($difh*($clah/20))-$caph);
+                    //     }
+
+                    //     if($statush=="Finished"||$statush=="Pending"){
+                    //         $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$cridh'";
+                    //     }elseif($statush=="OnGoing"||$statush=="Released"){
+                    //         $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal, coverdue = $rod where clientid ='$cridh'";
+                    //     }
+                    // }
+                    // elseif($row['cloantype']=='sl'){
+                    
+                    //     $rod = abs((($difh+1)*($clah*.015))-$caph);
+
+                    //     if($statush=="Finished"||$statush=="Pending"){
+                    //         $update = "UPDATE insert_client set camountpaid = 0, cbalance = 0, coverdue = 0 where clientid ='$cridh'";
+                    //     }elseif($statush=="OnGoing"||$statush=="Released"){
+                    //         $update = "UPDATE insert_client set camountpaid = $camtpdresult, csecdep = $secdepresult, cbalance = $cbal+$rod, coverdue = 0 where clientid ='$cridh'";
+                    //     }
+                    // }
+                    // mysqli_query($connection,$update); 
+                                    ?>
                     <tr>
                         <td width="8.5%"><?php echo $bname ?></td>
                         <td width="8%"><?php echo $row['ccarea']?></td>
