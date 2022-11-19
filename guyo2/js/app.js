@@ -521,8 +521,8 @@ window.onload = function(){
         usercontent[showProfile].style.display = "block";
     }
 
-    if(showAdd != undefined){
-        paymentmodal[showAdd].style.display = "block";
-    }
+    // if(showAdd != undefined){
+        // paymentmodal[showAdd].style.display = "block";
+    // }
 }
 

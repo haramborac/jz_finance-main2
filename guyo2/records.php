@@ -749,6 +749,7 @@
                     </div>
                 </form>
             </div>
+            <?php } ?>
             <div id="userPayModal" class="userPayModal">
                 <div class="paymentModal">
                     <button id="upayClose" class="upayClose">&times;</button>
@@ -765,17 +766,17 @@
                                             $checkday_query = mysqli_query($connection, $checkday);
                                             while($checkdy = mysqli_fetch_assoc($checkday_query)){
                                         ?>
-                                        <input type="hidden" name="checkid" value="<?php echo $row2['id'] ?>">
-                                        <input type="hidden" name="checkarea" value="<?php echo $row2['ccarea'] ?>">
-                                        <input type="hidden" name="checkdays" value="<?php echo $checkdy['days']; ?>">
-                                        <input type="hidden" name="checkcycle" value="<?php echo $row2['ccycle']; ?>">
+                                        <input type="text" name="checkid" value="<?php echo $row2['id'] ?>">
+                                        <input type="text" name="checkarea" value="<?php echo $row2['ccarea'] ?>">
+                                        <input type="text" name="checkdays" value="<?php echo $checkdy['days']; ?>">
+                                        <input type="text" name="checkcycle" value="<?php echo $row2['ccycle']; ?>">
                                         <?php } ?>
-                                        <input type="hidden" name="bnm" value="<?php echo $row2['cbranch']?>">
-                                        <input type="hidden" name="creditanalyst" value="<?php echo $row2['ccreditanalyst'] ?>">
-                                        <input type="hidden" name="clientid" value="<?php echo $row2['clientid'] ?>">
-                                        <input type="hidden" name="overdue" value="<?php echo $row2['coverdue'] ?>">
-                                        <input type="hidden" name="checkstatus" value="<?php echo $row2['cloanstatus'] ?>">
-                                        <input type="hidden" name="checkbalance" class="checkbalanse" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
+                                        <input type="text" name="bnm" value="<?php echo $row2['cbranch']?>">
+                                        <input type="text" name="creditanalyst" value="<?php echo $row2['ccreditanalyst'] ?>">
+                                        <input type="text" name="clientid" value="<?php echo $row2['clientid'] ?>">
+                                        <input type="text" name="overdue" value="<?php echo $row2['coverdue'] ?>">
+                                        <input type="text" name="checkstatus" value="<?php echo $row2['cloanstatus'] ?>">
+                                        <input type="text" name="checkbalance" class="checkbalanse" id="checkbalance<?php echo $loop ?>" value="<?php echo $row2['cbalance'] ?>">
                                         <input id="payment" class="payment" type="number" name="amount" value="0">
                                     </p>
                                 </div>
@@ -792,12 +793,11 @@
                             </div>
                             <h3>Client Name: <?php echo $row2['cfirstname'].' '.$row2['clastname'] ?>
                             <p></h3> Credit Analyst: <?php echo $row2['ccreditanalyst'] ?></p>
-                            <button type="submit" name="payment" class="btnAddPayment" disabled>Add Payment <i class="fa fa-money-bill"></i></button>
+                            <button type="submit" name="payment" id='btnAddPayment' class="btnAddPayment" disabled>Add Payment <i class="fa fa-money-bill"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
-            <?php } ?>
         </div>
     </div>
     <div id="crRecentlyAdded" class="crRecentlyAdded" style="display: none;">
@@ -980,21 +980,21 @@
 
 <script> 
 //SCRIPT FOR ADD PAYMENT BUTTON
-    var cpayModal = document.getElementsByClassName("userPayModal");
+    var cpayModal = document.getElementById("userPayModal");
     var caddPay = document.getElementsByClassName("userButtonAdd");
     var paySpan = document.getElementsByClassName("upayClose");
 
     for(let c = 0 ; c<caddPay.length; c++){
         let id = document.getElementsByClassName('')
         caddPay[c].onclick = function() {
-            cpayModal[c].style.display = "block";
+            cpayModal.style.display = "block";
             localStorage.setItem('showAdd',c);
         }
     }
 
     for(let c = 0 ; c<paySpan.length; c++){
         paySpan[c].onclick = function() {
-            cpayModal[c].style.display = "none";
+            cpayModal.style.display = "none";
             localStorage.removeItem('showAdd');
         }
     }
@@ -1266,4 +1266,9 @@
                     document.getElementsByClassName("eDaysRem")[i].innerHTML = "0 Days";
             }
         }
+</script>
+
+<script>
+
+   
 </script>
